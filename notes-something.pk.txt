@@ -1,0 +1,134 @@
+--
+create a new github.com project, clone it, add all files and push
+--
+add mondod path to environmental variables
+--
+get an overview of af and place comments
+--
+client.jsx, routes.jsx entry points to the app
+--
+server folder apparently contains all the server code
+--
+server->db folder contains db code
+--
+will need to learn express.js and mondodb.js
+--
+server startup: index.js -> connect -> , initExpress(app)
+--
+In server->index:
+const app = express()
+--
+server also has some routing mechanism, index->initRoutes , not related to react-router
+app.get( and app.post( , many 
+--
+In server->index:
+app.get('*', renderMiddleware); what is renderMiddleware ???
+--
+will probably need to quickly go through express.js tut - 2.5hr
+--
+react-router routes are also imported on the server:
+index -> app.get('*', middleware)-> 
+store = configureStore({...}) -> routes = createRoutes(store) ->
+--
+redux store is used in creating routes and used on server aswell
+--
+ store.replaceReducer(... : 
+--
+reactGo also uses code splitting
+--
+all redux action.types are string constants
+--
+may also need to go throught advanced redx tut
+--
+all rerouting info goes into the redux store
+--
+all async requests status go into the redux store
+--
+index->middleware->pageRenderer //a page is built on the server using the store
+--
+react-helmet: a document head manager for react
+--
+pageRenderer->renderToString
+--
+need to learn server side rendring for faster loading and SEO
+--
+Server side rendring:
+https://medium.com/@firasd/quick-start-tutorial-universal-react-with-server-side-rendering-76fe5363d6e
+--
+react, react-dom: to create and render React components on the server
+--
+Routing in the app is primarily handled by Express
+--
+HTTP POST requests supply additional data from the client (browser) to the server in the message body
+--
+GET requests include all required data in the URL
+--
+can have same file names in different directories, index.js
+--
+app.use - express use middleware
+--
+const app = express() //create express app
+--
+Username and password authentication strategy for Passport and Node.js
+--
+react-router match() - used for server-side rendering
+--
+connect() called after express() is called // to connect to db
+--
+express();
+connect(); //connect to DB and load models & schemas
+initPassport();
+initExpress(app);
+initRoutes(app); //routes for express app, uses controllers from db, set routes that run db queries
+app.get('*', renderMiddleware); //react-router routes included as renderMiddleware, 
+app.listen(app.get('port')); // 
+--
+app.get(... , app.post(..., http get and posts 
+--
+connect() and loadModels() // connect to MongoDB and set Schemas
+--
+connect-mongo MongoDB session store for Connect and Express
+--
+express-session: session middleware for Express
+--
+render-middleware // 
+--
+method-override : Lets you use HTTP verbs such as PUT or DELETE in places where the client doesn't support it
+--
+compression - Node.js compression middleware, deflate , gzip
+--
+path : module provides utilities for working with file and directory paths
+--
+process: The process object is a global that provides information about, and control over, the current Node.js process
+--
+app.set(name, value): Express, Assigns setting name to value, where name is one of the properties from the app settings table.
+--
+app settings table: Express table, has a few settings
+--
+Sequelize 
+A promise-based Node.js/io.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server. It features solid transaction support, relations, read replication and more
+body-parser : Node.js body parsing middleware
+--
+get - all topics, 
+post - add topic, 
+put - update topic,
+delete - delete topic
+--
+md5: widely used hash function producing a 128-bit hash value
+--
+types: constants redux action types
+--
+vote increments and decrements are services
+--
+axios: Promise based HTTP client for the browser and node.js
+--
+when redux actions are called, services are fired
+--
+client->redux actions -> make user requests
+--
+push -> react-router-redux, in redux action, when response received from the server dispatch(push('/')
+--
+in redux actions, first server service is called, then store dispatch is called if the response was ok
+--
+react-router-redux is used in the application
+--
