@@ -1,3 +1,7 @@
 --
 create a new github.com project, clone it, add all files and push
 --
+add mondod path to environmental variables
+--
+get an overview of af and place comments
+--
