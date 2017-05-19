@@ -15,7 +15,7 @@ export default class TopicTextInput extends Component {
    * used in different ways. I personally think this makes it more reusable.
    */
   onSave() {
-    const { onEntrySave, value } = this.props;
+    const {onEntrySave, value} = this.props;
     onEntrySave(value);
   }
 
@@ -24,7 +24,7 @@ export default class TopicTextInput extends Component {
    * used in different ways. I personally think this makes it more reusable.
    */
   onChange(event) {
-    const { onEntryChange } = this.props;
+    const {onEntryChange} = this.props;
     onEntryChange(event.target.value);
   }
 
@@ -38,24 +38,15 @@ export default class TopicTextInput extends Component {
   }
 
   render() {
-    const { className, placeholder, value } = this.props;
+    const {className, placeholder, value} = this.props;
     return (
       <div>
-      <input
-        className={className}
-        placeholder={placeholder}
-        onChange={this.onChange}
-        // onKeyDown={this.onKeyDown}
-        value={value}
-        autoFocus />
-      <input
-        className={className}
-        placeholder="Enter description"
-        // onChange={this.onChange}
-        onKeyDown={this.onKeyDown}
-        // value={value}
-        // autoFocus 
-        />
+        <input className={className}
+               placeholder={placeholder}
+               onChange={this.onChange}
+               onKeyDown={this.onKeyDown}
+               value={value}
+               autoFocus />
       </div>
     );
   }

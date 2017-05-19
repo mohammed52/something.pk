@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import EntryBox from '../components/EntryBox';
 import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
+import CommentsSection from '../components/CommentsSection';
 import { createTopic, typing, incrementCount,
   decrementCount, destroyTopic } from '../actions/topics';
 import styles from '../css/components/vote';
@@ -26,6 +27,7 @@ class Vote extends Component {
           onDecrement={decrementCount}
           onDestroy={destroyTopic} />
         <Scoreboard topics={topics} />
+        <CommentsSection />
       </div>
     );
   }

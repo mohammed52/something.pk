@@ -200,3 +200,34 @@ debugger doesnt work on server files, how to debug server code ? use console.log
 --
 if Express app is not running but Mondodb is running, can not launch Meteor app
 --
+jsx auto formatter auto indent:
+1. Install ST3 jsfmt
+2. Install esformatter-jsx in STE jsfmt plugin directory
+https://github.com/royriojas/esformatter-jsx/wiki/Usage-with-jsfmt
+--
+jsfmt user settings:
+--
+{
+  "extensions": [
+    "js",
+    "jsx",
+    "sublime-settings"
+  ],
+  "options": {
+    "plugins": [
+      "esformatter-jsx",
+    ],
+    "jsx": {
+      "formatJSX": true,
+      // change these to your preferred values
+      // refer to https://github.com/royriojas/esformatter-jsx#best-configuration for more options
+      "attrsOnSameLineAsTag": false,
+      "maxAttrsOnTag": 3,
+      "firstAttributeOnSameLine": true,
+      "alignWithFirstAttribute": true,
+      "spaceInJSXExpressionContainers": ""
+    }
+  // other esformatter options
+  }
+}
+--

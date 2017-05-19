@@ -33,6 +33,8 @@
     "react/prefer-stateless-function": 0,
     "import/extensions": 0,
     "react/require-default-props": 0,
+    "no-unused-vars":1,
+    "react/jsx-first-prop-new-line": 0,
   },
   "plugins": [
     "react",
