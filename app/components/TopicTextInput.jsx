@@ -40,13 +40,23 @@ export default class TopicTextInput extends Component {
   render() {
     const { className, placeholder, value } = this.props;
     return (
+      <div>
       <input
         className={className}
         placeholder={placeholder}
         onChange={this.onChange}
-        onKeyDown={this.onKeyDown}
+        // onKeyDown={this.onKeyDown}
         value={value}
         autoFocus />
+      <input
+        className={className}
+        placeholder="Enter description"
+        // onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
+        // value={value}
+        // autoFocus 
+        />
+      </div>
     );
   }
 }

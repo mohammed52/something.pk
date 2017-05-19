@@ -75,6 +75,7 @@ react-router match() - used for server-side rendering
 --
 connect() called after express() is called // to connect to db
 --
+In server->index.js:
 express();
 connect(); //connect to DB and load models & schemas
 initPassport();
@@ -131,4 +132,71 @@ push -> react-router-redux, in redux action, when response received from the ser
 in redux actions, first server service is called, then store dispatch is called if the response was ok
 --
 react-router-redux is used in the application
+--
+server side rendring
+--
+server->
+index.js-> app.get('*', renderMiddleware);
+middleware-> pageRenderer(store, props);
+pageRenderer-> 
+--
+react-helmet : manage all of your changes to the document head
+--
+JSON.stringify() - converts a JavaScript value to a JSON string
+--
+renderToString() - Render a React element to its initial HTML. This should only be used on the server. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes
+--
+0300-9256138
+Col Asim
+55,000 door, 
+20500 rack
+--
+6 7 lvls, 9ft h, 3ft dept - Rs. 20,500/-
+--
+have to study what each folder does
+--
+debug using react debugger in chrome
+--
+files don't show up as you have created them in chrome sources tab
+--
+createRoutes called on both client and server
+--
+configureStore called both client and server middleware
+--
+on client, for redux store: const initialState = window.__INITIAL_STATE__
+--
+Promise.resolve(value) method returns a Promise object , The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never
+--
+the app does not use component life cycle methods
+--
+something.pk->app->services->index : getTopics, deleteTopics, updateTopics, createTopics , create a clientRequest
+--
+something.pk->app->fetch-data->fetchVoteData->voteSetrice().getTopics() , gets all topics
+this is passed in props to IndexRoute->Vote page
+--
+something.pk->app->reducers: update states
+--
+something.pk->app->store->configureStore , creates a new store with give initialState, returns the store
+--
+something.pk->app->utils->createRestApiClient , used in creating services,
+--
+something.pk->app->utils->fetchDataForRoutes , used in client->render->onUpdate->get data and update store
+--
+something.pk->confirg , misc constants and env variables
+--
+in server folder, createRoutes and confirgureStore imported from the app folder
+--
+the server->middleware->pageRenderer works with all app links, not just at the start
+--
+where is the handover part server to client?
+--
+client gets the store initial state via window.initialstate
+--
+server sets the window.initialState then send the html
+--
+if app is crashing, waiting for refresh , restart the MongoD
+--
+debugger doesnt work on server files, how to debug server code ? use console.log , node-inspector
+--
+if Express app is not running but Mondodb is running, can not launch Meteor app
 --
