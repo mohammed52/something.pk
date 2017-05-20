@@ -35,6 +35,10 @@
     "react/require-default-props": 0,
     "no-unused-vars":1,
     "react/jsx-first-prop-new-line": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-tag-spacing":0,
+    "quotes":0,
+    "semi":0
   },
   "plugins": [
     "react",

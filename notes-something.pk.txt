@@ -231,3 +231,14 @@ jsfmt user settings:
   }
 }
 --
+have to learn how to use node-inspector with ReactGo
+--
+Hide ST3 buy popup:
+http://stackoverflow.com/questions/15652758/how-to-install-plugins-to-sublime-text-2-editor
+https://gist.github.com/egel/b7beba6f962110596660
+--
+what is new topic? state.topic.newtopic
+Ans: temp topic typed in input box, retrieved from the state and added to vote.props
+--
+pages normally add header meta info
+--
