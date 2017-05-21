@@ -233,12 +233,51 @@ jsfmt user settings:
 --
 have to learn how to use node-inspector with ReactGo
 --
-Hide ST3 buy popup:
-http://stackoverflow.com/questions/15652758/how-to-install-plugins-to-sublime-text-2-editor
+Hide ST3 buy popup: take your Plugin folder (which you can download as a zip from GitHub, for example) and simply copy the folder into your Packages directory
+DOES NOT WORK!!!
 https://gist.github.com/egel/b7beba6f962110596660
 --
 what is new topic? state.topic.newtopic
 Ans: temp topic typed in input box, retrieved from the state and added to vote.props
 --
 pages normally add header meta info
+--
+cmd set - view all env variables
+--
+Q: mongod env variable not detected in cmd? wasted 02 hrs
+Ans: do not create a new variable, add to the existing path variable
+--
+ctrl+l: ST3 select line
+--
+ctrl+click : ST3 create multiple cursors
+--
+alt + -> : ST3 move to next capital letter
+--
+case sensitive cursor move ctrl+d
+http://stackoverflow.com/questions/14829336/case-sensitive-cmdd-in-sublime-text-2
+--
+ctrl+p : ST3 go to file
+--
+ctrl_l : ST3 select entire line
+--
+ctrl+shift+d : ST3 copy paste line
+--
+ST3 keybindings, list of commands:
+http://www.sublimetext.com/docs/commands
+--
+ST3 macro: ctrl+q
+http://sublimetext.info/docs/en/extensibility/macros.html
+--
+ST3 commands:
+http://docs.sublimetext.info/en/latest/reference/commands.html
+--
+ST3 show_overlay command
+--
+ST3 plugin chain of command
+--
+ctrl+shift+s : ST3 save as
+--
+GOTO definition on ST3 mouse click - 
+USE CORRECT FILE NAME Default (Windows).sublime-mousemap : wasted 02 hours
+https://gist.github.com/kendellfab/6135193
 --

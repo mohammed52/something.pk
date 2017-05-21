@@ -15,12 +15,11 @@ const EntryBox = ({onEntryChange, onEntrySave, topic}) => {
   return (
     <div className={cx('entrybox')}>
       <h1 className={cx('header')}>Vote for your top hack idea-7</h1>
-      <TopicTextInput
-        className={cx('input')}
-        value={topic}
-        placeholder="Suggest a hackday idea . . ."
-        onEntryChange={onEntryChange}
-        onEntrySave={onEntrySave} />
+      <TopicTextInput className={cx('input')}
+                      value={topic}
+                      placeholder="Suggest a hackday idea . . ."
+                      onEntryChange={onEntryChange}
+                      onEntrySave={onEntrySave} />
     </div>
   );
 };
