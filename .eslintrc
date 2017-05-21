@@ -38,7 +38,10 @@
     "react/jsx-space-before-closing": 0,
     "react/jsx-tag-spacing":0,
     "quotes":0,
-    "semi":0
+    "semi":0,
+    "padded-blocks":0,
+    "no-empty-pattern":0,
+    "react/no-unused-prop-types":1
   },
   "plugins": [
     "react",

@@ -14,7 +14,6 @@ function createCommentRequest(data) {
   return {
     type: types.CREATE_COMMENT_REQUEST,
     id: data.id,
-    count: data.count,
     text: data.text
   };
 }
@@ -33,19 +32,6 @@ function createCommentFailure(data) {
   };
 }
 
-function createCommentDuplicate() {
-  return {
-    type: types.CREATE_COMMENT_DUPLICATE
-  };
-}
-
-export function typing(text) {
-  return {
-    type: types.TYPING,
-    newComment: text
-  };
-}
-
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
 // This function does not need to be pure, and thus allowed
@@ -58,21 +44,10 @@ export function createComment(text) {
     const id = md5.hash(text);
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
-    const {comment} = getState();
     const data = {
-      count: 1,
       id,
       text
     };
-
-    // Conditional dispatch
-    // If the comment already exists, make sure we emit a dispatch event
-    if (comment.comments.filter(commentItem => commentItem.id === id).length > 0) {
-      // Currently there is no reducer that changes state for this
-      // For production you would ideally have a message reducer that
-      // notifies the user of a duplicate comment
-      return dispatch(createCommentDuplicate());
-    }
 
     // First dispatch an optimistic update
     dispatch(createCommentRequest(data));
@@ -96,40 +71,6 @@ export function createComment(text) {
           error: 'Oops! Something went wrong and we couldn\'t create your comment'
         }));
       });
-  };
-}
-
-export function incrementCount(id) {
-  return (dispatch) => {
-    return voteService().updateComment({
-      id,
-      data: {
-        isFull: false,
-        isIncrement: true
-      }
-    })
-      .then(() => dispatch(increment(id)))
-      .catch(() => dispatch(createCommentFailure({
-        id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'
-      })));
-  };
-}
-
-export function decrementCount(id) {
-  return (dispatch) => {
-    return voteService().updateComment({
-      id,
-      data: {
-        isFull: false,
-        isIncrement: false
-      }
-    })
-      .then(() => dispatch(decrement(id)))
-      .catch(() => dispatch(createCommentFailure({
-        id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'
-      })));
   };
 }
 

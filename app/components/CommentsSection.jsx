@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 // import TopicTextInput from '../components/TopicTextInput';
@@ -6,31 +6,44 @@ import styles from '../css/components/entrybox';
 
 const cx = classNames.bind(styles);
 
-// Takes callback functions from props and passes it down to TopicTextInput
-// Essentially this is passing the callback function two levels down from parent
-// to grandchild. To make it cleaner, you could consider:
-// 1. moving `connect` down to this component so you could mapStateToProps and dispatch
-// 2. Move TopicTextInput up to EntryBox so it's less confusing
-const CommentsSection = ({
-    // onEntryChange, onEntrySave, topic
-  }) => {
-  return (
-    <div>
-      Enter Comment Come here
-      <br/>
-      <input placeholder="write and press enter key" />
-      <br/>
+const ENTER_KEY_CODE = 13;
+
+export default class CommentsSection extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onSave = this.onSave.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+  }
+
+  onSave() {
+    const {onEntrySave, value} = this.props;
+    onEntrySave(value);
+  }
+
+  onKeyDown(event) {
+    if (event.keyCode === ENTER_KEY_CODE) {
+      this.onSave();
+    }
+  }
+
+  render() {
+    return (
       <div>
-        All Comments show here
+        Enter Comment Come here
+        <br/>
+        <input placeholder="write and press enter key"
+               onKeyDown={this.onKeyDown} />
+        <br/>
+        <div>
+          All Comments show here
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 CommentsSection.propTypes = {
-  // topic: PropTypes.string,
-  // onEntryChange: PropTypes.func.isRequired,
-  // onEntrySave: PropTypes.func.isRequired
+  onEntrySave: PropTypes.func.isRequired
 };
 
-export default CommentsSection;

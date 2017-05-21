@@ -7,6 +7,8 @@ import { controllers, passport as passportConfig } from '../db';
 
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
+const commentsController = controllers && controllers.comments;
+
 
 export default (app) => {
   // user routes
@@ -52,4 +54,15 @@ export default (app) => {
   } else {
     console.warn(unsupportedMessage('topics routes'));
   }
+
+  // comment routes
+  if (commentsController) {
+    app.get('/comment', topicsController.all);
+    app.post('/comment/:id', commentsController.add);
+    app.delete('/comment/:id', commentsController.remove);
+  } else {
+    console.warn(unsupportedMessage('comments routes'));
+  }
+
+
 };

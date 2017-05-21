@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import Comments from '../models/comments';
+import Comment from '../models/comments';
 
 /**
  * List
  */
 export function all(req, res) {
-  Comments.find({}).exec((err, topics) => {
+  Comment.find({}).exec((err, topics) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
@@ -19,7 +19,7 @@ export function all(req, res) {
  * Add a Topic
  */
 export function add(req, res) {
-  Comments.create(req.body, (err) => {
+  Comment.create(req.body, (err) => {
     if (err) {
       console.log(err);
       return res.status(400).send(err);
@@ -36,7 +36,7 @@ export function remove(req, res) {
   const query = {
     id: req.params.id
   };
-  Comments.findOneAndRemove(query, (err) => {
+  Comment.findOneAndRemove(query, (err) => {
     if (err) {
       console.log('Error on delete');
       return res.status(500).send('We failed to delete for some reason');

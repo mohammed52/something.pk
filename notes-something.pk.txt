@@ -281,3 +281,22 @@ GOTO definition on ST3 mouse click -
 USE CORRECT FILE NAME Default (Windows).sublime-mousemap : wasted 02 hours
 https://gist.github.com/kendellfab/6135193
 --
+npm lodash - Iterating arrays, objects, & strings, 
+Manipulating & testing values, Creating composite functions
+--
+In models folder, Comment (single, as schema for a single comment)
+--
+In controllers folder, Comments(plural, as working with all comments collection)
+--
+mongo command get you access to the mongo server, there is no mongodb command
+--
+http GET, DELETE, PUT, POST, need to strengthen understanding
+--
+all db services/methods are used in redux action declaration files
+--
+alt+F3 : select all instead of using ctrl+d one by one
+--
+ctrl+shift+space : select block of code in closing brackets
+--
+coding gets frustrating when having to repeat tasks, that is why ST3 shortcuts are important
+--
