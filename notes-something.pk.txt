@@ -258,7 +258,7 @@ http://stackoverflow.com/questions/14829336/case-sensitive-cmdd-in-sublime-text-
 --
 ctrl+p : ST3 go to file
 --
-ctrl_l : ST3 select entire line
+ctrl+l : ST3 select entire line
 --
 ctrl+shift+d : ST3 copy paste line
 --
@@ -315,4 +315,6 @@ dont understand how/where/when the data is populated in the store
 Even if ou comment initRoutes in server index, app work normally ??? NO IT DOES NOT
 --
 data routes are different from React-router chrome search bar routes
+--
+create a mouse event / macro to quickly search in the project
 --
