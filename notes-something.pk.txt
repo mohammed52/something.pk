@@ -300,3 +300,19 @@ ctrl+shift+space : select block of code in closing brackets
 --
 coding gets frustrating when having to repeat tasks, that is why ST3 shortcuts are important
 --
+sometime, strange unexpected errors dissapear after restarting the server
+--
+In containers, vote topics are retrieved from the redux store, 
+--
+Multiple to fetch data:
+1. app->utils->fetchDataForRoute
+2. app->fetch-data->fetchVoteData // executes the query by going to that route 
+and getting the response
+3. app->services->topicsAndComment // set routes for specific requests
+--
+dont understand how/where/when the data is populated in the store
+--
+Even if ou comment initRoutes in server index, app work normally ??? NO IT DOES NOT
+--
+data routes are different from React-router chrome search bar routes
+--

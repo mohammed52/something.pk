@@ -26,15 +26,24 @@ function onUpdate() {
   // We set it to null so that every subsequent client-side navigation will
   // still trigger a fetch data.
   // Read more: https://github.com/choonkending/react-webpack-node/pull/203#discussion_r60839356
+  const MAPLOG = true;
+  if (MAPLOG) console.log("onUpdate");
+
   if (window.__INITIAL_STATE__ !== null) {
     window.__INITIAL_STATE__ = null;
     return;
   }
 
-  store.dispatch({ type: types.CREATE_REQUEST });
+  store.dispatch({
+    type: types.CREATE_REQUEST
+  });
+  debugger
   fetchDataForRoute(this.state)
     .then((data) => {
-      return store.dispatch({ type: types.REQUEST_SUCCESS, data });
+      return store.dispatch({
+        type: types.REQUEST_SUCCESS,
+        data
+      });
     });
 }
 
@@ -43,7 +52,8 @@ function onUpdate() {
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history} onUpdate={onUpdate}>
+    <Router history={history}
+            onUpdate={onUpdate}>
       {routes}
     </Router>
   </Provider>, document.getElementById('app'));

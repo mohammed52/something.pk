@@ -19,8 +19,22 @@ const comments = (state = [],
   }
 };
 
+const newComment = (state = '',
+  action
+) => {
+  switch (action.type) {
+    case types.TYPING_COMMENT:
+      return action.newComment;
+    case types.CREATE_COMMENT_REQUEST:
+      return '';
+    default:
+      return state;
+  }
+};
+
 const commentReducer = combineReducers({
-  comments
+  comments,
+  newComment
 });
 
 export default commentReducer;

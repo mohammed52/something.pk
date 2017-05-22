@@ -32,6 +32,13 @@ function createCommentFailure(data) {
   };
 }
 
+export function commentTyping(text) {
+  return {
+    type: types.TYPING_COMMENT,
+    newComment: text
+  };
+}
+
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
 // This function does not need to be pure, and thus allowed

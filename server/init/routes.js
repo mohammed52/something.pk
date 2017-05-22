@@ -11,8 +11,11 @@ const commentsController = controllers && controllers.comments;
 
 
 export default (app) => {
+  const MAPLOG = true;
+
   // user routes
   if (usersController) {
+    if (MAPLOG) console.log("usersController");
     app.post('/login', usersController.login);
     app.post('/signup', usersController.signUp);
     app.post('/logout', usersController.logout);
@@ -47,6 +50,7 @@ export default (app) => {
 
   // topic routes
   if (topicsController) {
+    if (MAPLOG) console.log("topicsController");
     app.get('/topic', topicsController.all);
     app.post('/topic/:id', topicsController.add);
     app.put('/topic/:id', topicsController.update);
@@ -57,6 +61,7 @@ export default (app) => {
 
   // comment routes
   if (commentsController) {
+    if (MAPLOG) console.log("commentsController");
     app.get('/comment', topicsController.all);
     app.post('/comment/:id', commentsController.add);
     app.delete('/comment/:id', commentsController.remove);

@@ -4,15 +4,24 @@ import * as types from '../types';
 import { voteService } from '../services';
 
 function increment(id) {
-  return { type: types.INCREMENT_COUNT, id };
+  return {
+    type: types.INCREMENT_COUNT,
+    id
+  };
 }
 
 function decrement(id) {
-  return { type: types.DECREMENT_COUNT, id };
+  return {
+    type: types.DECREMENT_COUNT,
+    id
+  };
 }
 
 function destroy(id) {
-  return { type: types.DESTROY_TOPIC, id };
+  return {
+    type: types.DESTROY_TOPIC,
+    id
+  };
 }
 
 function createTopicRequest(data) {
@@ -63,7 +72,7 @@ export function createTopic(text) {
     const id = md5.hash(text);
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
-    const { topic } = getState();
+    const {topic} = getState();
     const data = {
       count: 1,
       id,
@@ -82,7 +91,10 @@ export function createTopic(text) {
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
 
-    return voteService().createTopic({ id, data })
+    return voteService().createTopic({
+      id,
+      data
+    })
       .then((res) => {
         if (res.status === 200) {
           // We can actually dispatch a CREATE_TOPIC_SUCCESS
@@ -93,7 +105,10 @@ export function createTopic(text) {
         }
       })
       .catch(() => {
-        return dispatch(createTopicFailure({ id, error: 'Oops! Something went wrong and we couldn\'t create your topic'}));
+        return dispatch(createTopicFailure({
+          id,
+          error: 'Oops! Something went wrong and we couldn\'t create your topic'
+        }));
       });
   };
 }
@@ -108,7 +123,10 @@ export function incrementCount(id) {
       }
     })
       .then(() => dispatch(increment(id)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(() => dispatch(createTopicFailure({
+        id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      })));
   };
 }
 
@@ -122,15 +140,22 @@ export function decrementCount(id) {
       }
     })
       .then(() => dispatch(decrement(id)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(() => dispatch(createTopicFailure({
+        id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      })));
   };
 }
 
 export function destroyTopic(id) {
   return (dispatch) => {
-    return voteService().deleteTopic({ id })
+    return voteService().deleteTopic({
+      id
+    })
       .then(() => dispatch(destroy(id)))
-      .catch(() => dispatch(createTopicFailure({id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
+      .catch(() => dispatch(createTopicFailure({
+        id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      })));
   };
 }

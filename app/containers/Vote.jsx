@@ -7,7 +7,7 @@ import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
 import CommentsSection from '../components/CommentsSection';
 import { createTopic, typing, incrementCount, decrementCount, destroyTopic } from '../actions/topics';
-import { createComment, destroyComment } from '../actions/comments';
+import { createComment, destroyComment, commentTyping } from '../actions/comments';
 
 import styles from '../css/components/vote';
 
@@ -18,13 +18,17 @@ class Vote extends Component {
     const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount} = this.props;
     return (
       <div className={cx('vote')}>
-        <EntryBox topic={newTopic} onEntryChange={typing} onEntrySave={createTopic} />
+        <EntryBox topic={newTopic}
+                  onEntryChange={typing}
+                  onEntrySave={createTopic} />
         <MainSection topics={topics}
                      onIncrement={incrementCount}
                      onDecrement={decrementCount}
                      onDestroy={destroyTopic} />
         <Scoreboard topics={topics} />
-        <CommentsSection onEntrySave={createComment} onDestroy={destroyComment} />
+        <CommentsSection onEntrySave={createComment}
+                         onDestroy={destroyComment}
+                         onCommentEntryChange={commentTyping} />
       </div>
     );
   }

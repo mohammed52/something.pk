@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import * as types from '../types';
 
-const topic = (
-  state = {},
+const topic = (state = {},
   action
 ) => {
   switch (action.type) {
@@ -14,12 +13,18 @@ const topic = (
       };
     case types.INCREMENT_COUNT:
       if (state.id === action.id) {
-        return { ...state, count: state.count + 1 };
+        return {
+          ...state,
+          count: state.count + 1
+        };
       }
       return state;
     case types.DECREMENT_COUNT:
       if (state.id === action.id) {
-        return { ...state, count: state.count - 1 };
+        return {
+          ...state,
+          count: state.count - 1
+        };
       }
       return state;
     default:
@@ -27,8 +32,7 @@ const topic = (
   }
 };
 
-const topics = (
-  state = [],
+const topics = (state = [],
   action
 ) => {
   switch (action.type) {
@@ -49,8 +53,7 @@ const topics = (
   }
 };
 
-const newTopic = (
-  state = '',
+const newTopic = (state = '',
   action
 ) => {
   switch (action.type) {

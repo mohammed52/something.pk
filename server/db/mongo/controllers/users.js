@@ -5,16 +5,22 @@ import User from '../models/user';
  * POST /login
  */
 export function login(req, res, next) {
+  const MAPLOG = true;
+  if (MAPLOG) console.log("db->controllers->users->login");
   // Do email and password validation for the server
   passport.authenticate('local', (authErr, user, info) => {
     if (authErr) return next(authErr);
     if (!user) {
-      return res.status(401).json({ message: info.message });
+      return res.status(401).json({
+        message: info.message
+      });
     }
     // Passport exposes a login() function on req (also aliased as
     // logIn()) that can be used to establish a login session
     return req.logIn(user, (loginErr) => {
-      if (loginErr) return res.status(401).json({ message: loginErr });
+      if (loginErr) return res.status(401).json({
+          message: loginErr
+        });
       return res.status(200).json({
         message: 'You have been successfully logged in.'
       });
@@ -41,15 +47,21 @@ export function signUp(req, res, next) {
     password: req.body.password
   });
 
-  User.findOne({ email: req.body.email }, (findErr, existingUser) => {
+  User.findOne({
+    email: req.body.email
+  }, (findErr, existingUser) => {
     if (existingUser) {
-      return res.status(409).json({ message: 'Account with this email address already exists!' });
+      return res.status(409).json({
+        message: 'Account with this email address already exists!'
+      });
     }
 
     return user.save((saveErr) => {
       if (saveErr) return next(saveErr);
       return req.logIn(user, (loginErr) => {
-        if (loginErr) return res.status(401).json({ message: loginErr });
+        if (loginErr) return res.status(401).json({
+            message: loginErr
+          });
         return res.status(200).json({
           message: 'You have been successfully logged in.'
         });
