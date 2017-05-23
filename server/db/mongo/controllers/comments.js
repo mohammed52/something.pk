@@ -20,6 +20,9 @@ export function all(req, res) {
  */
 export function add(req, res) {
   Comment.create(req.body, (err) => {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("comments->add");
+    debugger
     if (err) {
       console.log(err);
       return res.status(400).send(err);

@@ -4,9 +4,6 @@ import * as types from '../types';
 import { voteService } from '../services';
 
 function increment(id) {
-
-  const MAPLOG = true;
-  if (MAPLOG) console.log("incement");
   return {
     type: types.INCREMENT_COUNT,
     id
@@ -57,8 +54,7 @@ function createTopicDuplicate() {
 }
 
 export function typing(text) {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("actions->typing");
+
   return {
     type: types.TYPING,
     newTopic: text

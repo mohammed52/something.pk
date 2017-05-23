@@ -323,11 +323,9 @@ on app refresh: client->onUpdate->fetchDataForRoute
 When going to / , console logs, onUpdate->CREATE_REQUEST->fetchData->REQUEST_SUCCESS
 --
 TYPING_COMMENT reducer not executing for newComment, no reducer is firing
-WHERE IS THE DISPATCH KEY WORD???
---
-How is topic typing chage updating without using a dispatch ?
---
-problem is: coment reducer is not firing when comment actions are called, but reducers are firing when any other actions are called, wasted 01day
+Q: coment reducer is not firing when comment actions are called, but reducers are firing when any other actions are called, wasted 01day
+wasted 01 day
+Ans: use this.props.typingComment , this.props... has a dispatch wrapped around it
 --
 P.O 213, 231076, 125169 given
 P.O 233, 101705, 55089

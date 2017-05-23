@@ -11,6 +11,8 @@ function destroy(id) {
 }
 
 function createCommentRequest(data) {
+  const MAPLOG = true;
+  if (MAPLOG) console.log("createCommentRequest");
   return {
     type: types.CREATE_COMMENT_REQUEST,
     id: data.id,
@@ -34,8 +36,6 @@ function createCommentFailure(data) {
 
 export function typingComment(text) {
   const MAPLOG = true;
-  if (MAPLOG) console.log("actions->typingComment");
-  if (MAPLOG) console.log("text", text);
   return {
     type: types.TYPING_COMMENT,
     newComment: text
@@ -47,7 +47,10 @@ export function typingComment(text) {
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
 export function createComment(text) {
+
   return (dispatch, getState) => {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("action createComment");
     // If the text box is empty
     if (text.trim().length <= 0) return;
 
@@ -58,7 +61,6 @@ export function createComment(text) {
       id,
       text
     };
-
     // First dispatch an optimistic update
     dispatch(createCommentRequest(data));
 

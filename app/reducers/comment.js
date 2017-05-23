@@ -13,7 +13,6 @@ const comment = (state = {},
 const comments = (state = [],
   action
 ) => {
-  console.log("comments reducer");
   switch (action.type) {
     default:
       return state;
@@ -23,7 +22,6 @@ const comments = (state = [],
 const newComment = (state = 'try me',
   action
 ) => {
-  console.log("newComment reducer");
   switch (action.type) {
     case types.TYPING_COMMENT:
       return action.newComment;

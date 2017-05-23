@@ -19,7 +19,9 @@ export default class CommentsSection extends Component {
 
   onSave() {
     const {onEntrySave, comment} = this.props;
-    onEntrySave(value);
+    const MAPLOG = true;
+    if (MAPLOG) console.log("comment", comment);
+    this.props.onEntrySave(comment);
   }
 
   onChange(event) {
@@ -30,8 +32,6 @@ export default class CommentsSection extends Component {
   }
 
   onKeyDown(event) {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("onKeyDown");
     if (event.keyCode === ENTER_KEY_CODE) {
       this.onSave();
     }
@@ -53,7 +53,7 @@ export default class CommentsSection extends Component {
           All Comments show here
         </div>
       </div>
-      );
+    );
   }
 }
 

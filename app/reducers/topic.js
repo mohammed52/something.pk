@@ -14,7 +14,6 @@ const topic = (state = {},
       };
     case types.INCREMENT_COUNT:
       const MAPLOG = true;
-      if (MAPLOG) console.log("reducerIncrementCount");
       if (state.id === action.id) {
         return {
           ...state,
@@ -39,7 +38,6 @@ const topics = (state = [],
   action
 ) => {
 
-  console.log("topics reducer");
   switch (action.type) {
     case types.REQUEST_SUCCESS:
       if (action.data) return action.data;
@@ -61,8 +59,6 @@ const topics = (state = [],
 const newTopic = (state = '',
   action
 ) => {
-  console.log("newTopic reducer");
-  const MAPLOG = true;
 
   switch (action.type) {
     case types.TYPING:
