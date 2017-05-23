@@ -318,3 +318,11 @@ data routes are different from React-router chrome search bar routes
 --
 create a mouse event / macro to quickly search in the project
 --
+called when IndexRoute mounts: fetchVoteData->fetchData->voteService().getTopics()
+--
+on app refresh: client->onUpdate->fetchDataForRoute
+--
+When going to / , console logs, onUpdate->CREATE_REQUEST->fetchData->REQUEST_SUCCESS
+--
+TYPING_COMMENT reducer not executing for newComment, no reducer is firing
+--

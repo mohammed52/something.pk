@@ -13,27 +13,41 @@ export default class CommentsSection extends Component {
   constructor(props) {
     super(props);
     this.onSave = this.onSave.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   onSave() {
-    const {onEntrySave, value} = this.props;
+    const {onEntrySave, comment} = this.props;
     onEntrySave(value);
   }
 
+  onChange(event) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("onChange");
+    const {onCommentEntryChange} = this.props;
+    onCommentEntryChange(event.target.value);
+  }
+
   onKeyDown(event) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("onKeyDown");
     if (event.keyCode === ENTER_KEY_CODE) {
       this.onSave();
     }
   }
 
   render() {
+    const {comment} = this.props;
     return (
       <div>
         Enter Comment Come here
         <br/>
-        <input placeholder="write and press enter key"
-               onKeyDown={this.onKeyDown} />
+        <input placeholder="write a comment..."
+               onKeyDown={this.onKeyDown}
+               onChange={this.onChange}
+               value={comment}
+               autoFocus/>
         <br/>
         <div>
           All Comments show here
@@ -44,6 +58,9 @@ export default class CommentsSection extends Component {
 }
 
 CommentsSection.propTypes = {
-  onEntrySave: PropTypes.func.isRequired
+  onEntrySave: PropTypes.func.isRequired,
+  onDestroy: PropTypes.func.isRequired,
+  comment: PropTypes.string.isRequired,
+  onCommentEntryChange: PropTypes.func.isRequired
 };
 

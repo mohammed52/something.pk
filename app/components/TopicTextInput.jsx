@@ -24,6 +24,8 @@ export default class TopicTextInput extends Component {
    * used in different ways. I personally think this makes it more reusable.
    */
   onChange(event) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("onChange");
     const {onEntryChange} = this.props;
     onEntryChange(event.target.value);
   }

@@ -32,7 +32,10 @@ function createCommentFailure(data) {
   };
 }
 
-export function commentTyping(text) {
+export function typingComment(text) {
+  const MAPLOG = true;
+  if (MAPLOG) console.log("typingComment");
+  if (MAPLOG) console.log("text", text);
   return {
     type: types.TYPING_COMMENT,
     newComment: text

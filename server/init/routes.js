@@ -61,6 +61,7 @@ export default (app) => {
 
   // comment routes
   if (commentsController) {
+    const MAPLOG = true;
     if (MAPLOG) console.log("commentsController");
     app.get('/comment', topicsController.all);
     app.post('/comment/:id', commentsController.add);

@@ -7,7 +7,7 @@ import MainSection from '../components/MainSection';
 import Scoreboard from '../components/Scoreboard';
 import CommentsSection from '../components/CommentsSection';
 import { createTopic, typing, incrementCount, decrementCount, destroyTopic } from '../actions/topics';
-import { createComment, destroyComment, commentTyping } from '../actions/comments';
+import { createComment, destroyComment, typingComment } from '../actions/comments';
 
 import styles from '../css/components/vote';
 
@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 
 class Vote extends Component {
   render() {
-    const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount} = this.props;
+    const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount, newComment} = this.props;
     return (
       <div className={cx('vote')}>
         <EntryBox topic={newTopic}
@@ -28,7 +28,8 @@ class Vote extends Component {
         <Scoreboard topics={topics} />
         <CommentsSection onEntrySave={createComment}
                          onDestroy={destroyComment}
-                         onCommentEntryChange={commentTyping} />
+                         onCommentEntryChange={typingComment}
+                         comment={newComment} />
       </div>
     );
   }
@@ -41,13 +42,20 @@ Vote.propTypes = {
   destroyTopic: PropTypes.func.isRequired,
   incrementCount: PropTypes.func.isRequired,
   decrementCount: PropTypes.func.isRequired,
-  newTopic: PropTypes.string
+  newTopic: PropTypes.string,
+  comments: PropTypes.array.isRequired,
+  newComment: PropTypes.string,
+  createComment: PropTypes.func.isRequired,
+  destroyComment: PropTypes.func.isRequired,
+  typingComment: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
   return {
     topics: state.topic.topics,
-    newTopic: state.topic.newTopic
+    newTopic: state.topic.newTopic,
+    comments: state.comment.comments,
+    newComment: state.comment.newComment
   };
 }
 
@@ -58,5 +66,8 @@ export default connect(mapStateToProps, {
   typing,
   incrementCount,
   decrementCount,
-  destroyTopic
+  destroyTopic,
+  createComment,
+  destroyComment,
+  typingComment
 })(Vote);

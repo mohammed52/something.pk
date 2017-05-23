@@ -22,6 +22,8 @@ const comments = (state = [],
 const newComment = (state = '',
   action
 ) => {
+  const MAPLOG = true;
+  if (MAPLOG) console.log("newComment reducer");
   switch (action.type) {
     case types.TYPING_COMMENT:
       return action.newComment;

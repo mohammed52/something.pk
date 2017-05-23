@@ -37,9 +37,12 @@ function onUpdate() {
   store.dispatch({
     type: types.CREATE_REQUEST
   });
-  debugger
+
   fetchDataForRoute(this.state)
     .then((data) => {
+      const MAPLOG = true;
+      if (MAPLOG) console.log("data", data);
+
       return store.dispatch({
         type: types.REQUEST_SUCCESS,
         data
