@@ -5,13 +5,13 @@ import Comment from '../models/comments';
  * List
  */
 export function all(req, res) {
-  Comment.find({}).exec((err, topics) => {
+  Comment.find({}).exec((err, comments) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
 
-    return res.json(topics);
+    return res.json(comments);
   });
 }
 

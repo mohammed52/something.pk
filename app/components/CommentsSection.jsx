@@ -26,7 +26,7 @@ export default class CommentsSection extends Component {
     const MAPLOG = true;
     if (MAPLOG) console.log("onChange");
     const {onCommentEntryChange} = this.props;
-    onCommentEntryChange(event.target.value);
+    onCommentEntryChange(event.target.value)
   }
 
   onKeyDown(event) {
@@ -53,7 +53,7 @@ export default class CommentsSection extends Component {
           All Comments show here
         </div>
       </div>
-    );
+      );
   }
 }
 

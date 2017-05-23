@@ -58,7 +58,7 @@ function createTopicDuplicate() {
 
 export function typing(text) {
   const MAPLOG = true;
-  if (MAPLOG) console.log("typing");
+  if (MAPLOG) console.log("actions->typing");
   return {
     type: types.TYPING,
     newTopic: text

@@ -13,17 +13,17 @@ const comment = (state = {},
 const comments = (state = [],
   action
 ) => {
+  console.log("comments reducer");
   switch (action.type) {
     default:
       return state;
   }
 };
 
-const newComment = (state = '',
+const newComment = (state = 'try me',
   action
 ) => {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("newComment reducer");
+  console.log("newComment reducer");
   switch (action.type) {
     case types.TYPING_COMMENT:
       return action.newComment;

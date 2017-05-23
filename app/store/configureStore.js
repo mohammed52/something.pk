@@ -18,6 +18,10 @@ export default function configureStore(initialState, history) {
 
   if (isClient && isDebug) {
     middleware.push(createLogger());
+
+// const MAPLOG = true
+// if (MAPLOG) console.log("rootReducer", rootReducer);
+
     store = createStore(rootReducer, initialState, compose(
       applyMiddleware(...middleware),
       typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f

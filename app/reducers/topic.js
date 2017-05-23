@@ -5,6 +5,7 @@ const topic = (state = {},
   action
 ) => {
   switch (action.type) {
+
     case types.CREATE_TOPIC_REQUEST:
       return {
         id: action.id,
@@ -37,6 +38,8 @@ const topic = (state = {},
 const topics = (state = [],
   action
 ) => {
+
+  console.log("topics reducer");
   switch (action.type) {
     case types.REQUEST_SUCCESS:
       if (action.data) return action.data;
@@ -58,8 +61,8 @@ const topics = (state = [],
 const newTopic = (state = '',
   action
 ) => {
+  console.log("newTopic reducer");
   const MAPLOG = true;
-  if (MAPLOG) console.log("newTopic reducer");
 
   switch (action.type) {
     case types.TYPING:

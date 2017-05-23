@@ -16,11 +16,10 @@ const cx = classNames.bind(styles);
 class Vote extends Component {
   render() {
     const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount, newComment} = this.props;
+
     return (
       <div className={cx('vote')}>
-        <EntryBox topic={newTopic}
-                  onEntryChange={typing}
-                  onEntrySave={createTopic} />
+        <EntryBox topic={newTopic} onEntryChange={typing} onEntrySave={createTopic} />
         <MainSection topics={topics}
                      onIncrement={incrementCount}
                      onDecrement={decrementCount}
@@ -31,7 +30,7 @@ class Vote extends Component {
                          onCommentEntryChange={typingComment}
                          comment={newComment} />
       </div>
-    );
+      );
   }
 }
 
@@ -43,11 +42,12 @@ Vote.propTypes = {
   incrementCount: PropTypes.func.isRequired,
   decrementCount: PropTypes.func.isRequired,
   newTopic: PropTypes.string,
+
   comments: PropTypes.array.isRequired,
   newComment: PropTypes.string,
   createComment: PropTypes.func.isRequired,
   destroyComment: PropTypes.func.isRequired,
-  typingComment: PropTypes.func.isRequired
+  typingComment: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {

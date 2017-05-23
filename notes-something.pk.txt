@@ -312,8 +312,6 @@ and getting the response
 --
 dont understand how/where/when the data is populated in the store
 --
-Even if ou comment initRoutes in server index, app work normally ??? NO IT DOES NOT
---
 data routes are different from React-router chrome search bar routes
 --
 create a mouse event / macro to quickly search in the project
@@ -325,4 +323,16 @@ on app refresh: client->onUpdate->fetchDataForRoute
 When going to / , console logs, onUpdate->CREATE_REQUEST->fetchData->REQUEST_SUCCESS
 --
 TYPING_COMMENT reducer not executing for newComment, no reducer is firing
+WHERE IS THE DISPATCH KEY WORD???
 --
+How is topic typing chage updating without using a dispatch ?
+--
+problem is: coment reducer is not firing when comment actions are called, but reducers are firing when any other actions are called, wasted 01day
+--
+P.O 213, 231076, 125169 given
+P.O 233, 101705, 55089
+P.O 214, 217452, 117789, 
+Adv, 
+--
+Soneri Stock Exchange Br,
+katai
