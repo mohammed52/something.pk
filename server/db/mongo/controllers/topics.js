@@ -10,7 +10,8 @@ export function all(req, res) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-
+    const MAPLOG = true;
+    if (MAPLOG) console.log("topics", topics);
     return res.json(topics);
   });
 }
@@ -33,7 +34,9 @@ export function add(req, res) {
  * Update a topic
  */
 export function update(req, res) {
-  const query = { id: req.params.id };
+  const query = {
+    id: req.params.id
+  };
   const isIncrement = req.body.isIncrement;
   const isFull = req.body.isFull;
   const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
@@ -49,7 +52,11 @@ export function update(req, res) {
       return res.status(200).send('Updated successfully');
     });
   } else {
-    Topic.findOneAndUpdate(query, { $inc: { count: isIncrement ? 1 : -1 } }, (err) => {
+    Topic.findOneAndUpdate(query, {
+      $inc: {
+        count: isIncrement ? 1 : -1
+      }
+    }, (err) => {
       if (err) {
         console.log('Error on save!');
         return res.status(500).send('We failed to save for some reason');
@@ -64,7 +71,9 @@ export function update(req, res) {
  * Remove a topic
  */
 export function remove(req, res) {
-  const query = { id: req.params.id };
+  const query = {
+    id: req.params.id
+  };
   Topic.findOneAndRemove(query, (err) => {
     if (err) {
       console.log('Error on delete');

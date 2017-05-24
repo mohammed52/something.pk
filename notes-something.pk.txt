@@ -146,13 +146,6 @@ JSON.stringify() - converts a JavaScript value to a JSON string
 --
 renderToString() - Render a React element to its initial HTML. This should only be used on the server. React will return an HTML string. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes
 --
-0300-9256138
-Col Asim
-55,000 door, 
-20500 rack
---
-6 7 lvls, 9ft h, 3ft dept - Rs. 20,500/-
---
 have to study what each folder does
 --
 debug using react debugger in chrome
@@ -182,7 +175,7 @@ something.pk->app->utils->createRestApiClient , used in creating services,
 --
 something.pk->app->utils->fetchDataForRoutes , used in client->render->onUpdate->get data and update store
 --
-something.pk->confirg , misc constants and env variables
+something.pk->config , misc constants and env variables
 --
 in server folder, createRoutes and confirgureStore imported from the app folder
 --
@@ -334,3 +327,8 @@ Adv,
 --
 Soneri Stock Exchange Br,
 katai
+--
+data will need to be fetched at the time of page load or when user performs some action, so app is not using lifecycle methods
+--
+Q:  how is the data fetched at the first load? server side ?
+--
