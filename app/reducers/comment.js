@@ -5,6 +5,11 @@ const comment = (state = {},
   action
 ) => {
   switch (action.type) {
+    case types.CREATE_COMMENT_REQUEST:
+      return {
+        id: action.id,
+        text: action.text
+      };
     default:
       return state;
   }
@@ -14,6 +19,15 @@ const comments = (state = [],
   action
 ) => {
   switch (action.type) {
+    case types.CREATE_COMMENT_REQUEST:
+      return [...state, comment(undefined, action)];
+    case types.CREATE_COMMENT_FAILURE:
+      return state.filter(t => t.id !== action.id);
+    case types.CREATE_COMMENT_FAILURE:
+      return state.filter(t => t.id !== action.id);
+    case types.REQUEST_SUCCESS:
+      if (action.data) return action.data;
+      return state;
     default:
       return state;
   }

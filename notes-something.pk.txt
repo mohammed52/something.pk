@@ -363,3 +363,5 @@ Q: How to modify app and do multiple async requests from server before server pa
 ST3 Git: https://scotch.io/tutorials/using-git-inside-of-sublime-text-to-improve-workflow
 for fast ass commit and push
 --
+able to fetch and add new comments, but hot to fetch comments and fetch topics data simultaneously?
+--

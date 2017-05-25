@@ -63,7 +63,7 @@ export default (app) => {
   if (commentsController) {
     const MAPLOG = true;
     if (MAPLOG) console.log("commentsController");
-    app.get('/comment', topicsController.all);
+    app.get('/comment', commentsController.all);
     app.post('/comment/:id', commentsController.add);
     app.delete('/comment/:id', commentsController.remove);
   } else {

@@ -7,6 +7,7 @@ import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
+import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
 
 // Grab the state from a global injected into
 // server-generated HTML
@@ -38,7 +39,7 @@ function onUpdate() {
     type: types.CREATE_REQUEST
   });
 
-  fetchDataForRoute(this.state)
+  fetchCommentsDataForRoute(this.state)
     .then((data) => {
       const MAPLOG = true;
       if (MAPLOG) console.log("data", data);
@@ -55,8 +56,7 @@ function onUpdate() {
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history}
-            onUpdate={onUpdate}>
+    <Router history={history} onUpdate={onUpdate}>
       {routes}
     </Router>
   </Provider>, document.getElementById('app'));

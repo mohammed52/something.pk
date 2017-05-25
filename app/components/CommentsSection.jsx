@@ -37,8 +37,18 @@ export default class CommentsSection extends Component {
     }
   }
 
+
   render() {
-    const {comment} = this.props;
+
+    const {comment, comments} = this.props;
+    var allComments = []
+    for (var i = 0; i < comments.length; i++) {
+      const tmpId = comments[i]._id
+      allComments.push(<div key={tmpId + "id" + i}>
+                         {comments[i].text}
+                         <br/>
+                       </div>)
+    }
     return (
       <div>
         Enter Comment Come here
@@ -50,10 +60,11 @@ export default class CommentsSection extends Component {
                autoFocus/>
         <br/>
         <div>
-          All Comments show here
+          <strong>All Comments show here</strong>
+          {allComments}
         </div>
       </div>
-    );
+      );
   }
 }
 
@@ -61,6 +72,7 @@ CommentsSection.propTypes = {
   onEntrySave: PropTypes.func.isRequired,
   onDestroy: PropTypes.func.isRequired,
   comment: PropTypes.string.isRequired,
-  onCommentEntryChange: PropTypes.func.isRequired
+  onCommentEntryChange: PropTypes.func.isRequired,
+  comments: PropTypes.array.isRequired,
 };
 

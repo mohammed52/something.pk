@@ -61,19 +61,19 @@ export default function render(req, res) {
         type: types.CREATE_REQUEST
       });
 
-      fetchDataForRoute(props)
-        .then((data) => {
-          store.dispatch({
-            type: types.REQUEST_SUCCESS,
-            data
-          });
-          const html = pageRenderer(store, props);
-          res.status(200).send(html);
-        })
-        .catch((err) => {
-          console.error(err);
-          res.status(500).json(err);
-        });
+      // fetchDataForRoute(props)
+      //   .then((data) => {
+      //     store.dispatch({
+      //       type: types.REQUEST_SUCCESS,
+      //       data
+      //     });
+      //     const html = pageRenderer(store, props);
+      //     res.status(200).send(html);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err);
+      //     res.status(500).json(err);
+      //   });
 
       fetchCommentsDataForRoute(props)
         .then((data) => {

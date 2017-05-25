@@ -15,13 +15,11 @@ const cx = classNames.bind(styles);
 
 class Vote extends Component {
   render() {
-    const {newTopic, topics, createTopic, destroyTopic, incrementCount, decrementCount, newComment} = this.props;
+    const {newTopic, topics, createTopic, destroyTopic, incrementCount, decrementCount, newComment, comments} = this.props;
 
     return (
       <div className={cx('vote')}>
-        <EntryBox topic={newTopic}
-                  onEntryChange={this.props.typing}
-                  onEntrySave={createTopic} />
+        <EntryBox topic={newTopic} onEntryChange={this.props.typing} onEntrySave={createTopic} />
         <MainSection topics={topics}
                      onIncrement={incrementCount}
                      onDecrement={decrementCount}
@@ -30,9 +28,10 @@ class Vote extends Component {
         <CommentsSection onEntrySave={this.props.createComment}
                          onDestroy={destroyComment}
                          onCommentEntryChange={this.props.typingComment}
-                         comment={newComment} />
+                         comment={newComment}
+                         comments={comments} />
       </div>
-    );
+      );
   }
 }
 
