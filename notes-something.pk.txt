@@ -360,3 +360,6 @@ open hot reload in another window to refresh after file change
 --
 Q: How to modify app and do multiple async requests from server before server page loading? wasted 04 hours
 --
+ST3 Git: https://scotch.io/tutorials/using-git-inside-of-sublime-text-to-improve-workflow
+for fast ass commit and push
+--
