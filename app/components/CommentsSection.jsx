@@ -43,7 +43,7 @@ export default class CommentsSection extends Component {
       <div>
         Enter Comment Come here
         <br/>
-        <input placeholder="write a comment..."
+        <input placeholder="write a comment ... or cry me a rive"
                onKeyDown={this.onKeyDown}
                onChange={this.onChange}
                value={comment}

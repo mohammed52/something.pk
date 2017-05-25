@@ -1,9 +1,9 @@
 import { voteService } from '../services';
 
-const fetchData = () => {
+const fetchCommentsData = () => {
   const MAPLOG = true;
   if (MAPLOG) console.log("fetchData");
-  return voteService().getTopics()
+  return voteService().getComments()
     .then(res => {
       const MAPLOG = true;
       if (MAPLOG) console.log("res.data", res.data);
@@ -15,5 +15,5 @@ const fetchData = () => {
     .catch(() => []);
 };
 
-export default fetchData;
+export default fetchCommentsData;
 

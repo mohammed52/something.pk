@@ -4,6 +4,7 @@ import configureStore from '../../app/store/configureStore';
 import * as types from '../../app/types';
 import pageRenderer from './pageRenderer';
 import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
+import fetchCommentsDataForRoute from '../../app/utils/fetchCommentsDataForRoute';
 
 /*
  * Export render function to be used in server/config/routes.js
@@ -48,7 +49,7 @@ export default function render(req, res) {
     routes,
     location: req.url
   }, (err, redirect, props) => {
-    debugger
+
     if (err) {
       res.status(500).json(err);
     } else if (redirect) {
@@ -59,6 +60,7 @@ export default function render(req, res) {
       store.dispatch({
         type: types.CREATE_REQUEST
       });
+
       fetchDataForRoute(props)
         .then((data) => {
           store.dispatch({
@@ -72,6 +74,24 @@ export default function render(req, res) {
           console.error(err);
           res.status(500).json(err);
         });
+
+      fetchCommentsDataForRoute(props)
+        .then((data) => {
+          const MAPLOG = true;
+          if (MAPLOG) console.log("comments data", data);
+          store.dispatch({
+            type: types.REQUEST_SUCCESS,
+            data
+          });
+          const html = pageRenderer(store, props);
+          res.status(200).send(html);
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).json(err);
+        });
+
+
     } else {
       res.sendStatus(404);
     }

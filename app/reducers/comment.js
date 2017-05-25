@@ -22,7 +22,9 @@ const comments = (state = [],
 const newComment = (state = 'try me',
   action
 ) => {
+
   switch (action.type) {
+
     case types.TYPING_COMMENT:
       return action.newComment;
     case types.CREATE_COMMENT_REQUEST:

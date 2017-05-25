@@ -283,7 +283,7 @@ In controllers folder, Comments(plural, as working with all comments collection)
 --
 mongo command get you access to the mongo server, there is no mongodb command
 --
-http GET, DELETE, PUT, POST, need to strengthen understanding
+http middlewareneed to strengthen understanding
 --
 all db services/methods are used in redux action declaration files
 --
@@ -331,4 +331,32 @@ katai
 data will need to be fetched at the time of page load or when user performs some action, so app is not using lifecycle methods
 --
 Q:  how is the data fetched at the first load? server side ?
+--
+MS-DOS is a command line operating system developed by IBM
+--
+batch commands will work in a batch file
+--
+@ECHO OFF
+start mongod
+timeout /T 3
+start mongo
+start cmd.exe /K "C: && cd C:\AApps\something.pk && npm run dev"
+start sublime_text -n C:\AApps\something.pk
+timeout /T 8
+start chrome http://localhost:3000/
+start cmd.exe /C "C: && cd C:\Program Files (x86)\Mozilla Firefox && firefox"
+start %SystemRoot%\explorer.exe "C:\AApps\something.pk"
+start notepad C:\AApps\something.pk\notes-something.pk.txt
+EXIT /B 
+EXIT /B
+--
+How to use node-inspector:
+1. node-inspector
+2. node --debug compiled/server.dev
+--
+node-inspector not pausing on reducer break points as reducers are on the client, not the server
+--
+open hot reload in another window to refresh after file change
+--
+Q: How to modify app and do multiple async requests from server before server page loading? wasted 04 hours
 --
