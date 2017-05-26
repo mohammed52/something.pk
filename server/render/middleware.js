@@ -61,24 +61,8 @@ export default function render(req, res) {
         type: types.CREATE_REQUEST
       });
 
-      // fetchDataForRoute(props)
-      //   .then((data) => {
-      //     store.dispatch({
-      //       type: types.REQUEST_SUCCESS,
-      //       data
-      //     });
-      //     const html = pageRenderer(store, props);
-      //     res.status(200).send(html);
-      //   })
-      //   .catch((err) => {
-      //     console.error(err);
-      //     res.status(500).json(err);
-      //   });
-
-      fetchCommentsDataForRoute(props)
+      fetchDataForRoute(props)
         .then((data) => {
-          const MAPLOG = true;
-          if (MAPLOG) console.log("comments data", data);
           store.dispatch({
             type: types.REQUEST_SUCCESS,
             data
@@ -90,6 +74,22 @@ export default function render(req, res) {
           console.error(err);
           res.status(500).json(err);
         });
+
+        // fetchCommentsDataForRoute(props)
+        //   .then((data) => {
+        //     const MAPLOG = true;
+        //     if (MAPLOG) console.log("comments data", data);
+        //     store.dispatch({
+        //       type: types.REQUEST_SUCCESS,
+        //       data
+        //     });
+        //     const html = pageRenderer(store, props);
+        //     res.status(200).send(html);
+        //   })
+        //   .catch((err) => {
+        //     console.error(err);
+        //     res.status(500).json(err);
+        //   });
 
 
     } else {
