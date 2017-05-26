@@ -64,32 +64,36 @@ export default function render(req, res) {
       fetchDataForRoute(props)
         .then((data) => {
           store.dispatch({
-            type: types.REQUEST_SUCCESS,
+            type: types.REQUEST_SUCCESS_TOPIC,
             data
           });
-          const html = pageRenderer(store, props);
-          res.status(200).send(html);
-        })
+        // const html = pageRenderer(store, props);
+        // res.status(200).send(html);
+        }).then(() => {
+        fetchCommentsDataForRoute(props)
+          .then((data) => {
+            const MAPLOG = true;
+            if (MAPLOG) console.log("comments data", data);
+            store.dispatch({
+              type: types.REQUEST_SUCCESS_COMMENTS,
+              data
+            });
+            const html = pageRenderer(store, props);
+            res.status(200).send(html);
+          })
+          .catch((err) => {
+            console.error(err);
+            res.status(500).json(err);
+          });
+
+
+      })
         .catch((err) => {
           console.error(err);
           res.status(500).json(err);
         });
 
-        // fetchCommentsDataForRoute(props)
-        //   .then((data) => {
-        //     const MAPLOG = true;
-        //     if (MAPLOG) console.log("comments data", data);
-        //     store.dispatch({
-        //       type: types.REQUEST_SUCCESS,
-        //       data
-        //     });
-        //     const html = pageRenderer(store, props);
-        //     res.status(200).send(html);
-        //   })
-        //   .catch((err) => {
-        //     console.error(err);
-        //     res.status(500).json(err);
-        //   });
+
 
 
     } else {

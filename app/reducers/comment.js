@@ -25,9 +25,9 @@ const comments = (state = [],
       return state.filter(t => t.id !== action.id);
     case types.CREATE_COMMENT_FAILURE:
       return state.filter(t => t.id !== action.id);
-// case types.REQUEST_SUCCESS:
-//   if (action.data) return action.data;
-//   return state;
+    case types.REQUEST_SUCCESS_COMMENTS:
+      if (action.data) return action.data;
+      return state;
     default:
       return state;
   }

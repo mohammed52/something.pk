@@ -8,10 +8,10 @@ describe('Topics reducer', () => {
 
   function createTopic() {
     return Array(5).join().split(',')
-    .map(() => {
-      return s.charAt(Math.floor(Math.random() * s.length));
-    })
-    .join('');
+      .map(() => {
+        return s.charAt(Math.floor(Math.random() * s.length));
+      })
+      .join('');
   }
 
   const topic = createTopic();
@@ -54,14 +54,14 @@ describe('Topics reducer', () => {
         text: topic
       })
     ).toEqual({
-        topics: [
-          {
-            id: data.id,
-            count: 1,
-            text: topic
-          }
-        ],
-        newTopic: ''
+      topics: [
+        {
+          id: data.id,
+          count: 1,
+          text: topic
+        }
+      ],
+      newTopic: ''
     });
   });
 
@@ -72,8 +72,8 @@ describe('Topics reducer', () => {
         newTopic: topic
       })
     ).toEqual({
-        topics: [],
-        newTopic: topic
+      topics: [],
+      newTopic: topic
     });
   });
 
@@ -83,20 +83,20 @@ describe('Topics reducer', () => {
         type: types.CREATE_REQUEST
       })
     ).toEqual({
-        topics: [],
-        newTopic: ''
+      topics: [],
+      newTopic: ''
     });
   });
 
-  it('Should handle REQUEST_SUCCESS', () => {
+  it('Should handle REQUEST_SUCCESS_TOPIC', () => {
     expect(
       reducer(undefined, {
-        type: types.REQUEST_SUCCESS,
+        type: types.REQUEST_SUCCESS_TOPIC,
         data: topic
       })
     ).toEqual({
-        topics: topic,
-        newTopic: ''
+      topics: topic,
+      newTopic: ''
     });
   });
 
@@ -107,16 +107,16 @@ describe('Topics reducer', () => {
       reducer({
         topics
       },
-      {
-        type: types.CREATE_TOPIC_REQUEST,
-        id: data.id,
-        count: data.count,
-        text: data.text
+        {
+          type: types.CREATE_TOPIC_REQUEST,
+          id: data.id,
+          count: data.count,
+          text: data.text
 
-      })
+        })
     ).toEqual({
-        newTopic: '',
-        topics: newTopics
+      newTopic: '',
+      topics: newTopics
     });
   });
 
@@ -129,13 +129,13 @@ describe('Topics reducer', () => {
         topics,
         newTopic: topic
       },
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        id: data.id
-      })
+        {
+          type: types.CREATE_TOPIC_FAILURE,
+          id: data.id
+        })
     ).toEqual({
-        topics: newTopics.pop() && newTopics,
-        newTopic: topic
+      topics: newTopics.pop() && newTopics,
+      newTopic: topic
     });
   });
 
@@ -148,13 +148,13 @@ describe('Topics reducer', () => {
         topics,
         newTopic: topic
       },
-      {
-        type: types.DESTROY_TOPIC,
-        id: topics[topics.length - 1].id,
-      })
+        {
+          type: types.DESTROY_TOPIC,
+          id: topics[topics.length - 1].id,
+        })
     ).toEqual({
-        topics: newTopics.pop() && newTopics,
-        newTopic: topic
+      topics: newTopics.pop() && newTopics,
+      newTopic: topic
     });
   });
 
@@ -171,13 +171,13 @@ describe('Topics reducer', () => {
         topics,
         newTopic: topic
       },
-      {
-        type: types.INCREMENT_COUNT,
-        id: topics[topics.length - 1].id,
-      })
+        {
+          type: types.INCREMENT_COUNT,
+          id: topics[topics.length - 1].id,
+        })
     ).toEqual({
-        topics: newTopics,
-        newTopic: topic
+      topics: newTopics,
+      newTopic: topic
     });
   });
 
@@ -194,13 +194,13 @@ describe('Topics reducer', () => {
         topics,
         newTopic: topic
       },
-      {
-        type: types.DECREMENT_COUNT,
-        id: topics[topics.length - 1].id,
-      })
+        {
+          type: types.DECREMENT_COUNT,
+          id: topics[topics.length - 1].id,
+        })
     ).toEqual({
-        topics: newTopics,
-        newTopic: topic
+      topics: newTopics,
+      newTopic: topic
     });
   });
 });

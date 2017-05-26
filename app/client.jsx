@@ -45,10 +45,24 @@ function onUpdate() {
       if (MAPLOG) console.log("data", data);
 
       return store.dispatch({
-        type: types.REQUEST_SUCCESS,
+        type: types.REQUEST_SUCCESS_TOPIC,
         data
       });
-    });
+    }).then(() => {
+    fetchCommentsDataForRoute(this.state)
+      .then((data) => {
+        const MAPLOG = true;
+        if (MAPLOG) console.log("comments data", data);
+        return store.dispatch({
+          type: types.REQUEST_SUCCESS_COMMENTS,
+          data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json(err);
+      });
+  });
 }
 
 

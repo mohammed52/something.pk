@@ -39,7 +39,7 @@ const topics = (state = [],
 ) => {
 
   switch (action.type) {
-    case types.REQUEST_SUCCESS:
+    case types.REQUEST_SUCCESS_TOPIC:
       if (action.data) return action.data;
       return state;
     case types.CREATE_TOPIC_REQUEST:
