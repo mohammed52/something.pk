@@ -13,7 +13,7 @@ import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
 export default (app) => {
-  app.set('port', (process.env.PORT || 3000));
+  app.set('port', (process.env.PORT || 41544));
 
   if (ENV === 'production') {
     app.use(gzip());
@@ -22,7 +22,9 @@ export default (app) => {
   }
 
   app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({
+    extended: true
+  })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
 
   app.use(express.static(path.join(process.cwd(), 'public')));
