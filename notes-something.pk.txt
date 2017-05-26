@@ -375,3 +375,5 @@ Hire someone, 1. HATE doing, 2. SHOULDN’T do, 3. CAN’T do
 Build your next offering
 Reward yourself
 --
+Host your app on the server
+--
