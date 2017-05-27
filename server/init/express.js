@@ -13,7 +13,7 @@ import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
 export default (app) => {
-  app.set('port', (process.env.PORT || 41544));
+  app.set('port', (process.env.PORT || 3000));
 
   if (ENV === 'production') {
     app.use(gzip());
