@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
-import VoteContainer from '../containers/Vote';
+import ShowDiscountsContainer from '../containers/ShowDiscountsContainer';
 
-class Vote extends Component {
+class ShowDiscountsPage extends Component {
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -12,12 +12,15 @@ class Vote extends Component {
   }
 
   pageTitle = () => {
-    return 'Vote | reactGo';
+    return 'Food Discounts';
   };
 
   pageMeta = () => {
     return [
-      { name: 'description', content: 'A reactGo example of a voting page' }
+      {
+        name: 'description',
+        content: 'Best foods discounts and deals on bank cards in Pakistan'
+      }
     ];
   };
 
@@ -28,11 +31,11 @@ class Vote extends Component {
   render() {
     return (
       <Page {...this.getMetaData()}>
-        <VoteContainer {...this.props} />
+        <ShowDiscountsContainer {...this.props} />
       </Page>
     );
   }
 }
 
-export default Vote;
+export default ShowDiscountsPage;
 

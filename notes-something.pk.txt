@@ -36,3 +36,13 @@ buy etherium, backers include BP, Accenture, Microsoft, Toyota Innovations, UBS,
 Q: something.pk nameservers not working ? Wated 06 hours
 Ans: Heroku CNAME is not same as PKNIC nameservers, need to add nameservers add PointDNS on in the dashboard, set PKNIC nameservers as PointDNS nameservers
 --
+page wraps around all other pages, in ReactGo
+--
+in any directory, update the index file after creating a new page, container, component etc.
+--
+after logging in , message appears on top of the ShowDiscountsPage
+--
+dashboard should have a log out button
+--
+hard reload: press f12, press and hold refresh button for hard reload
+--

@@ -13,7 +13,7 @@ import styles from '../css/components/vote';
 
 const cx = classNames.bind(styles);
 
-class Vote extends Component {
+class ShowDiscountsContainer extends Component {
 
   render() {
 
@@ -21,13 +21,13 @@ class Vote extends Component {
 
     return (
       <div className={cx('vote')}>
-        Nice try
+        ShowDiscountsContainer
       </div>
     );
   }
 }
 
-Vote.propTypes = {
+ShowDiscountsContainer.propTypes = {
   // topics: PropTypes.array.isRequired,
   // typing: PropTypes.func.isRequired,
   // createTopic: PropTypes.func.isRequired,
@@ -63,4 +63,4 @@ export default connect(mapStateToProps, {
   // createComment,
   // destroyComment,
   // typingComment
-})(Vote);
+})(ShowDiscountsContainer);

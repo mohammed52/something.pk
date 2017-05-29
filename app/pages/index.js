@@ -1,6 +1,6 @@
 export { default as App } from 'pages/App';
-export { default as Vote } from 'pages/Vote';
-// export { default as Dashboard } from 'pages/Dashboard';
-// export { default as LoginOrRegister } from 'pages/LoginOrRegister';
+export { default as ShowDiscountsPage } from 'pages/ShowDiscountsPage';
+export { default as DashboardPage } from 'pages/DashboardPage';
+export { default as LoginOrRegisterPage } from 'pages/LoginOrRegisterPage';
 // export { default as About } from 'pages/About';
 
