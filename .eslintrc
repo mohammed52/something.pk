@@ -33,7 +33,7 @@
     "react/prefer-stateless-function": 0,
     "import/extensions": 0,
     "react/require-default-props": 0,
-    "no-unused-vars":1,
+    "no-unused-vars":2,
     "react/jsx-first-prop-new-line": 0,
     "react/jsx-space-before-closing": 0,
     "react/jsx-tag-spacing":0,
@@ -41,7 +41,7 @@
     "semi":0,
     "padded-blocks":0,
     "no-empty-pattern":0,
-    "react/no-unused-prop-types":1,
+    "react/no-unused-prop-types":2,
     "react/forbid-prop-types"
   },
   "plugins": [
