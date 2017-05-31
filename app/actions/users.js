@@ -15,7 +15,9 @@ function makeUserRequest(method, data, api = '/login') {
 
 // Log In Action Creators
 export function beginLogin() {
-  return { type: types.MANUAL_LOGIN_USER };
+  return {
+    type: types.MANUAL_LOGIN_USER
+  };
 }
 
 export function loginSuccess(message) {
@@ -41,7 +43,9 @@ export function signUpError(message) {
 }
 
 export function beginSignUp() {
-  return { type: types.SIGNUP_USER };
+  return {
+    type: types.SIGNUP_USER
+  };
 }
 
 export function signUpSuccess(message) {
@@ -53,19 +57,27 @@ export function signUpSuccess(message) {
 
 // Log Out Action Creators
 export function beginLogout() {
-  return { type: types.LOGOUT_USER};
+  return {
+    type: types.LOGOUT_USER
+  };
 }
 
 export function logoutSuccess() {
-  return { type: types.LOGOUT_SUCCESS_USER };
+  return {
+    type: types.LOGOUT_SUCCESS_USER
+  };
 }
 
 export function logoutError() {
-  return { type: types.LOGOUT_ERROR_USER };
+  return {
+    type: types.LOGOUT_ERROR_USER
+  };
 }
 
 export function toggleLoginMode() {
-  return { type: types.TOGGLE_LOGIN_MODE };
+  return {
+    type: types.TOGGLE_LOGIN_MODE
+  };
 }
 
 export function manualLogin(data) {
@@ -76,7 +88,7 @@ export function manualLogin(data) {
       .then((response) => {
         if (response.status === 200) {
           dispatch(loginSuccess(response.data.message));
-          dispatch(push('/'));
+          dispatch(push('/dashboard'));
         } else {
           dispatch(loginError('Oops! Something went wrong!'));
         }
@@ -95,7 +107,7 @@ export function signUp(data) {
       .then((response) => {
         if (response.status === 200) {
           dispatch(signUpSuccess(response.data.message));
-          dispatch(push('/'));
+          dispatch(push('/dashboard'));
         } else {
           dispatch(signUpError('Oops! Something went wrong'));
         }

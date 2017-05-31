@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-// import { logOut } from '../actions/users';
+import Navigation from '../containers/Navigation';
 import styles from '../css/components/navigation';
 
 const cx = classNames.bind(styles);
@@ -14,7 +14,8 @@ const WrapperLoggedInContainer = ({children}) => {
   console.log("why is this not mounting")
   return (
     <div>
-      Wrapper logged in container
+      <Navigation /> Wrapper logged in container
+      {children}
     </div>
   );
 };
@@ -25,10 +26,10 @@ WrapperLoggedInContainer.propTypes = {
   children: PropTypes.object
 };
 
-function mapStateToProps(state) {
-  return {
-    // user: state.user
-  };
-}
+// function mapStateToProps(state) {
+// return {
+// user: state.user
+// };
+// }
 
 export default WrapperLoggedInContainer;

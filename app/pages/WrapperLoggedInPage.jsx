@@ -39,15 +39,3 @@ class WrapperLoggedInPage extends Component {
 }
 
 export default WrapperLoggedInPage;
-
-
-// import React from 'react';
-// import Page from '../pages/Page';
-// import WrapperLoggedInContainer from '../containers/WrapperLoggedInContainer';
-// import { title, meta, link } from './assets';
-
-// const WrapperLoggedInPage = props => (
-//   <WrapperLoggedInContainer {...props} />
-// );
-
-// export default WrapperLoggedInPage;

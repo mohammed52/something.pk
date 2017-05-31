@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { fetchVoteData } from './fetch-data';
 import { fetchCommentsData } from './fetch-comments-data';
-import { App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage } from './pages';
+import { App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -27,7 +27,7 @@ export default (store) => {
     const {user: {authenticated}} = store.getState();
     if (authenticated) {
       replace({
-        pathname: '/'
+        pathname: '/dashboard'
       });
     }
     callback();
@@ -41,10 +41,13 @@ export default (store) => {
       <Route path="login"
              component={LoginOrRegisterPage}
              onEnter={redirectAuth} />
-      <Route component={DashboardPage}
+      <Route component={WrapperLoggedInPage}
              onEnter={requireAuth}>
         <Route path="editbanks"
                component={EditBanksPage}
+               onEnter={requireAuth} />
+        <Route path="dashboard"
+               component={DashboardPage}
                onEnter={requireAuth} />
       </Route>
     </Route>

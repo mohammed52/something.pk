@@ -46,3 +46,11 @@ dashboard should have a log out button
 --
 hard reload: press f12, press and hold refresh button for hard reload
 --
+Q: WrapperComponentWhenRouting not showing? wasted 02 hours
+Ans: some syntax error
+--
+Q: fatal you are not currently on a branch
+Ans: git push origin HEAD:master --force
+--
+page is only used for setting the metadata
+--
