@@ -54,3 +54,7 @@ Ans: git push origin HEAD:master --force
 --
 page is only used for setting the metadata
 --
+Q: at logout, redirects to '/' instead of '/login'
+Ans: when you logout, 
+--
+get back on the git branch
