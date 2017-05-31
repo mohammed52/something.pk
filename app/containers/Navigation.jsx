@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -8,39 +8,91 @@ import styles from '../css/components/navigation';
 
 const cx = classNames.bind(styles);
 
-const Navigation = ({user, logOut}) => {
-  return (
-    <nav className={cx('navigation')}
-         role="navigation">
-      <Link to="/"
-            className={cx('item', 'logo')}
-            activeClassName={cx('active')}>
-        Ninja Ocean
-      </Link>
-      {user.authenticated ? (
-       <Link onClick={logOut}
-             className={cx('item')}
-             to="/login">
-         Logout
-       </Link>
-       ) : (
-       <Link className={cx('item')}
-             to="/login">
-         Log in
-       </Link>
-       )}
-      <Link className={cx('item')}
-            to="/dashboard">
-        Dashboard
-      </Link>
-      <Link to="/about"
-            className={cx('item')}
-            activeClassName={cx('active')}>
-        About
-      </Link>
-    </nav>
-  );
-};
+class Navigation extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  onComponentDidUpdate() {
+    const {user, logOut} = this.props;
+    if (!user.authenticated) {
+      const MAPLOG = true
+      if (MAPLOG) console.log("user is auth");
+    }
+  }
+
+  render() {
+    const {user, logOut} = this.props;
+
+    return (
+      <nav className={cx('navigation')} role="navigation">
+        <Link to="/" className={cx('item', 'logo')} activeClassName={cx('active')}>
+          Ninja Ocean
+        </Link>
+        {user.authenticated ? (
+         <Link onClick={logOut} className={cx('item')} to="/login">
+           Logout
+         </Link>
+         ) : (
+         <Link className={cx('item')} to="/login">
+           Log in
+         </Link>
+         )}
+        <Link className={cx('item')} to="/dashboard">
+          Dashboard
+        </Link>
+        <Link className={cx('item')} to="/banks">
+          Banks
+        </Link>
+        <Link className={cx('item')} to="/banks">
+          Cards
+        </Link>
+        <Link className={cx('item')} to="/cities">
+          Cities
+        </Link>
+        <Link className={cx('item')} to="/resturants">
+          Restaurants
+        </Link>
+        <Link className={cx('item')} to="/deals">
+          Deals
+        </Link>
+      </nav>
+      );
+  }
+}
+// const Navigation = ({user, logOut}) => {
+//   return (
+//     <nav className={cx('navigation')}
+//          role="navigation">
+//       <Link to="/"
+//             className={cx('item', 'logo')}
+//             activeClassName={cx('active')}>
+//         Ninja Ocean
+//       </Link>
+//       {user.authenticated ? (
+//        <Link onClick={logOut}
+//              className={cx('item')}
+//              to="/login">
+//          Logout
+//        </Link>
+//        ) : (
+//        <Link className={cx('item')}
+//              to="/login">
+//          Log in
+//        </Link>
+//        )}
+//       <Link className={cx('item')}
+//             to="/dashboard">
+//         Dashboard
+//       </Link>
+//       <Link to="/about"
+//             className={cx('item')}
+//             activeClassName={cx('active')}>
+//         About
+//       </Link>
+//     </nav>
+//   );
+// };
 
 Navigation.propTypes = {
   user: PropTypes.object,

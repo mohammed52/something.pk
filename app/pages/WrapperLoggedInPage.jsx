@@ -31,10 +31,9 @@ class WrapperLoggedInPage extends Component {
   render() {
     return (
       <Page {...this.getMetaData()}>
-        try this again
         <WrapperLoggedInContainer {...this.props} />
       </Page>
-    );
+      );
   }
 }
 
