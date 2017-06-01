@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import AddBankComponent from '../components/AddBankComponent'
 // import styles from '../css/components/dashboard';
 
 // const cx = classNames.bind(styles);
@@ -10,47 +11,37 @@ import PropTypes from 'prop-types';
  *  and dispatching of actions if you decide to have any sub-components.
  */
 var ReactBootstrap = require('react-bootstrap')
-var Button = ReactBootstrap.Button;
-var Modal = ReactBootstrap.Modal;
+var Button = ReactBootstrap.Button
+var Modal = ReactBootstrap.Modal
 var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var FormControl = ReactBootstrap.FormControl
-var Radio = ReactBootstrap.Radio;
+var Radio = ReactBootstrap.Radio
 var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
 
 
-class DashboardContainer extends Component {
+class BanksContainer extends Component {
   constructor(props) {
     super(props);
-    this.btnAddBank = this.btnAddBank.bind(this)
-
-  // this.state = {
-  //   uploadedFileCloudinaryUrl: ''
-  // };
-  }
-
-  btnAddBank() {
-    const MAPLOG = true
-    if (MAPLOG) console.log("btnAddBank");
   }
 
   render() {
 
-    const {children} = this.props;
+    const {children} = this.props
 
     return (
       <div>
-        Dashbord is empty
+        <AddBankComponent />
       </div>
     );
   }
 }
 
-DashboardContainer.propTypes = {
+BanksContainer.propTypes = {
   children: PropTypes.object
 };
 
-export default DashboardContainer;
+export default BanksContainer;

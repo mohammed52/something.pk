@@ -1,0 +1,139 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+// cloudinary preset somethingpk_default_preset
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+
+// import styles from '../css/components/dashboard';
+
+// const cx = classNames.bind(styles);
+
+/*
+ * Note: This is kept as a container-level component,
+ *  i.e. We should keep this as the container that does the data-fetching
+ *  and dispatching of actions if you decide to have any sub-components.
+ */
+var ReactBootstrap = require('react-bootstrap')
+var Button = ReactBootstrap.Button;
+var Modal = ReactBootstrap.Modal;
+var FormGroup = ReactBootstrap.FormGroup
+var ControlLabel = ReactBootstrap.ControlLabel
+var FormControl = ReactBootstrap.FormControl
+var Radio = ReactBootstrap.Radio;
+var Table = ReactBootstrap.Table
+var FieldGroup = ReactBootstrap.FieldGroup
+var Input = ReactBootstrap.Input
+
+const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
+
+class DashboardContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.btnAddBank = this.btnAddBank.bind(this)
+
+    this.state = {
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: ''
+    };
+  }
+
+
+
+  onImageDrop(files) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("onImageDrop")
+    this.setState({
+      uploadedFile: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err)
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
+  btnAddBank() {
+    const MAPLOG = true
+    if (MAPLOG) console.log("btnAddBank")
+  }
+
+  render() {
+
+    const {children} = this.props;
+
+    return (
+      <div>
+        <form className="testbg-1">
+          <h3>Add New Bank</h3>
+          <br />
+          <ControlLabel>
+            Full Name
+          </ControlLabel>
+          <FormControl type="text"
+                       id="id-bank-full-name"
+                       required="true"
+                       defaultValue="try me" />
+          <br/>
+          <br/>
+          <ControlLabel>
+            Short Name
+          </ControlLabel>
+          <FormControl type="text"
+                       id="id-bank-short-name"
+                       required="true"
+                       defaultValue="try me" />
+          <br/>
+          <br/>
+          <Dropzone multiple={false}
+                    accept="image/jpg,image/png"
+                    onDrop={this.onImageDrop.bind(this)}>
+            <p>
+              Drop an image or click to select a file to upload.
+            </p>
+          </Dropzone>
+          <br/>
+          <br/>
+          <div>
+            {this.state.uploadedFileCloudinaryUrl === '' ? null :
+             <div>
+               <p>
+                 {this.state.uploadedFile.name}
+               </p>
+               <img src={this.state.uploadedFileCloudinaryUrl} />
+             </div>}
+          </div>
+          <br/>
+          <br/>
+          <Button onClick={this.btnAddBank}
+                  bsStyle="primary">
+            Add Bank
+          </Button>
+        </form>
+        {children}
+      </div>
+    );
+  }
+}
+
+DashboardContainer.propTypes = {
+  children: PropTypes.object
+};
+
+export default DashboardContainer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { fetchVoteData } from './fetch-data';
 import { fetchCommentsData } from './fetch-comments-data';
-import { App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
+import { BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -26,7 +26,7 @@ export default (store) => {
   const redirectAuth = (nextState, replace, callback) => {
     const {user: {authenticated}} = store.getState();
     if (authenticated) {
-      console.log("try me")
+      console.log("try me");
       replace({
         pathname: '/dashboard'
       });
@@ -34,13 +34,26 @@ export default (store) => {
     callback();
   };
   return (
-    <Route path="/" component={App}>
-      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
-      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
-        <Route path="editbanks" component={EditBanksPage} onEnter={requireAuth} />
-        <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
+    <Route path="/"
+           component={App}>
+      <IndexRoute component={ShowDiscountsPage}
+                  fetchData={fetchVoteData}
+                  fetchCommentsData={fetchCommentsData} />
+      <Route path="login"
+             component={LoginOrRegisterPage}
+             onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage}
+             onEnter={requireAuth}>
+        <Route path="editbanks"
+               component={EditBanksPage}
+               onEnter={requireAuth} />
+        <Route path="dashboard"
+               component={DashboardPage}
+               onEnter={requireAuth} />
+        <Route path="banks"
+               component={BanksPage}
+               onEnter={requireAuth} />
       </Route>
     </Route>
-    );
+  );
 };
