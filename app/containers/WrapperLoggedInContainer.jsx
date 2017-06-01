@@ -9,15 +9,13 @@ import styles from '../css/components/navigation';
 const cx = classNames.bind(styles);
 
 const WrapperLoggedInContainer = ({children}) => {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("WrapperLoggedInContainer");
-  console.log("why is this not mounting")
+
   return (
     <div>
-      <Navigation /> Wrapper logged in container
+      <Navigation />
       {children}
     </div>
-  );
+    );
 };
 
 WrapperLoggedInContainer.propTypes = {
