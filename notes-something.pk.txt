@@ -61,3 +61,26 @@ get back on the git branch, create a new temp branch and merge it, push to origi
 --
 always set the chrome viewer to mobile view
 --
+q: how to import bootstrap.cc, bootstrap.min.css? webpack err: You may need an appropriate loader to handle this file type.?
+Ans: add appropriateloaders in webpack.config file ??
+--
+webpack.config rules are in the rules sub directory
+--
+webpack is a module bundler, it takes modules with dependencies and emits static assets .js, .css, .png
+--
+webpack guides:
+https://webpack.js.org/guides/
+--
+run webpack on this folder with index.js as the entry file and bundle.js as the output file in which all code required for the page is bundled
+--
+npm run build command. npm picks up the scripts through it and patches the environment temporarily so that it contains the bin commands
+--
+style-loader & css-loader are in the node_modules
+--
+babel-loader : Webpack plugin for Babel
+--
+
+babel - compiler for writing next generation JavaScript. 
+--
+something to do with include: path ... in web pack.config, include: PATHS.app , try saving bootstrap.css in the app->css folder
+--

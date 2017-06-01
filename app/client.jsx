@@ -9,6 +9,10 @@ import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
 import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
 
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import '../../../font-awesome-4.7.0/css/font-awesome.min.css'
+
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;

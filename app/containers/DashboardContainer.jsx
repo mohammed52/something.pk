@@ -1,4 +1,8 @@
 import React from 'react';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import styles from '../css/components/dashboard';
+
+// const cx = classNames.bind(styles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -8,7 +12,9 @@ import React from 'react';
 const DashboardContainer = ({children}) => {
   return (
     <div>
-      Welcome to the Dasboard. Stay tuned...
+      <div className="container-fluid">
+        Welcome to the Dasboard. Stay tuned-1=2..
+      </div>
       {children}
     </div>
   );
