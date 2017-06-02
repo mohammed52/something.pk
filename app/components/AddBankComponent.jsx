@@ -101,15 +101,11 @@ class DashboardContainer extends Component {
                        defaultValue="try me" />
           <br/>
           <br/>
-          <Dropzone multiple={false}
-                    accept="image/jpg,image/png"
-                    onDrop={this.onImageDrop.bind(this)}>
+          <Dropzone multiple={false} accept="image/jpg,image/png" onDrop={this.onImageDrop.bind(this)}>
             <p>
               Drop an image or click to select a file to upload.
             </p>
           </Dropzone>
-          <br/>
-          <br/>
           <div>
             {this.state.uploadedFileCloudinaryUrl === '' ? null :
              <div>
@@ -121,14 +117,13 @@ class DashboardContainer extends Component {
           </div>
           <br/>
           <br/>
-          <Button onClick={this.btnAddBank}
-                  bsStyle="primary">
+          <Button onClick={this.btnAddBank} bsStyle="primary">
             Add Bank
           </Button>
         </form>
         {children}
       </div>
-    );
+      );
   }
 }
 

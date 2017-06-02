@@ -84,5 +84,5 @@ babel - compiler for writing next generation JavaScript.
 --
 something to do with include: path ... in web pack.config, include: PATHS.app , try saving bootstrap.css in the app->css folder
 --
-will use cloudinary for image uploading manipulation
+npm superagent: SuperAgent is a small progressive client-side HTTP request library
 --
