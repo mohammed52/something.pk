@@ -75,7 +75,7 @@ export default (app) => {
   if (banksController) {
     const MAPLOG = true;
     if (MAPLOG) console.log("banksController");
-    app.get('/banks', commentsController.all);
+    app.get('/banks', banksController.all);
     app.post('/bank/:id', banksController.add);
     app.delete('/bank/:id', banksController.remove);
   } else {

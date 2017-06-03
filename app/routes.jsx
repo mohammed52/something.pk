@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { fetchVoteData } from './fetch-data';
+import { fetchBanksData } from './fetch-banks-data'
 import { fetchCommentsData } from './fetch-comments-data';
 import { BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
 
@@ -34,26 +35,17 @@ export default (store) => {
     callback();
   };
   return (
-    <Route path="/"
-           component={App}>
-      <IndexRoute component={ShowDiscountsPage}
-                  fetchData={fetchVoteData}
-                  fetchCommentsData={fetchCommentsData} />
-      <Route path="login"
-             component={LoginOrRegisterPage}
-             onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage}
-             onEnter={requireAuth}>
+    <Route path="/" component={App}>
+      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
+      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
         <Route path="editbanks"
+               fetchBanksData={fetchBanksData}
                component={EditBanksPage}
                onEnter={requireAuth} />
-        <Route path="dashboard"
-               component={DashboardPage}
-               onEnter={requireAuth} />
-        <Route path="banks"
-               component={BanksPage}
-               onEnter={requireAuth} />
+        <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
+        <Route path="banks" component={BanksPage} onEnter={requireAuth} />
       </Route>
     </Route>
-  );
+    );
 };

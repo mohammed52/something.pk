@@ -66,6 +66,20 @@ function onUpdate() {
         console.error(err);
         res.status(500).json(err);
       });
+  }).then(() => {
+    fetchBanksDataForRoute(this.state)
+      .then((data) => {
+        const MAPLOG = true;
+        if (MAPLOG) console.log("banks data", data);
+        return store.dispatch({
+          type: types.REQUEST_SUCCESS_BANKS,
+          data
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).json(err);
+      });
   });
 }
 
@@ -74,8 +88,7 @@ function onUpdate() {
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history}
-            onUpdate={onUpdate}>
+    <Router history={history} onUpdate={onUpdate}>
       {routes}
     </Router>
   </Provider>, document.getElementById('app'));
