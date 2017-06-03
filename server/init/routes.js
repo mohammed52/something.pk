@@ -8,6 +8,7 @@ import { controllers, passport as passportConfig } from '../db';
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
 const commentsController = controllers && controllers.comments;
+const banksController = controllers && controllers.banks;
 
 
 export default (app) => {
@@ -68,6 +69,17 @@ export default (app) => {
     app.delete('/comment/:id', commentsController.remove);
   } else {
     console.warn(unsupportedMessage('comments routes'));
+  }
+
+  // banks routes
+  if (banksController) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("banksController");
+    app.get('/banks', commentsController.all);
+    app.post('/bank/:id', banksController.add);
+    app.delete('/bank/:id', banksController.remove);
+  } else {
+    console.warn(unsupportedMessage('banks routes'));
   }
 
 

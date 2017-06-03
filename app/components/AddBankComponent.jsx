@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // cloudinary preset somethingpk_default_preset
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
-
+import $ from "jquery"
 
 // import styles from '../css/components/dashboard';
 
@@ -28,7 +28,7 @@ var Input = ReactBootstrap.Input
 const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
-class DashboardContainer extends Component {
+class AddBankComponent extends Component {
   constructor(props) {
     super(props);
     this.btnAddBank = this.btnAddBank.bind(this)
@@ -72,6 +72,15 @@ class DashboardContainer extends Component {
   btnAddBank() {
     const MAPLOG = true
     if (MAPLOG) console.log("btnAddBank")
+    let tmpBank = {
+      fullName: $("#id-bank-full-name").val(),
+      shortName: $("#id-bank-short-name").val(),
+      logoUrl: this.state.uploadedFileCloudinaryUrl
+    }
+
+    const {createBank} = this.props;
+    createBank(tmpBank)
+
   }
 
   render() {
@@ -82,53 +91,66 @@ class DashboardContainer extends Component {
       <div>
         <form className="testbg-1">
           <h3>Add New Bank</h3>
-          <br />
-          <ControlLabel>
-            Full Name
-          </ControlLabel>
-          <FormControl type="text"
-                       id="id-bank-full-name"
-                       required="true"
-                       defaultValue="try me" />
-          <br/>
-          <br/>
-          <ControlLabel>
-            Short Name
-          </ControlLabel>
-          <FormControl type="text"
-                       id="id-bank-short-name"
-                       required="true"
-                       defaultValue="try me" />
-          <br/>
-          <br/>
-          <Dropzone multiple={false} accept="image/jpg,image/png" onDrop={this.onImageDrop.bind(this)}>
-            <p>
-              Drop an image or click to select a file to upload.
-            </p>
-          </Dropzone>
-          <div>
-            {this.state.uploadedFileCloudinaryUrl === '' ? null :
-             <div>
-               <p>
-                 {this.state.uploadedFile.name}
-               </p>
-               <img src={this.state.uploadedFileCloudinaryUrl} />
-             </div>}
-          </div>
-          <br/>
-          <br/>
-          <Button onClick={this.btnAddBank} bsStyle="primary">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <ControlLabel>
+                    Full Name
+                  </ControlLabel>
+                  <br/>
+                  <FormControl type="text"
+                               id="id-bank-full-name"
+                               required="true"
+                               defaultValue="try me" />
+                  <br/>
+                  <br/>
+                  <ControlLabel>
+                    Short Name
+                  </ControlLabel>
+                  <br/>
+                  <FormControl type="text"
+                               id="id-bank-short-name"
+                               required="true"
+                               defaultValue="try me" />
+                </td>
+                <td>
+                  <Dropzone multiple={false}
+                            accept="image/jpg,image/png"
+                            onDrop={this.onImageDrop.bind(this)}>
+                    <p>
+                      Drop an image or click to select a file to upload.
+                    </p>
+                  </Dropzone>
+                </td>
+                <td>
+                  <div>
+                    {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                     <div>
+                       <p>
+                         {this.state.uploadedFile.name}
+                       </p>
+                       <img src={this.state.uploadedFileCloudinaryUrl} />
+                     </div>}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <Button onClick={this.btnAddBank}
+                  bsStyle="primary">
             Add Bank
           </Button>
         </form>
         {children}
       </div>
-      );
+    );
   }
 }
 
-DashboardContainer.propTypes = {
-  children: PropTypes.object
+AddBankComponent.propTypes = {
+  children: PropTypes.object,
+  createBank: PropTypes.func.isRequired
 };
 
-export default DashboardContainer;
+export default AddBankComponent;

@@ -1,15 +1,17 @@
 /* eslint consistent-return: 0, no-else-return: 0*/
 import md5 from 'spark-md5';
 import * as types from '../types';
-// import { voteService } from '../services';
+import { banksService } from '../services';
 
 function createBankRequest(data) {
   const MAPLOG = true;
   if (MAPLOG) console.log("createBankRequest");
   return {
     type: types.CREATE_BANK_REQUEST,
+    id: data.id,
     bankFullName: data.bankFullName,
-    bankShortName: data.bankShortName
+    bankShortName: data.bankShortName,
+    bankLogoUrl: data.bankLogoUrl
   };
 }
 
@@ -37,28 +39,34 @@ export function createBank(bank) {
     const MAPLOG = true;
     if (MAPLOG) console.log("action createBank");
     // If the text box is empty
-    if (text.trim().length <= 0) return;
 
-    const id = md5.hash(text);
+    if (bank.bankFullName.trim().length <= 0) return;
+
+    const id = md5.hash(bank.bankFullName);
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
     const data = {
-      id,
-      text
+      id: id,
+      fullName: bank.bankFullName,
+      shortName: bank.bankShortName,
+      logoUrl: bank.bankLogoUrl
     };
-    // First dispatch an optimistic update
-    dispatch(createBankRequest(data));
+    if (MAPLOG) console.log("data", data);
 
-    return voteService().createBank({
+
+    // Redux thunk's middleware receives the store methods `dispatch`
+    // and `getState` as parameters
+
+    // First dispatch an optimistic update
+    return dispatch(createBankRequest(data));
+
+    return banksService().createBank({
       id,
       data
     })
       .then((res) => {
         if (res.status === 200) {
-          // We can actually dispatch a CREATE_BANK_SUCCESS
-          // on success, but I've opted to leave that out
-          // since we already did an optimistic update
-          // We could return res.json();
+
           return dispatch(createBankSuccess());
         }
       })
