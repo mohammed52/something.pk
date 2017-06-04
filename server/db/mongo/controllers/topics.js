@@ -10,8 +10,6 @@ export function all(req, res) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-    const MAPLOG = true;
-    if (MAPLOG) console.log("topics", topics);
     return res.json(topics);
   });
 }

@@ -25,16 +25,10 @@ var Input = ReactBootstrap.Input
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
-    this.btnAddBank = this.btnAddBank.bind(this)
 
   // this.state = {
   //   uploadedFileCloudinaryUrl: ''
   // };
-  }
-
-  btnAddBank() {
-    const MAPLOG = true
-    if (MAPLOG) console.log("btnAddBank");
   }
 
   render() {

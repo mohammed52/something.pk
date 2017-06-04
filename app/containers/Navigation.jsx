@@ -13,51 +13,55 @@ class Navigation extends Component {
     super(props);
   }
 
-  onComponentDidUpdate() {
-    const {user, logOut} = this.props;
-    if (!user.authenticated) {
-      const MAPLOG = true
-      if (MAPLOG) console.log("user is auth");
-    }
-  }
-
   render() {
     const {user, logOut} = this.props;
 
     return (
-      <nav className={cx('navigation')} role="navigation">
-        <Link to="/" className={cx('item', 'logo')} activeClassName={cx('active')}>
+      <nav className={cx('navigation')}
+           role="navigation">
+        <Link to="/"
+              className={cx('item', 'logo')}
+              activeClassName={cx('active')}>
           Ninja Ocean
         </Link>
         {user.authenticated ? (
-         <Link onClick={logOut} className={cx('item')} to="/login">
+         <Link onClick={logOut}
+               className={cx('item')}
+               to="/login">
            Logout
          </Link>
          ) : (
-         <Link className={cx('item')} to="/login">
+         <Link className={cx('item')}
+               to="/login">
            Log in
          </Link>
          )}
-        <Link className={cx('item')} to="/dashboard">
+        <Link className={cx('item')}
+              to="/dashboard">
           Dashboard
         </Link>
-        <Link className={cx('item')} to="/banks">
+        <Link className={cx('item')}
+              to="/banks">
           Banks
         </Link>
-        <Link className={cx('item')} to="/banks">
+        <Link className={cx('item')}
+              to="/cards">
           Cards
         </Link>
-        <Link className={cx('item')} to="/cities">
+        <Link className={cx('item')}
+              to="/cities">
           Cities
         </Link>
-        <Link className={cx('item')} to="/resturants">
+        <Link className={cx('item')}
+              to="/resturants">
           Restaurants
         </Link>
-        <Link className={cx('item')} to="/deals">
+        <Link className={cx('item')}
+              to="/deals">
           Deals
         </Link>
       </nav>
-      );
+    );
   }
 }
 // const Navigation = ({user, logOut}) => {

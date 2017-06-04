@@ -91,3 +91,21 @@ https://www.hyperledger.org/about/members
 --
 __v : versionKey is a property set on each document when first created by Mongoose
 --
+chain(...,... ) // 
+--
+error, can not bind this in DashBoard Container constructor?? Ans: has previously deleted the method
+--
+node inspector window takes about 20 seconds to load
+--
+react-routes routes.jsx is on the client side
+--
+so application is adding a new bank to the collection
+--
+how does fetchDataForRoute work ??? too many parameters being passed around
+--
+in react router redux, when to fetch data for component ?
+--
+Async actions on componentDidMount vs onEnter
+--
+when you enter the path in the webbrowser, match() is called on the server, when you re route in the client, match is not called on the server
+--

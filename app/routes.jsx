@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import { fetchVoteData } from './fetch-data';
-import { fetchBanksData } from './fetch-banks-data'
+import { Route, IndexRoute } from 'react-router'
+import { fetchVoteData } from './fetch-data'
+import { fetchBanksData } from './fetch-data'
 import { fetchCommentsData } from './fetch-comments-data';
 import { BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
 
@@ -27,25 +27,39 @@ export default (store) => {
   const redirectAuth = (nextState, replace, callback) => {
     const {user: {authenticated}} = store.getState();
     if (authenticated) {
-      console.log("try me");
       replace({
         pathname: '/dashboard'
       });
     }
     callback();
   };
+
+  const testFn = () => {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("testfn");
+
+  };
+
   return (
-    <Route path="/" component={App}>
-      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
-      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
-        <Route path="editbanks"
-               fetchBanksData={fetchBanksData}
-               component={EditBanksPage}
-               onEnter={requireAuth} />
-        <Route path="dashboard" component={DashboardPage} onEnter={requireAuth} />
-        <Route path="banks" component={BanksPage} onEnter={requireAuth} />
+    <Route path="/"
+           component={App}>
+      <IndexRoute component={ShowDiscountsPage}
+                  fetchData={fetchVoteData}
+                  fetchCommentsData={fetchCommentsData} />
+      <Route path="login"
+             component={LoginOrRegisterPage}
+             onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage}
+             onEnter={requireAuth}>
+        <Route path="dashboard"
+               component={DashboardPage}
+               onEnter={testFn}
+               fetchData={fetchVoteData} />
+        <Route path="banks"
+               component={BanksPage}
+               onEnter={testFn}
+               fetchData={fetchBanksData} />
       </Route>
     </Route>
-    );
+  );
 };

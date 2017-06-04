@@ -49,6 +49,9 @@ export default function render(req, res) {
     routes,
     location: req.url
   }, (err, redirect, props) => {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("matching a route");
+    debugger
 
     if (err) {
       res.status(500).json(err);
@@ -72,8 +75,7 @@ export default function render(req, res) {
         }).then(() => {
         fetchCommentsDataForRoute(props)
           .then((data) => {
-            const MAPLOG = true;
-            if (MAPLOG) console.log("comments data", data);
+
             store.dispatch({
               type: types.REQUEST_SUCCESS_COMMENTS,
               data

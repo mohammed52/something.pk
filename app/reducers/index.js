@@ -9,9 +9,11 @@ import * as types from '../types';
 
 const isFetching = (state = false, action) => {
   switch (action.type) {
+    case types.CREATE_REQUEST:
     case types.CREATE_REQUEST_TOPIC:
       return true;
     case types.REQUEST_SUCCESS:
+    case types.REQUEST_SUCCESS_BANKS:
     case types.REQUEST_FAILURE:
       return false;
     default:

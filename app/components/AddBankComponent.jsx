@@ -42,8 +42,6 @@ class AddBankComponent extends Component {
 
 
   onImageDrop(files) {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("onImageDrop")
     this.setState({
       uploadedFile: files[0]
     });
@@ -70,8 +68,7 @@ class AddBankComponent extends Component {
   }
 
   btnAddBank() {
-    const MAPLOG = true
-    if (MAPLOG) console.log("btnAddBank")
+
     let tmpBank = {
       fullName: $("#id-bank-full-name").val(),
       shortName: $("#id-bank-short-name").val(),
@@ -86,6 +83,33 @@ class AddBankComponent extends Component {
   render() {
 
     const {children} = this.props;
+
+    const allBanks = this.props.banks;
+    let trArrBanks = []
+    for (var i = 0; i < allBanks.length; i++) {
+      trArrBanks.push(
+        <tr id={"trArrBanks-tr" + i}>
+          <td>
+            {i + 1}
+          </td>
+          <td>
+            <img src={allBanks[i].logoUrl}
+                 alt={allBanks[i].fullName}
+                 height="50"
+                 width="50" />
+          </td>
+          <td>
+            {allBanks[i].fullName}
+          </td>
+          <td>
+            {allBanks[i].shortName}
+          </td>
+          <td>
+            actions
+          </td>
+        </tr>
+      );
+    }
 
     return (
       <div>
@@ -142,7 +166,34 @@ class AddBankComponent extends Component {
             Add Bank
           </Button>
         </form>
-        {children}
+        <div>
+          <h4>All Existing Banks</h4>
+          <br/>
+          <div>
+            <table>
+              <tbody>
+                <tr>
+                  <th>
+                    S/N
+                  </th>
+                  <th>
+                    Logo
+                  </th>
+                  <th>
+                    Full Name
+                  </th>
+                  <th>
+                    Short Name
+                  </th>
+                  <th>
+                    Actions
+                  </th>
+                </tr>
+                {trArrBanks}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }
@@ -150,7 +201,8 @@ class AddBankComponent extends Component {
 
 AddBankComponent.propTypes = {
   children: PropTypes.object,
-  createBank: PropTypes.func.isRequired
+  createBank: PropTypes.func.isRequired,
+  banks: PropTypes.array.isRequired
 };
 
 export default AddBankComponent;

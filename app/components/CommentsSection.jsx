@@ -19,14 +19,11 @@ export default class CommentsSection extends Component {
 
   onSave() {
     const {onEntrySave, comment} = this.props;
-    const MAPLOG = true;
-    if (MAPLOG) console.log("comment", comment);
     this.props.onEntrySave(comment);
   }
 
   onChange(event) {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("onChange");
+
     const {onCommentEntryChange} = this.props;
     onCommentEntryChange(event.target.value)
   }
@@ -64,7 +61,7 @@ export default class CommentsSection extends Component {
           {allComments}
         </div>
       </div>
-      );
+    );
   }
 }
 

@@ -23,7 +23,7 @@ const banks = (state = [],
 ) => {
 
   switch (action.type) {
-    case types.REQUEST_SUCCESS_BANK:
+    case types.REQUEST_SUCCESS_BANKS:
       if (action.data) return action.data;
       return state;
     case types.CREATE_BANK_REQUEST:

@@ -11,8 +11,6 @@ function destroy(id) {
 }
 
 function createCommentRequest(data) {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("createCommentRequest");
   return {
     type: types.CREATE_COMMENT_REQUEST,
     id: data.id,

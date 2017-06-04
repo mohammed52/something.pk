@@ -1,12 +1,8 @@
 import { voteService } from '../services';
 
 const fetchData = () => {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("fetchData");
   return voteService().getTopics()
     .then(res => {
-      const MAPLOG = true;
-      if (MAPLOG) console.log("res.data", res.data);
 
       return res.data
     })

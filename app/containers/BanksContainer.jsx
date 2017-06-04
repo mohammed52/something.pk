@@ -30,7 +30,8 @@ class BanksContainer extends Component {
 
     return (
       <div>
-        <AddBankComponent createBank={this.props.createBank} />
+        <AddBankComponent createBank={this.props.createBank}
+                          banks={this.props.banks} />
       </div>
     );
   }
@@ -43,7 +44,7 @@ BanksContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    banks: state.topic.banks,
+    banks: state.bank.banks,
   };
 }
 
