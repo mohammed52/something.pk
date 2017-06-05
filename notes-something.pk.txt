@@ -117,4 +117,5 @@ Japanese and Russian Governments legalising bitcoin
 --
 have to push to heroku every monday as many issues with modules emerge
 --
-appears to be problem with node-inspector and node-gym
+appears to be problem with node-inspector and node-gym, removed node-inspector and upload to server is working
+--

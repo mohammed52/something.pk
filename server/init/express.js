@@ -12,6 +12,9 @@ import { sessionSecret } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
 
+var cors = require('cors')
+
+
 export default (app) => {
   app.set('port', (process.env.PORT || 3000));
 
@@ -28,6 +31,8 @@ export default (app) => {
   app.use(methodOverride());
 
   app.use(express.static(path.join(process.cwd(), 'public')));
+
+  app.use(cors())
 
   // I am adding this here so that the Heroku deploy will work
   // Indicates the app is behind a front-facing proxy,
