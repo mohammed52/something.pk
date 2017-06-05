@@ -109,3 +109,9 @@ Async actions on componentDidMount vs onEnter
 --
 when you enter the path in the webbrowser, match() is called on the server, when you re route in the client, match is not called on the server
 --
+onUpdate is only called on client at redirection, it is not called when the page loads for the first time, it sets window.__INITIAL_STATE__ = null in the first time
+--
+each row should have its own component, for the actions methods to work simply
+--
+Japanese and Russian Governments legalising bitcoin
+--

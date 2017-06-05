@@ -49,9 +49,6 @@ export default function render(req, res) {
     routes,
     location: req.url
   }, (err, redirect, props) => {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("matching a route");
-    debugger
 
     if (err) {
       res.status(500).json(err);
@@ -66,30 +63,32 @@ export default function render(req, res) {
 
       fetchDataForRoute(props)
         .then((data) => {
-          store.dispatch({
-            type: types.REQUEST_SUCCESS_TOPIC,
-            data
-          });
-        // const html = pageRenderer(store, props);
-        // res.status(200).send(html);
-        }).then(() => {
-        fetchCommentsDataForRoute(props)
-          .then((data) => {
+          switch (props.location.pathname) {
+            case ( "/"): {
+              //
+            }
+            case ( '/dashboard'): {
+              //
+            }
+            case ( '/banks'): {
+              store.dispatch({
+                type: types.REQUEST_SUCCESS_BANKS,
+                data
+              });
+            }
+            default: {
+              //
+            }
+          }
 
-            store.dispatch({
-              type: types.REQUEST_SUCCESS_COMMENTS,
-              data
-            });
-            const html = pageRenderer(store, props);
-            res.status(200).send(html);
-          })
-          .catch((err) => {
-            console.error(err);
-            res.status(500).json(err);
-          });
+          // store.dispatch({
+          //   type: types.REQUEST_SUCCESS_TOPIC,
+          //   data
+          // });
 
-
-      })
+          const html = pageRenderer(store, props);
+          res.status(200).send(html);
+        })
         .catch((err) => {
           console.error(err);
           res.status(500).json(err);

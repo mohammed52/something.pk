@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
+import SingleBankRowComponent from './SingleBankRowComponent'
 
 // import styles from '../css/components/dashboard';
 
@@ -87,30 +88,16 @@ class AddBankComponent extends Component {
     const allBanks = this.props.banks;
     let trArrBanks = []
     for (var i = 0; i < allBanks.length; i++) {
+
+      const tmpBank = allBanks[i]
+      const tmpKey = "SingleBankRowComponent" + i + tmpBank.id
+      const tmpIterator = i
       trArrBanks.push(
-        <tr id={"trArrBanks-tr" + i}>
-          <td>
-            {i + 1}
-          </td>
-          <td>
-            <img src={allBanks[i].logoUrl}
-                 alt={allBanks[i].fullName}
-                 height="50"
-                 width="50" />
-          </td>
-          <td>
-            {allBanks[i].fullName}
-          </td>
-          <td>
-            {allBanks[i].shortName}
-          </td>
-          <td>
-            actions
-          </td>
-        </tr>
+        <SingleBankRowComponent key={tmpKey}
+                                bank={tmpBank}
+                                iterator={tmpIterator} />
       );
     }
-
     return (
       <div>
         <form className="testbg-1">
@@ -162,7 +149,7 @@ class AddBankComponent extends Component {
             </tbody>
           </table>
           <Button onClick={this.btnAddBank}
-                  bsStyle="primary">
+                  disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
             Add Bank
           </Button>
         </form>

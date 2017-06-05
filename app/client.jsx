@@ -43,8 +43,6 @@ function onUpdate() {
 
   fetchDataForRoute(this.state)
     .then((data) => {
-      const MAPLOG = true;
-      if (MAPLOG) console.log("pathname", this.state.location.pathname);
       switch (this.state.location.pathname) {
         case ( "/"): {
 
