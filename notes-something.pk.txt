@@ -115,3 +115,6 @@ each row should have its own component, for the actions methods to work simply
 --
 Japanese and Russian Governments legalising bitcoin
 --
+have to push to heroku every monday as many issues with modules emerge
+--
+appears to be problem with node-inspector and node-gym
