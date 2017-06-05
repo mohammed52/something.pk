@@ -119,3 +119,6 @@ have to push to heroku every monday as many issues with modules emerge
 --
 appears to be problem with node-inspector and node-gym, removed node-inspector and upload to server is working
 --
+access-control-allow-origin problem on heroku , solved it using npm cors package:
+https://www.npmjs.com/package/cors
+--
