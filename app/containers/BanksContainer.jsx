@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import AddBankComponent from '../components/AddBankComponent'
 
-import { createBank } from '../actions/banksActions';
+import { createBank, destroyBank } from '../actions/banksActions';
 
 var ReactBootstrap = require('react-bootstrap')
 var Button = ReactBootstrap.Button
@@ -26,12 +26,13 @@ class BanksContainer extends Component {
 
   render() {
 
-    const {children} = this.props
+    const {destroyBank} = this.props
 
     return (
       <div>
         <AddBankComponent createBank={this.props.createBank}
-                          banks={this.props.banks} />
+                          banks={this.props.banks}
+                          destroyBank={this.props.destroyBank} />
       </div>
     );
   }
@@ -39,7 +40,8 @@ class BanksContainer extends Component {
 
 BanksContainer.propTypes = {
   children: PropTypes.object,
-  createBank: PropTypes.func.isRequired
+  createBank: PropTypes.func.isRequired,
+  destroyBank: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -49,5 +51,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  createBank
+  createBank,
+  destroyBank
 })(BanksContainer);

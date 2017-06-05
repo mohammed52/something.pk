@@ -95,7 +95,8 @@ class AddBankComponent extends Component {
       trArrBanks.push(
         <SingleBankRowComponent key={tmpKey}
                                 bank={tmpBank}
-                                iterator={tmpIterator} />
+                                iterator={tmpIterator}
+                                destroyBank={this.props.destroyBank} />
       );
     }
     return (
@@ -127,7 +128,7 @@ class AddBankComponent extends Component {
                 </td>
                 <td>
                   <Dropzone multiple={false}
-                            accept="image/jpg,image/png"
+                            accept="image/jpg,image/png,image/jpeg"
                             onDrop={this.onImageDrop.bind(this)}>
                     <p>
                       Drop an image or click to select a file to upload.
@@ -189,7 +190,8 @@ class AddBankComponent extends Component {
 AddBankComponent.propTypes = {
   children: PropTypes.object,
   createBank: PropTypes.func.isRequired,
-  banks: PropTypes.array.isRequired
+  banks: PropTypes.array.isRequired,
+  destroyBank: PropTypes.func.isRequired
 };
 
 export default AddBankComponent;

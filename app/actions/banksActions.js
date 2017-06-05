@@ -3,6 +3,14 @@ import md5 from 'spark-md5';
 import * as types from '../types';
 import { banksService } from '../services';
 
+
+function destroy(id) {
+  return {
+    type: types.DESTROY_BANK,
+    id
+  };
+}
+
 function createBankRequest(data) {
   const MAPLOG = true;
   if (MAPLOG) console.log("createBankRequest");
@@ -77,5 +85,18 @@ export function createBank(bank) {
           error: 'Oops! Something went wrong and we couldn\'t create your comment'
         }));
       });
+  };
+}
+
+export function destroyBank(id) {
+  return (dispatch) => {
+    return banksService().deleteBank({
+      id
+    })
+      .then(() => dispatch(destroy(id)))
+      .catch(() => dispatch(createBankFailure({
+        id,
+        error: 'Oops! Something went wrong and we couldn\'t add your vote'
+      })));
   };
 }

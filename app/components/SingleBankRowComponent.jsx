@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
+import '../font-awesome-4.7.0/css/font-awesome.css'
 
 // import styles from '../css/components/dashboard';
 
@@ -28,6 +29,16 @@ var Input = ReactBootstrap.Input
 class SingleBankRowComponent extends Component {
   constructor(props) {
     super(props);
+    this.deleteBank = this.deleteBank.bind(this)
+  }
+
+  deleteBank() {
+    const MAPLOG = true;
+    if (MAPLOG) console.log("deleteBank");
+    const bank = this.props.bank
+    const {destroyBank} = this.props
+
+    destroyBank(bank.id)
   }
 
   render() {
@@ -65,7 +76,9 @@ class SingleBankRowComponent extends Component {
           {bank.shortName}
         </td>
         <td>
-          delete
+          <span className="fake-link"
+                onClick={this.deleteBank}>its<i className="fa fa-trash-o"
+                                                                         aria-hidden="true"/> here</span>
         </td>
       </tr>
     );
@@ -74,7 +87,8 @@ class SingleBankRowComponent extends Component {
 
 SingleBankRowComponent.propTypes = {
   bank: PropTypes.object.isRequired,
-  iterator: PropTypes.number.isRequired
+  iterator: PropTypes.number.isRequired,
+  destroyBank: PropTypes.func.isRequired
 };
 
 export default SingleBankRowComponent;

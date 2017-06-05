@@ -30,6 +30,8 @@ const banks = (state = [],
       return [...state, bank(undefined, action)];
     case types.CREATE_BANK_FAILURE:
       return state.filter(t => t.id !== action.id);
+    case types.DESTROY_BANK:
+      return state.filter(t => t.id !== action.id);
     default:
       return state;
   }
