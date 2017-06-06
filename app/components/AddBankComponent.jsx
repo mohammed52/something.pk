@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
+import classNames from 'classnames/bind';
 import SingleBankRowComponent from './SingleBankRowComponent'
 
-// import styles from '../css/components/dashboard';
+import styles from '../css/bootstrap/css/bootstrap';
 
-// const cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -149,10 +150,12 @@ class AddBankComponent extends Component {
               </tr>
             </tbody>
           </table>
-          <Button onClick={this.btnAddBank}
+          <button className={cx('btn-primary')}
+                  type="button"
+                  onClick={this.btnAddBank}
                   disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
             Add Bank
-          </Button>
+          </button>
         </form>
         <div>
           <h4>All Existing Banks</h4>
