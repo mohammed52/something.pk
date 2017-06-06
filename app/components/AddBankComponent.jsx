@@ -6,8 +6,11 @@ import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
 import SingleBankRowComponent from './SingleBankRowComponent'
+// import { Button } from 'react-bootstrap';
 
 import styles from '../css/bootstrap/css/bootstrap';
+import '../css/bootstrap/css/bootstrap.css';
+
 
 const cx = classNames.bind(styles);
 
@@ -128,9 +131,7 @@ class AddBankComponent extends Component {
                                defaultValue="try me" />
                 </td>
                 <td>
-                  <Dropzone multiple={false}
-                            accept="image/jpg,image/png,image/jpeg"
-                            onDrop={this.onImageDrop.bind(this)}>
+                  <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
                     <p>
                       Drop an image or click to select a file to upload.
                     </p>
@@ -150,11 +151,23 @@ class AddBankComponent extends Component {
               </tr>
             </tbody>
           </table>
-          <button className={cx('btn-primary')}
+          <button className={cx('btn', 'btn-primary')}
                   type="button"
                   onClick={this.btnAddBank}
                   disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
             Add Bank
+          </button>
+          <br/>
+          <Button bsStyle={cx('primary')} className={cx('btn', 'btn-primary')}>
+            Click Me!
+          </Button>
+          <br/>
+          <Button bsStyle="primary">
+            Primary
+          </Button>
+          <br/>
+          <button>
+            Click Me too!
           </button>
         </form>
         <div>
@@ -186,7 +199,7 @@ class AddBankComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 

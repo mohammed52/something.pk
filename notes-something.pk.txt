@@ -115,18 +115,12 @@ each row should have its own component, for the actions methods to work simply
 --
 Japanese and Russian Governments legalising bitcoin
 --
-all the loaders for different file types go into the webpack.config
+have to push to heroku every monday as many issues with modules emerge
 --
-destroy bank is working
+appears to be problem with node-inspector and node-gym, removed node-inspector and upload to server is working
 --
-Q: bootstrap css classes not being used on my elements?
-Ans: find out how existing css is being used
+access-control-allow-origin problem on heroku , solved it using npm cors package:
+https://www.npmjs.com/package/cors
 --
-all css classes:
-https://www.w3schools.com/bootstrap/bootstrap_ref_all_classes.asp
---
-download and inspect official bootstrap theme examples:
-http://getbootstrap.com/getting-started/
---
-use MongoDB compass GUI interface
+when ever you make changes: webpack building
 --
