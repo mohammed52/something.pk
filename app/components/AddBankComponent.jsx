@@ -9,7 +9,7 @@ import SingleBankRowComponent from './SingleBankRowComponent'
 // import { Button } from 'react-bootstrap';
 
 import styles from '../css/bootstrap/css/bootstrap';
-import '../css/bootstrap/css/bootstrap.css';
+// import '../css/bootstrap/css/bootstrap.css';
 
 
 const cx = classNames.bind(styles);
@@ -131,7 +131,9 @@ class AddBankComponent extends Component {
                                defaultValue="try me" />
                 </td>
                 <td>
-                  <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
+                  <Dropzone multiple={false}
+                            accept="image/jpg,image/png,image/jpeg"
+                            onDrop={this.onImageDrop.bind(this)}>
                     <p>
                       Drop an image or click to select a file to upload.
                     </p>
@@ -158,7 +160,8 @@ class AddBankComponent extends Component {
             Add Bank
           </button>
           <br/>
-          <Button bsStyle={cx('primary')} className={cx('btn', 'btn-primary')}>
+          <Button bsStyle={cx('primary')}
+                  className={cx('btn', 'btn-primary')}>
             Click Me!
           </Button>
           <br/>
@@ -199,7 +202,7 @@ class AddBankComponent extends Component {
           </div>
         </div>
       </div>
-      );
+    );
   }
 }
 

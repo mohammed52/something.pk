@@ -124,3 +124,12 @@ https://www.npmjs.com/package/cors
 --
 when ever you make changes: webpack building
 --
+use expo.io, to build truly native Android and iOS apps, uses React Native framework, founded by Quora/Amazon/Facebook engineer
+--
+CSS3 :root Selector matches the document's root element
+--
+something.pk needs 60 seconds to lauch on heroku
+--
+add multiple css classes for components: 
+className={cxBs('btn', 'btn-link'), cxTest('testbg-1')}
+--

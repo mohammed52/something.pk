@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
-import '../font-awesome-4.7.0/css/font-awesome.css'
+import classNames from 'classnames/bind';
+import styles from '../font-awesome-4.7.0/css/font-awesome.css'
+import bsStyles from '../css/bootstrap/css/bootstrap';
+import testStyles from '../css/components/test';
+const cx = classNames.bind(styles);
+
+const cxBs = classNames.bind(bsStyles);
+const cxTest = classNames.bind(testStyles);
 
 // import styles from '../css/components/dashboard';
 
@@ -55,7 +62,7 @@ class SingleBankRowComponent extends Component {
     // const iterator = this.props.iterator
 
     return (
-      <tr>
+      <tr className={cxTest('testbg-1')}>
         <td>
           {iterator + 1}
         </td>
@@ -72,13 +79,16 @@ class SingleBankRowComponent extends Component {
         <td>
           {bank.fullName}
         </td>
-        <td>
+        <td className={cxTest('testbg-1')}>
           {bank.shortName}
         </td>
         <td>
-          <span className="fake-link"
-                onClick={this.deleteBank}>its<i className="fa fa-trash-o"
-                                                                         aria-hidden="true"/> here</span>
+          <button className={cxBs('btn', 'btn-link'), cxTest('testbg-1')}
+                  type="button"
+                  onClick={this.deleteBank}>
+            <i className={cx('fa', 'fa-trash-o')}
+               aria-hidden="true" />
+          </button>
         </td>
       </tr>
     );
