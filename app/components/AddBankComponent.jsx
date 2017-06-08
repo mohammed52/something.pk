@@ -8,11 +8,11 @@ import classNames from 'classnames/bind';
 import SingleBankRowComponent from './SingleBankRowComponent'
 // import { Button } from 'react-bootstrap';
 
-import styles from '../css/bootstrap/css/bootstrap';
-// import '../css/bootstrap/css/bootstrap.css';
+import bsStyles from '../css/bootstrap/css/bootstrap';
+import testStyles from '../css/components/test';
 
-
-const cx = classNames.bind(styles);
+const cxTest = classNames.bind(testStyles);
+const cxBs = classNames.bind(bsStyles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -37,10 +37,14 @@ class AddBankComponent extends Component {
   constructor(props) {
     super(props);
     this.btnAddBank = this.btnAddBank.bind(this)
+    this.onChangeFullName = this.onChangeFullName.bind(this)
+    this.onChangeShortName = this.onChangeShortName.bind(this)
 
     this.state = {
       uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
+      uploadedFileCloudinaryUrl: '',
+      fullNameField: "",
+      shortNameField: ""
     };
   }
 
@@ -75,14 +79,38 @@ class AddBankComponent extends Component {
   btnAddBank() {
 
     let tmpBank = {
-      fullName: $("#id-bank-full-name").val(),
-      shortName: $("#id-bank-short-name").val(),
+      fullName: this.state.fullNameField,
+      shortName: this.state.shortNameField,
       logoUrl: this.state.uploadedFileCloudinaryUrl
     }
+
+    this.refs.someName.refBankFullName = '';
+
+    this.setState({
+      fullNameField: "",
+      shortNameField: ""
+    })
 
     const {createBank} = this.props;
     createBank(tmpBank)
 
+
+
+  }
+
+  onChangeFullName(event) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log(event.target.value);
+    this.setState({
+      fullNameField: event.target.value
+    })
+  }
+  onChangeShortName(event) {
+    const MAPLOG = true;
+    if (MAPLOG) console.log(event.target.value);
+    this.setState({
+      shortNameField: event.target.value
+    })
   }
 
   render() {
@@ -107,77 +135,69 @@ class AddBankComponent extends Component {
       <div>
         <form className="testbg-1">
           <h3>Add New Bank</h3>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <ControlLabel>
-                    Full Name
-                  </ControlLabel>
-                  <br/>
-                  <FormControl type="text"
-                               id="id-bank-full-name"
-                               required="true"
-                               defaultValue="try me" />
-                  <br/>
-                  <br/>
-                  <ControlLabel>
-                    Short Name
-                  </ControlLabel>
-                  <br/>
-                  <FormControl type="text"
-                               id="id-bank-short-name"
-                               required="true"
-                               defaultValue="try me" />
-                </td>
-                <td>
-                  <Dropzone multiple={false}
-                            accept="image/jpg,image/png,image/jpeg"
-                            onDrop={this.onImageDrop.bind(this)}>
-                    <p>
-                      Drop an image or click to select a file to upload.
-                    </p>
-                  </Dropzone>
-                </td>
-                <td>
-                  <div>
-                    {this.state.uploadedFileCloudinaryUrl === '' ? null :
-                     <div>
-                       <p>
-                         {this.state.uploadedFile.name}
-                       </p>
-                       <img src={this.state.uploadedFileCloudinaryUrl} />
-                     </div>}
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button className={cx('btn', 'btn-primary')}
-                  type="button"
-                  onClick={this.btnAddBank}
-                  disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
-            Add Bank
-          </button>
-          <br/>
-          <Button bsStyle={cx('primary')}
-                  className={cx('btn', 'btn-primary')}>
-            Click Me!
-          </Button>
-          <br/>
-          <Button bsStyle="primary">
-            Primary
-          </Button>
-          <br/>
-          <button>
-            Click Me too!
-          </button>
+          <div className={cxBs('well')}>
+            <table className={cxBs('table')}>
+              <tbody>
+                <tr>
+                  <td>
+                    <ControlLabel>
+                      Full Name
+                    </ControlLabel>
+                    <br/>
+                    <FormControl type="text"
+                                 id="id-bank-full-name"
+                                 required="true"
+                                 onChange={this.onChangeFullName}
+                                 defaultValue={this.state.fullNameField}
+                                 ref="refBankFullName" />
+                    <br/>
+                    <br/>
+                    <ControlLabel>
+                      Short Name
+                    </ControlLabel>
+                    <br/>
+                    <FormControl type="text"
+                                 id="id-bank-short-name"
+                                 required="true"
+                                 onChange={this.onChangeShortName}
+                                 defaultValue={this.state.shortNameField} />
+                  </td>
+                  <td>
+                    <Dropzone multiple={false}
+                              accept="image/jpg,image/png,image/jpeg"
+                              onDrop={this.onImageDrop.bind(this)}>
+                      <p>
+                        Drop an image or click to select a file to upload.
+                      </p>
+                    </Dropzone>
+                  </td>
+                  <td>
+                    <div>
+                      {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                       <div>
+                         <p>
+                           {this.state.uploadedFile.name}
+                         </p>
+                         <img src={this.state.uploadedFileCloudinaryUrl} />
+                       </div>}
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button className={cxBs('btn', 'btn-primary')}
+                    type="button"
+                    onClick={this.btnAddBank}
+                    disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
+              Add Bank
+            </button>
+            <br/>
+          </div>
         </form>
         <div>
           <h4>All Existing Banks</h4>
-          <br/>
-          <div>
-            <table>
+          <div className={cxBs('well')}>
+            <table className={cxBs('table')}>
               <tbody>
                 <tr>
                   <th>

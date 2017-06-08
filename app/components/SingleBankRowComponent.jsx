@@ -62,7 +62,7 @@ class SingleBankRowComponent extends Component {
     // const iterator = this.props.iterator
 
     return (
-      <tr className={cxTest('testbg-1')}>
+      <tr>
         <td>
           {iterator + 1}
         </td>
@@ -72,18 +72,18 @@ class SingleBankRowComponent extends Component {
                                                      no-image
                                                    </div> : <img src={bank.logoUrl}
                                                                  alt={bank.fullName}
-                                                                 height="100"
-                                                                 width="100" />}
+                                                                 height="50"
+                                                                 width="50" />}
           </div>
         </td>
         <td>
           {bank.fullName}
         </td>
-        <td className={cxTest('testbg-1')}>
+        <td>
           {bank.shortName}
         </td>
         <td>
-          <button className={cxBs('btn', 'btn-link'), cxTest('testbg-1')}
+          <button className={cxBs('btn', 'btn-link')}
                   type="button"
                   onClick={this.deleteBank}>
             <i className={cx('fa', 'fa-trash-o')}
