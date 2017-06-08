@@ -40,10 +40,8 @@ class SingleBankRowComponent extends Component {
   }
 
   deleteBank() {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("deleteBank");
     const bank = this.props.bank
-    const {destroyBank} = this.props
+    const {destroyBank} = this.propswip
 
     destroyBank(bank.id)
   }
@@ -83,15 +81,12 @@ class SingleBankRowComponent extends Component {
           {bank.shortName}
         </td>
         <td>
-          <button className={cxBs('btn', 'btn-link')}
-                  type="button"
-                  onClick={this.deleteBank}>
-            <i className={cx('fa', 'fa-trash-o')}
-               aria-hidden="true" />
+          <button className={cxBs('btn', 'btn-link')} type="button" onClick={this.deleteBank}>
+            <i className={cx('fa', 'fa-trash-o')} aria-hidden="true" />
           </button>
         </td>
       </tr>
-    );
+      );
   }
 }
 

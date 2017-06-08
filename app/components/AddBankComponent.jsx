@@ -84,18 +84,19 @@ class AddBankComponent extends Component {
       logoUrl: this.state.uploadedFileCloudinaryUrl
     }
 
-    this.refs.someName.refBankFullName = '';
+    // this.refs.someName.refBankFullName = '';
+
+    this.refs.refBankFullName.value = '';
+    this.refs.refBankShortName.value = '';
 
     this.setState({
       fullNameField: "",
-      shortNameField: ""
+      shortNameField: "",
+      uploadedFileCloudinaryUrl: ""
     })
 
     const {createBank} = this.props;
     createBank(tmpBank)
-
-
-
   }
 
   onChangeFullName(event) {
@@ -144,28 +145,25 @@ class AddBankComponent extends Component {
                       Full Name
                     </ControlLabel>
                     <br/>
-                    <FormControl type="text"
-                                 id="id-bank-full-name"
-                                 required="true"
-                                 onChange={this.onChangeFullName}
-                                 defaultValue={this.state.fullNameField}
-                                 ref="refBankFullName" />
+                    <input id="id-bank-full-name"
+                           required="true"
+                           onChange={this.onChangeFullName}
+                           defaultValue={this.state.fullNameField}
+                           ref="refBankFullName" />
                     <br/>
                     <br/>
                     <ControlLabel>
                       Short Name
                     </ControlLabel>
                     <br/>
-                    <FormControl type="text"
-                                 id="id-bank-short-name"
-                                 required="true"
-                                 onChange={this.onChangeShortName}
-                                 defaultValue={this.state.shortNameField} />
+                    <input id="id-bank-short-name"
+                           required="true"
+                           onChange={this.onChangeShortName}
+                           defaultValue={this.state.shortNameField}
+                           ref="refBankShortName" />
                   </td>
                   <td>
-                    <Dropzone multiple={false}
-                              accept="image/jpg,image/png,image/jpeg"
-                              onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -222,7 +220,7 @@ class AddBankComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 
