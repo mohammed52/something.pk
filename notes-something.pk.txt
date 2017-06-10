@@ -124,6 +124,8 @@ https://www.npmjs.com/package/cors
 --
 when ever you make changes: webpack building
 --
-Q: button is being disabled but form control is not empty at btn click
+Q: button is being disabled but form control type input can not empty at btn click using component states?
 Ans: use input ref to reset value
+--
+can check value of textField to enable/disable button using this.ref.input.value
 --

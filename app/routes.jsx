@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
-import { fetchVoteData } from './fetch-data'
-import { fetchBanksData } from './fetch-data'
+import { fetchVoteData, fetchBanksData } from './fetch-data'
 import { fetchCommentsData } from './fetch-comments-data';
-import { BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, EditBanksPage, WrapperLoggedInPage } from './pages';
+import { CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -41,16 +40,10 @@ export default (store) => {
   };
 
   return (
-    <Route path="/"
-           component={App}>
-      <IndexRoute component={ShowDiscountsPage}
-                  fetchData={fetchVoteData}
-                  fetchCommentsData={fetchCommentsData} />
-      <Route path="login"
-             component={LoginOrRegisterPage}
-             onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage}
-             onEnter={requireAuth}>
+    <Route path="/" component={App}>
+      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
+      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
         <Route path="dashboard"
                component={DashboardPage}
                onEnter={testFn}
@@ -59,7 +52,8 @@ export default (store) => {
                component={BanksPage}
                onEnter={testFn}
                fetchData={fetchBanksData} />
+        <Route path="cards" component={CardsPage} />
       </Route>
     </Route>
-  );
+    );
 };

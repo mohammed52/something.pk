@@ -44,7 +44,7 @@
     "prefer-const":0,
     "class-methods-use-this":0,
     "react/jsx-tag-spacing":0,
-    "react/jsx-indent",
+    "react/jsx-indent": 1,
     "no-unused-vars": 1
   },
   "plugins": [

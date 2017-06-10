@@ -41,7 +41,7 @@ class SingleBankRowComponent extends Component {
 
   deleteBank() {
     const bank = this.props.bank
-    const {destroyBank} = this.propswip
+    const {destroyBank} = this.props
 
     destroyBank(bank.id)
   }

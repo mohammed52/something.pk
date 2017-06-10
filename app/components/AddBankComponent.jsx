@@ -39,12 +39,15 @@ class AddBankComponent extends Component {
     this.btnAddBank = this.btnAddBank.bind(this)
     this.onChangeFullName = this.onChangeFullName.bind(this)
     this.onChangeShortName = this.onChangeShortName.bind(this)
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
 
     this.state = {
       uploadedFile: null,
       uploadedFileCloudinaryUrl: '',
       fullNameField: "",
-      shortNameField: ""
+      shortNameField: "",
+      showModal: true
     };
   }
 
@@ -114,6 +117,19 @@ class AddBankComponent extends Component {
     })
   }
 
+  close() {
+    this.setState({
+      showModal: false
+    });
+  }
+
+  open() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+
   render() {
 
     const {children} = this.props;
@@ -176,7 +192,7 @@ class AddBankComponent extends Component {
                          <p>
                            {this.state.uploadedFile.name}
                          </p>
-                         <img src={this.state.uploadedFileCloudinaryUrl} />
+                         <img src={this.state.uploadedFileCloudinaryUrl} alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -186,7 +202,9 @@ class AddBankComponent extends Component {
             <button className={cxBs('btn', 'btn-primary')}
                     type="button"
                     onClick={this.btnAddBank}
-                    disabled={this.state.uploadedFileCloudinaryUrl !== "" ? false : true}>
+                    disabled={(this.state.uploadedFileCloudinaryUrl !== ""
+                              && this.refs.refBankFullName.value !== "" &&
+                              this.refs.refBankShortName.value !== "") ? false : true}>
               Add Bank
             </button>
             <br/>
