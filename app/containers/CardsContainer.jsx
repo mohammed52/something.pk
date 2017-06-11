@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// import AddBankComponent from '../components/AddBankComponent'
+import AddCardComponent from '../components/AddCardComponent'
 
 // import { createBank, destroyBank } from '../actions/banksActions';
 
@@ -29,9 +29,9 @@ class CardsContainer extends Component {
 
     return (
       <div>
-        cards container
+        <AddCardComponent />
       </div>
-      );
+    );
   }
 }
 

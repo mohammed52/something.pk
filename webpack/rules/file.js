@@ -1,10 +1,9 @@
 const PATHS = require('../paths');
 
 module.exports = ({limit = 10000} = {}) => ({
-  test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-  loader: 'url-loader',
+  test: /\.(ttf|eot|svg|mp3|woff2)$/,
+  loader: 'file-loader',
   options: {
-    name: '[hash].[ext]',
     limit
   },
   include: [PATHS.app, PATHS.modules]

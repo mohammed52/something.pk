@@ -3,12 +3,14 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+import 'bootstrap/dist/css/bootstrap.css'
+
 import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
 import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
-
+// import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 // Grab the state from a global injected into
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
@@ -72,7 +74,8 @@ function onUpdate() {
 // Read more https://github.com/rackt/react-router/blob/latest/docs/Glossary.md#routeconfig
 render(
   <Provider store={store}>
-    <Router history={history} onUpdate={onUpdate}>
+    <Router history={history}
+            onUpdate={onUpdate}>
       {routes}
     </Router>
   </Provider>, document.getElementById('app'));

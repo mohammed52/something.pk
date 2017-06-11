@@ -11,7 +11,7 @@ const createApp = (store, props) => renderToString(
   </Provider>
 );
 
-const buildPage = ({ componentHTML, initialState, headAssets }) => {
+const buildPage = ({componentHTML, initialState, headAssets}) => {
   return `
 <!doctype html>
 <html>
@@ -21,6 +21,7 @@ const buildPage = ({ componentHTML, initialState, headAssets }) => {
     ${headAssets.link.toString()}
     ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
   </head>
   <body>
     <div id="app">${componentHTML}</div>
@@ -34,6 +35,10 @@ export default (store, props) => {
   const initialState = store.getState();
   const componentHTML = createApp(store, props);
   const headAssets = Helmet.renderStatic();
-  return buildPage({ componentHTML, initialState, headAssets });
+  return buildPage({
+    componentHTML,
+    initialState,
+    headAssets
+  });
 };
 

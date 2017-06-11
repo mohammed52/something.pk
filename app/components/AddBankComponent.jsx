@@ -179,7 +179,9 @@ class AddBankComponent extends Component {
                            ref="refBankShortName" />
                   </td>
                   <td>
-                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false}
+                              accept="image/jpg,image/png,image/jpeg"
+                              onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -192,7 +194,8 @@ class AddBankComponent extends Component {
                          <p>
                            {this.state.uploadedFile.name}
                          </p>
-                         <img src={this.state.uploadedFileCloudinaryUrl} alt="uploaded image" />
+                         <img src={this.state.uploadedFileCloudinaryUrl}
+                              alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -208,6 +211,9 @@ class AddBankComponent extends Component {
               Add Bank
             </button>
             <br/>
+            <button className="btn btn-primary btn-lg">
+              Add Bank
+            </button>
           </div>
         </form>
         <div>
@@ -238,7 +244,7 @@ class AddBankComponent extends Component {
           </div>
         </div>
       </div>
-      );
+    );
   }
 }
 

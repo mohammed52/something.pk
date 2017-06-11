@@ -129,3 +129,24 @@ Ans: use input ref to reset value
 --
 can check value of textField to enable/disable button using this.ref.input.value
 --
+ensure all new pages are added to index.js so that properly imported in other files
+--
+Q: ReactGo how to enable global styles? 
+--
+css-loader , how to import bootstrap ???
+--
+don't know how webpack, loaders, css-loader, bootstrap work together, global/local styles work together - wasted 02 days
+--
+rs - restarts web server
+--
+can add bootstrap cdn directly in server rendered html page
+--
+server->render->PageRenderer // ading bootstrap.css CDN enables bootstrap classes but elements are resized to 0.5x, y???
+--
+ReactGo uses Css modules and says good bye to global scope, problem when using React-bootstrap
+--
+global css is a no no so now no longer React-bootstrap
+--
+use bootstrap modal without using react-bootstrap:
+https://stackoverflow.com/questions/28241912/bootstrap-modal-in-react-js
+--
