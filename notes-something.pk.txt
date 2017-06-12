@@ -150,3 +150,5 @@ global css is a no no so now no longer React-bootstrap
 use bootstrap modal without using react-bootstrap:
 https://stackoverflow.com/questions/28241912/bootstrap-modal-in-react-js
 --
+Reactstrap - Simple React Bootstrap 4 components 
+--

@@ -86,15 +86,11 @@ class AddCardComponent extends Component {
                   data-target="#myModal">
             Open Modal
           </button>
-          <div className={cxBs("modal", "fade")}
-               id="myModal"
-               role="dialog">
+          <div className={cxBs("modal", "fade")} id="myModal" role="dialog">
             <div className={cxBs("modal-dialog")}>
               <div className={cxBs("modal-content")}>
                 <div className={cxBs("modal-header")}>
-                  <button type="button"
-                          className={cxBs("close")}
-                          data-dismiss="modal">
+                  <button type="button" className={cxBs("close")} data-dismiss="modal">
                     ×
                   </button>
                   <h4 className={cxBs("modal-title")}>Modal Header</h4>
@@ -105,9 +101,7 @@ class AddCardComponent extends Component {
                   </p>
                 </div>
                 <div className={cxBs("modal-footer")}>
-                  <button type="button"
-                          className={cxBs("btn", "btn-default")}
-                          data-dismiss="modal">
+                  <button type="button" className={cxBs("btn", "btn-default")} data-dismiss="modal">
                     Close
                   </button>
                 </div>
@@ -116,7 +110,7 @@ class AddCardComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 
