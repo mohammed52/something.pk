@@ -35,39 +35,8 @@ var Input = ReactBootstrap.Input
 
 
 class AddCardComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.open = this.open.bind(this)
-    this.close = this.close.bind(this)
-    this.state = {
-      showModal: false
-    };
-
-  }
-
-  componentDidMount() {
-    $(this.getDOMNode()).modal('show');
-    $(this.getDOMNode()).on('hidden.bs.modal', this.props.handleHideModal);
-  }
-
-
-  close() {
-    this.setState({
-      showModal: false
-    });
-  }
-
-  open() {
-    this.setState({
-      showModal: true
-    });
-  }
-
 
   render() {
-
-
-
     return (
       <div>
         AddCardComponent
@@ -78,39 +47,8 @@ class AddCardComponent extends Component {
             try button
           </button>
         </p>
-        <div className={cxBs("container")}>
-          <h2>Modal Example</h2>
-          <button type="button"
-                  className={cxBs("btn", "btn-info", "btn-lg")}
-                  data-toggle="modal"
-                  data-target="#myModal">
-            Open Modal
-          </button>
-          <div className={cxBs("modal", "fade")} id="myModal" role="dialog">
-            <div className={cxBs("modal-dialog")}>
-              <div className={cxBs("modal-content")}>
-                <div className={cxBs("modal-header")}>
-                  <button type="button" className={cxBs("close")} data-dismiss="modal">
-                    ×
-                  </button>
-                  <h4 className={cxBs("modal-title")}>Modal Header</h4>
-                </div>
-                <div className={cxBs("modal-body")}>
-                  <p>
-                    Some text in the modal.
-                  </p>
-                </div>
-                <div className={cxBs("modal-footer")}>
-                  <button type="button" className={cxBs("btn", "btn-default")} data-dismiss="modal">
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      );
+    );
   }
 }
 

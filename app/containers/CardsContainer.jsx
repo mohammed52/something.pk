@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ModalComponent from '../components/ModalComponent'
 
 
 import AddCardComponent from '../components/AddCardComponent'
-
+import bsStyles from '../css/bootstrap/css/bootstrap';
+const cxBs = classNames.bind(bsStyles);
 // import { createBank, destroyBank } from '../actions/banksActions';
 
 // var ReactBootstrap = require('react-bootstrap')
@@ -24,67 +27,61 @@ import AddCardComponent from '../components/AddCardComponent'
 class CardsContainer extends Component {
   constructor(props) {
     super(props)
+    this.handleHideModal = this.handleHideModal.bind(this)
+    this.handleShowModal = this.handleShowModal.bind(this)
     this.state = {
-      modal: false
+      view: {
+        showModal: false
+      }
     };
-    this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
+  handleHideModal() {
     this.setState({
-      modal: !this.state.modal
-    });
+      view: {
+        showModal: false
+      }
+    })
+  }
+
+  handleShowModal() {
+    this.setState({
+      view: {
+        showModal: true
+      }
+    })
   }
 
   render() {
 
-
     return (
       <div>
         <AddCardComponent />
-        <Button color="danger">
-          Danger Button!
-        </Button>
-        <div>
-          <Button color="danger" onClick={this.toggle}>
-            {this.props.buttonLabel}
-          </Button>
-          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>
-              Modal title
-            </ModalHeader>
-            <ModalBody>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>
-                Do Something
-              </Button>
-              {' '}
-              <Button color="secondary" onClick={this.toggle}>
-                Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
+        <div className="row">
+          <button className={cxBs("btn", "btn-default", "btn-block")}
+                  onClick={this.handleShowModal}>
+            Open Modal
+          </button>
+          {this.state.view.showModal ? <ModalComponent handleHideModal={this.handleHideModal} /> : null}
         </div>
       </div>
-      );
+    );
   }
 }
 
-CardsContainer.propTypes = {
+// CardsContainer.propTypes = {
 
-};
+// };
 
-function mapStateToProps(state) {
-  // return {
-  //   banks: state.bank.banks,
-  // };
-}
+// function mapStateToProps(state) {
+// return {
+//   banks: state.bank.banks,
+// };
+// }
 
-export default connect(mapStateToProps, {
-  // createBank,
-  // destroyBank
-})(CardsContainer);
+// export default connect(mapStateToProps, {
+// createBank,
+// destroyBank
+// })(CardsContainer);
+
+export default CardsContainer

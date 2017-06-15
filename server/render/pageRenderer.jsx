@@ -21,7 +21,6 @@ const buildPage = ({componentHTML, initialState, headAssets}) => {
     ${headAssets.link.toString()}
     ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
-    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
   </head>
   <body>
     <div id="app">${componentHTML}</div>

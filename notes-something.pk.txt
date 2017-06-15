@@ -152,3 +152,11 @@ https://stackoverflow.com/questions/28241912/bootstrap-modal-in-react-js
 --
 Reactstrap - Simple React Bootstrap 4 components 
 --
+createClass vs extend Component - the difference is that of syntax for most cases
+--
+Q: when importing bootstrap.js, Uncaught Error: Bootstrap's JavaScript requires jQuery
+???
+Ans: 
+--
+have to go through tuts, advanced css, css modules, webpack, express, babel etc.
+--
