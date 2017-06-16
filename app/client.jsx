@@ -3,13 +3,21 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import 'bootstrap/dist/css/bootstrap.css'
+
+// import 'babel-polyfill';
+// import 'animate.css';
+// import 'jquery';
+// import 'font-awesome/css/font-awesome.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.min.js';
 
 import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
 import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
+
+
 // import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 // Grab the state from a global injected into
 // server-generated HTML

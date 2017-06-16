@@ -9,13 +9,11 @@ import classNames from 'classnames/bind';
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import bsStyles from '../css/bootstrap/css/bootstrap';
 import testStyles from '../css/components/test';
 
 
 
 const cxTest = classNames.bind(testStyles);
-const cxBs = classNames.bind(bsStyles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -40,12 +38,18 @@ class AddCardComponent extends Component {
     return (
       <div>
         AddCardComponent
-        <p className={cxBs("container-fluid"), cxTest('testbg-1')}>
+        <p className={cxTest('testbg-1')}>
           Click to get the full Modal experience!!
           <br/>
-          <button className={cxBs("btn", "btn-primary", "btn-lg")}>
+          <button>
             try button
           </button>
+          <button className="btn btn-danger">
+            Danger!
+          </button>
+          <Button bsStyle="success">
+            Success
+          </Button>
         </p>
       </div>
     );

@@ -160,3 +160,47 @@ Ans:
 --
 have to go through tuts, advanced css, css modules, webpack, express, babel etc.
 --
+css modules and bootstrap css both work in the other boiler plate project
+--
+Q: When import jquery in client.js, Uncaught Error: Bootstrap's JavaScript requires jQuery???
+Ans: Add in webpack.config -> plugins -> webpack.ProvidePlugin(...jquery...)
+--
+Q: compiling other boiler code and something.pk code, difference, bootstrap and misc modules builting is missing???
+Ans: 
+--
+Q: what is webpack.config->entry->vendor ????
+Ans: 
+--
+webpack also allows codesplitting, webpack is fairly advanced, need to learn
+--
+webpack.config file is “just JavaScript”
+--
+04 webpack.config files:
+1. dev.config.js contains vendor
+2. hot.reload.config.js no vendor
+3. production.config.js vendor
+4. server.ssr.config.js no vendor, 
+
+each of the 04 versions is specified in package,json -> scripts , #2 is never used in package.json
+--
+nodemon - monitor for any changes in your source and automatically restart your server
+--
+adding vendors in webpack.config.js, apparently no benefit, initial loading has gotton super slow
+--
+need to understand how weback.config->loaders are working
+need to understand webpack.config settings for client server, dev prod
+--
+Q: this is a fairly common problem, how to import bootstrap using webpack???
+Ans: 
+1. 
+plugins:[
+    .....
+    ..... ,
+    new webpack.ProvidePlugin({   
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
+    })
+]
+2. @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+--

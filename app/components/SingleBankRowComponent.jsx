@@ -5,8 +5,8 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-import styles from '../font-awesome-4.7.0/css/font-awesome.css'
-import bsStyles from '../css/bootstrap/css/bootstrap';
+import styles from 'font-awesome/css/font-awesome.css'
+import bsStyles from 'bootstrap/dist/css/bootstrap';
 import testStyles from '../css/components/test';
 const cx = classNames.bind(styles);
 
@@ -81,12 +81,15 @@ class SingleBankRowComponent extends Component {
           {bank.shortName}
         </td>
         <td>
-          <button className={cxBs('btn', 'btn-link')} type="button" onClick={this.deleteBank}>
-            <i className={cx('fa', 'fa-trash-o')} aria-hidden="true" />
+          <button className={cxBs('btn', 'btn-link')}
+                  type="button"
+                  onClick={this.deleteBank}>
+            <i className={cx('fa', 'fa-trash-o')}
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 

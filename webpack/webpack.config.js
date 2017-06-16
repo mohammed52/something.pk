@@ -55,7 +55,20 @@ module.exports = (env = {}) => {
     devtool: 'cheap-module-source-map',
     context: PATHS.app,
     entry: {
-      app: ['./client']
+      app: ['./client'],
+      vendor: [
+        'react',
+        'react-dom',
+        'babel-polyfill',
+        'jquery',
+        'bootstrap/dist/js/bootstrap.min.js',
+        'react-router',
+        'classnames',
+        'axios',
+        'js-base64',
+        'moment',
+        'react-bootstrap'
+      ]
     },
     node,
     output: {
@@ -81,7 +94,20 @@ module.exports = (env = {}) => {
     devtool: 'eval',
     context: PATHS.app,
     entry: {
-      app: ['./client', hotMiddlewareScript]
+      app: ['./client', hotMiddlewareScript],
+      vendor: [
+        'react',
+        'react-dom',
+        'babel-polyfill',
+        'jquery',
+        'bootstrap/dist/js/bootstrap.min.js',
+        'react-router',
+        'classnames',
+        'axios',
+        'js-base64',
+        'moment',
+        'react-bootstrap'
+      ]
     },
     node,
     output: {

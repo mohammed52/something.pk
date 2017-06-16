@@ -5,10 +5,10 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
+import bsStyles from 'bootstrap/dist/css/bootstrap';
 import SingleBankRowComponent from './SingleBankRowComponent'
 // import { Button } from 'react-bootstrap';
 
-import bsStyles from '../css/bootstrap/css/bootstrap';
 import testStyles from '../css/components/test';
 
 const cxTest = classNames.bind(testStyles);
