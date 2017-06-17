@@ -5,14 +5,12 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-import bsStyles from 'bootstrap/dist/css/bootstrap';
 import SingleBankRowComponent from './SingleBankRowComponent'
 // import { Button } from 'react-bootstrap';
 
 import testStyles from '../css/components/test';
 
 const cxTest = classNames.bind(testStyles);
-const cxBs = classNames.bind(bsStyles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -152,8 +150,8 @@ class AddBankComponent extends Component {
       <div>
         <form className="testbg-1">
           <h3>Add New Bank</h3>
-          <div className={cxBs('well')}>
-            <table className={cxBs('table')}>
+          <div className="well">
+            <table className="table">
               <tbody>
                 <tr>
                   <td>
@@ -202,7 +200,7 @@ class AddBankComponent extends Component {
                 </tr>
               </tbody>
             </table>
-            <button className={cxBs('btn', 'btn-primary')}
+            <button className="btn btn-primary"
                     type="button"
                     onClick={this.btnAddBank}
                     disabled={(this.state.uploadedFileCloudinaryUrl !== ""
@@ -211,15 +209,12 @@ class AddBankComponent extends Component {
               Add Bank
             </button>
             <br/>
-            <button className="btn btn-primary btn-lg">
-              Add Bank
-            </button>
           </div>
         </form>
         <div>
           <h4>All Existing Banks</h4>
-          <div className={cxBs('well')}>
-            <table className={cxBs('table')}>
+          <div className="well">
+            <table className="table">
               <tbody>
                 <tr>
                   <th>
