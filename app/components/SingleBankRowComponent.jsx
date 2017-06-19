@@ -9,6 +9,8 @@ import testStyles from '../css/components/test';
 
 const cxTest = classNames.bind(testStyles);
 
+
+
 // import styles from '../css/components/dashboard';
 
 // const cx = classNames.bind(styles);
@@ -29,6 +31,8 @@ var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
+var bootbox = require('bootbox');
+
 class SingleBankRowComponent extends Component {
   constructor(props) {
     super(props);
@@ -36,10 +40,39 @@ class SingleBankRowComponent extends Component {
   }
 
   deleteBank() {
-    const bank = this.props.bank
-    const {destroyBank} = this.props
 
-    destroyBank(bank.id)
+    const deleteQuoteMessage = "Do you want to delete bank? This cannot be undone."
+    bootbox.confirm({
+      title: "Delete Bank?",
+      message: deleteQuoteMessage,
+      buttons: {
+        cancel: {
+          label: '<i class="fa fa-times"></i> Cancel',
+          className: 'btn-default'
+        },
+        confirm: {
+          label: '<i class="fa fa-check"></i> Delete',
+          className: 'btn-danger'
+        }
+      },
+      callback: function(result) {
+        const MAPLOG = true
+        if (result === true) {
+
+          console.log("delete");
+          const bank = this.props.bank
+          const {destroyBank} = this.props
+
+          destroyBank(bank.id)
+
+        } else {
+          console.log("result", result)
+        }
+      }.bind(this)
+    });
+
+
+
   }
 
   render() {

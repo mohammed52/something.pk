@@ -4,12 +4,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-// import 'babel-polyfill';
-// import 'animate.css';
-// import 'jquery';
-// import 'font-awesome/css/font-awesome.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.min.js';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 import createRoutes from './routes';
 import * as types from './types';
@@ -57,6 +52,12 @@ function onUpdate() {
           return
         }
         case ( '/banks'): {
+          return store.dispatch({
+            type: types.REQUEST_SUCCESS_BANKS,
+            data
+          });
+        }
+        case ( '/cards'): {
           return store.dispatch({
             type: types.REQUEST_SUCCESS_BANKS,
             data

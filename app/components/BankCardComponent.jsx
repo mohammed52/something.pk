@@ -10,6 +10,7 @@ import classNames from 'classnames/bind';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import testStyles from '../css/components/test';
+import SingleCardRowComponent from './SingleCardRowComponent'
 
 
 
@@ -32,22 +33,48 @@ var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
 
-class AddCardComponent extends Component {
-
+class BankCardComponent extends Component {
   render() {
+    const bank = this.props.bank;
+    const cards = bank.cards;
+    var arrSingleCardRowComponents = []
+    if (cards !== undefined && cards.length > 0) {
+      for (var i = 0; i < cards.length; i++) {
+        arrSingleCardRowComponents.push(
+          <SingleCardRowComponent key={"arrSingleCardRowComponents" + i}
+                                  card={cards[i]}
+                                  iteration={i} />
+        )
+      }
+
+    }
+
     return (
       <div>
-        AddCardComponent
+        <h3>{bank.fullName}</h3>
+        <table className="table">
+          <tbody>
+            <tr>
+              <th>
+                S/N
+              </th>
+              <th>
+                Card Name
+              </th>
+              <th>
+                Actions
+              </th>
+            </tr>
+            {arrSingleCardRowComponents}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
-AddCardComponent.propTypes = {
-  // children: PropTypes.object,
-  // createBank: PropTypes.func.isRequired,
-  // banks: PropTypes.array.isRequired,
-  // destroyBank: PropTypes.func.isRequired
+BankCardComponent.propTypes = {
+  bank: PropTypes.object.isRequired,
 };
 
-export default AddCardComponent;
+export default BankCardComponent;

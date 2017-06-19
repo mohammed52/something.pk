@@ -19,7 +19,8 @@ function createBankRequest(data) {
     id: data.id,
     fullName: data.fullName,
     shortName: data.shortName,
-    logoUrl: data.logoUrl
+    logoUrl: data.logoUrl,
+    cards: data.cards
   };
 }
 
@@ -58,7 +59,8 @@ export function createBank(bank) {
       id: id,
       fullName: bank.fullName,
       shortName: bank.shortName,
-      logoUrl: bank.logoUrl
+      logoUrl: bank.logoUrl,
+      cards: bank.cards
     };
     if (MAPLOG) console.log("data", data);
 
@@ -98,5 +100,26 @@ export function destroyBank(id) {
         id,
         error: 'Oops! Something went wrong and we couldn\'t add your vote'
       })));
+  };
+}
+
+export function addCardToBank(bankId, cardName) {
+  console.log("addCardToBank");
+  return
+}
+
+export function deleteCardFromBank(bankId, cardName) {
+  console.log("deleteCardFromBank");
+  return (dispatch) => {
+    return banksService().deleteCardFromBank(
+    {
+      bankId, cardName
+    })
+    .then(() => dispatch(destroyCardFromBank())
+      .catch(() => dispatch(destroyCardFromBankFailure({
+        bankId,
+        cardName,
+        error: "Oops, womething went wrong, we couldn't delete the card"
+      })))
   };
 }

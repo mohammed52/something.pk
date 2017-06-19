@@ -76,6 +76,12 @@ export default function render(req, res) {
                 data
               });
             }
+            case ( '/cards'): {
+              store.dispatch({
+                type: types.REQUEST_SUCCESS_BANKS,
+                data
+              });
+            }
             default: {
               //
             }

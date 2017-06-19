@@ -74,7 +74,7 @@ class LoginOrRegisterContainer extends Component {
       <div className={cx('login', {
                   waiting: isWaiting
                 })}>
-        <div className={cx('container')}>
+        <div className="container-fluid">
           {this.renderHeader()}
           <img className={cx('loading')}
                alt="loading"

@@ -11,7 +11,8 @@ const bank = (state = {},
         id: action.id,
         fullName: action.fullName,
         shortName: action.shortName,
-        logoUrl: action.logoUrl
+        logoUrl: action.logoUrl,
+        cards: action.cards
       };
     default:
       return state;

@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
+import BankCardComponent from './BankCardComponent'
 
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -32,22 +33,34 @@ var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
 
-class AddCardComponent extends Component {
-
+class AllCardsComponent extends Component {
   render() {
+    const banks = this.props.banks;
+
+    let arrBankCardComponents = [];
+
+    for (var i = 0; i < banks.length; i++) {
+      arrBankCardComponents.push(
+        <div className="well"
+             key={"arrBankCardComponents" + i}>
+          <BankCardComponent bank={banks[i]} />
+        </div>
+
+      )
+    }
+
+
     return (
       <div>
-        AddCardComponent
+        AllCardsComponent
+        {arrBankCardComponents}
       </div>
     );
   }
 }
 
-AddCardComponent.propTypes = {
-  // children: PropTypes.object,
-  // createBank: PropTypes.func.isRequired,
-  // banks: PropTypes.array.isRequired,
-  // destroyBank: PropTypes.func.isRequired
+AllCardsComponent.propTypes = {
+  banks: PropTypes.array.isRequired,
 };
 
-export default AddCardComponent;
+export default AllCardsComponent;

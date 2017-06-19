@@ -12,7 +12,8 @@ const BankSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  logoUrl: String
+  logoUrl: String,
+  cards: Array
 });
 
 // Compiles the schema into a model, opening (or creating, if

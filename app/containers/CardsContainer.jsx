@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { deleteCardFromBank, addCardToBank } from '../actions/banksActions';
 
 
 import AddCardComponent from '../components/AddCardComponent'
+import AllCardsComponent from '../components/AllCardsComponent'
 
 
 // import { createBank, destroyBank } from '../actions/banksActions';
@@ -46,34 +47,12 @@ class CardsContainer extends Component {
   }
 
   render() {
+    const banks = this.props.banks
 
     return (
       <div>
         <AddCardComponent />
-        <div className="row">
-          <button onClick={this.open}>
-            Open Modal
-          </button>
-        </div>
-        <Modal show={this.state.showModal}
-               onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>
-              Modal heading
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.close}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        <AllCardsComponent banks={banks} />
       </div>
     );
   }
@@ -83,15 +62,14 @@ class CardsContainer extends Component {
 
 // };
 
-// function mapStateToProps(state) {
-// return {
-//   banks: state.bank.banks,
-// };
-// }
+function mapStateToProps(state) {
+  return {
+    banks: state.bank.banks,
+  };
+}
 
-// export default connect(mapStateToProps, {
-// createBank,
-// destroyBank
-// })(CardsContainer);
+export default connect(mapStateToProps, {
+  addCardToBank,
+  deleteCardFromBank
+})(CardsContainer);
 
-export default CardsContainer

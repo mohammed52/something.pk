@@ -32,22 +32,27 @@ var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
 
-class AddCardComponent extends Component {
-
+class SingleCardRowComponent extends Component {
   render() {
     return (
-      <div>
-        AddCardComponent
-      </div>
+      <tr>
+        <td>
+          {this.props.iteration + 1}
+        </td>
+        <td>
+          {this.props.card}
+        </td>
+        <td>
+          [delete]
+        </td>
+      </tr>
     );
   }
 }
 
-AddCardComponent.propTypes = {
-  // children: PropTypes.object,
-  // createBank: PropTypes.func.isRequired,
-  // banks: PropTypes.array.isRequired,
-  // destroyBank: PropTypes.func.isRequired
+SingleCardRowComponent.propTypes = {
+  card: PropTypes.string.isRequired,
+  iteration: PropTypes.number.isRequired
 };
 
-export default AddCardComponent;
+export default SingleCardRowComponent;

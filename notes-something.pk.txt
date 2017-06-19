@@ -204,3 +204,11 @@ plugins:[
 ]
 2. @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
 --
+add all cards in the banks collection ???
+--
+will practice touch typing when i am done with something.pk -> use more fingers
+--
+use turbo top stay on top to force window to always stay on top
+--
+have to use all 10 fingers muscle memory and focus on programming
+--
