@@ -63,7 +63,7 @@ class SingleCardRowComponent extends Component {
 
           console.log("delete");
           const deleteCardFromBank = this.props.deleteCardFromBank;
-          deleteCardFromBank()
+          deleteCardFromBank(this.props.card)
 
         } else {
           console.log("result", result)
@@ -82,15 +82,12 @@ class SingleCardRowComponent extends Component {
           {this.props.card}
         </td>
         <td>
-          <button className="btn btn-link"
-                  type="button"
-                  onClick={this.deleteCard}>
-            <i className="fa fa-trash-o"
-               aria-hidden="true" />
+          <button className="btn btn-link" type="button" onClick={this.deleteCard}>
+            <i className="fa fa-trash-o" aria-hidden="true" />
           </button>
         </td>
       </tr>
-    );
+      );
   }
 }
 

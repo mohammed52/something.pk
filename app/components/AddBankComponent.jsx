@@ -82,7 +82,8 @@ class AddBankComponent extends Component {
     let tmpBank = {
       fullName: this.state.fullNameField,
       shortName: this.state.shortNameField,
-      logoUrl: this.state.uploadedFileCloudinaryUrl
+      logoUrl: this.state.uploadedFileCloudinaryUrl,
+      cards: ["card1", "card2"]
     }
 
     // this.refs.someName.refBankFullName = '';
@@ -177,9 +178,7 @@ class AddBankComponent extends Component {
                            ref="refBankShortName" />
                   </td>
                   <td>
-                    <Dropzone multiple={false}
-                              accept="image/jpg,image/png,image/jpeg"
-                              onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -192,8 +191,7 @@ class AddBankComponent extends Component {
                          <p>
                            {this.state.uploadedFile.name}
                          </p>
-                         <img src={this.state.uploadedFileCloudinaryUrl}
-                              alt="uploaded image" />
+                         <img src={this.state.uploadedFileCloudinaryUrl} alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -239,7 +237,7 @@ class AddBankComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 

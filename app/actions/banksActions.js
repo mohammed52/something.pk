@@ -126,14 +126,30 @@ export function addCardToBank(bankId, cardName) {
   return
 }
 
-export function deleteCardFromBank(bankId, cardName) {
+export function deleteCardFromBank(bank, cardName) {
   debugger
   console.log("deleteCardFromBank");
-  // return (dispatch) => {
 
-//   return banksService().deleteCardFromBank({
-//     bankId,
-//     cardName
+  const cardsArray = bank.cards
+  console.log("cardsArray", cardsArray);
+  console.log("cardName", cardName);
+  const index = cardsArray.indexOf(cardName)
+  console.log("index", index);
+
+  cardsArray.splice(index, 1)
+  console.log("cardsArray", cardsArray);
+  bank.cards = cardsArray
+  console.log("bank", bank);
+
+
+
+  //   return (dispatch) => {
+
+  //   return banksService().update({
+  //     bankId,
+  //     data: {
+
+//     }
 //   })
 //     .then(() => dispatch(destroyCardFromBank(bankId, cardName)))
 //     .catch(() => dispatch(destroyCardFromBankFailure({

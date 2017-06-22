@@ -40,12 +40,12 @@ class BankCardComponent extends Component {
 
   }
 
-  deleteCard(cardId) {
+  deleteCard(cardName) {
     console.log("deleteCard1");
     const deleteCardFromBank = this.props.deleteCardFromBank
-    console.log("this.props.bank.id", this.props.bank.id);
-    console.log("cardId", cardId);
-    deleteCardFromBank(this.props.bank.id, cardId)
+    console.log("this.props.bank", this.props.bank);
+    console.log("cardName", cardName);
+    deleteCardFromBank(this.props.bank, cardName)
   }
 
   render() {
@@ -84,7 +84,7 @@ class BankCardComponent extends Component {
           </tbody>
         </table>
       </div>
-    );
+      );
   }
 }
 
