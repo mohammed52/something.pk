@@ -38,6 +38,24 @@ function createBankFailure(data) {
   };
 }
 
+function destroyCardFromBank(data) {
+  debugger
+  return {
+    type: types.DESTROY_CARD_FROM_BANK,
+    bankId: data.bankId,
+    cardName: data.cardName
+  }
+}
+
+function destroyCardFromBankFailure(data) {
+  return {
+    type: types.DESTROY_CARD_FROM_BANK_FAILURE,
+    bankId: data.bankId,
+    cardName: data.cardName,
+    error: data.error
+  }
+}
+
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
 // This function does not need to be pure, and thus allowed
@@ -109,17 +127,19 @@ export function addCardToBank(bankId, cardName) {
 }
 
 export function deleteCardFromBank(bankId, cardName) {
+  debugger
   console.log("deleteCardFromBank");
-  return (dispatch) => {
-    return banksService().deleteCardFromBank(
-    {
-      bankId, cardName
-    })
-    .then(() => dispatch(destroyCardFromBank())
-      .catch(() => dispatch(destroyCardFromBankFailure({
-        bankId,
-        cardName,
-        error: "Oops, womething went wrong, we couldn't delete the card"
-      })))
-  };
+  // return (dispatch) => {
+
+//   return banksService().deleteCardFromBank({
+//     bankId,
+//     cardName
+//   })
+//     .then(() => dispatch(destroyCardFromBank(bankId, cardName)))
+//     .catch(() => dispatch(destroyCardFromBankFailure({
+//       bankId,
+//       cardName,
+//       error: "Oops, womething went wrong, we couldn't delete the card"
+//     })))
+// };
 }

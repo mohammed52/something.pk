@@ -43,7 +43,8 @@ class AllCardsComponent extends Component {
       arrBankCardComponents.push(
         <div className="well"
              key={"arrBankCardComponents" + i}>
-          <BankCardComponent bank={banks[i]} />
+          <BankCardComponent bank={banks[i]}
+                             deleteCardFromBank={this.props.deleteCardFromBank} />
         </div>
 
       )
@@ -61,6 +62,7 @@ class AllCardsComponent extends Component {
 
 AllCardsComponent.propTypes = {
   banks: PropTypes.array.isRequired,
+  deleteCardFromBank: PropTypes.func.isRequired,
 };
 
 export default AllCardsComponent;

@@ -31,8 +31,47 @@ var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
+var bootbox = require('bootbox');
+
 
 class SingleCardRowComponent extends Component {
+
+  constructor(props) {
+    super(props);
+    this.deleteCard = this.deleteCard.bind(this)
+  }
+
+  deleteCard() {
+
+    const deleteCardMessage = "Do you want to delete Card? This cannot be undone."
+    bootbox.confirm({
+      title: "Delete Card?",
+      message: deleteCardMessage,
+      buttons: {
+        cancel: {
+          label: '<i class="fa fa-times"></i> Cancel',
+          className: 'btn-default'
+        },
+        confirm: {
+          label: '<i class="fa fa-check"></i> Delete',
+          className: 'btn-danger'
+        }
+      },
+      callback: function(result) {
+        const MAPLOG = true
+        if (result === true) {
+
+          console.log("delete");
+          const deleteCardFromBank = this.props.deleteCardFromBank;
+          deleteCardFromBank()
+
+        } else {
+          console.log("result", result)
+        }
+      }.bind(this)
+    });
+  }
+
   render() {
     return (
       <tr>
@@ -43,7 +82,12 @@ class SingleCardRowComponent extends Component {
           {this.props.card}
         </td>
         <td>
-          [delete]
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.deleteCard}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
+          </button>
         </td>
       </tr>
     );
@@ -52,7 +96,8 @@ class SingleCardRowComponent extends Component {
 
 SingleCardRowComponent.propTypes = {
   card: PropTypes.string.isRequired,
-  iteration: PropTypes.number.isRequired
+  iteration: PropTypes.number.isRequired,
+  deleteCardFromBank: PropTypes.func.isRequired
 };
 
 export default SingleCardRowComponent;

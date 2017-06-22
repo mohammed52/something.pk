@@ -34,6 +34,20 @@ var Input = ReactBootstrap.Input
 
 
 class BankCardComponent extends Component {
+  constructor(props) {
+    super(props)
+    this.deleteCard = this.deleteCard.bind(this)
+
+  }
+
+  deleteCard(cardId) {
+    console.log("deleteCard1");
+    const deleteCardFromBank = this.props.deleteCardFromBank
+    console.log("this.props.bank.id", this.props.bank.id);
+    console.log("cardId", cardId);
+    deleteCardFromBank(this.props.bank.id, cardId)
+  }
+
   render() {
     const bank = this.props.bank;
     const cards = bank.cards;
@@ -43,7 +57,8 @@ class BankCardComponent extends Component {
         arrSingleCardRowComponents.push(
           <SingleCardRowComponent key={"arrSingleCardRowComponents" + i}
                                   card={cards[i]}
-                                  iteration={i} />
+                                  iteration={i}
+                                  deleteCardFromBank={this.deleteCard} />
         )
       }
 
@@ -75,6 +90,8 @@ class BankCardComponent extends Component {
 
 BankCardComponent.propTypes = {
   bank: PropTypes.object.isRequired,
+  deleteCardFromBank: PropTypes.func.isRequired,
+
 };
 
 export default BankCardComponent;
