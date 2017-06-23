@@ -14,7 +14,15 @@ const bank = (state = {},
         logoUrl: action.logoUrl,
         cards: action.cards
       };
-    default:
+    case types.UPDATE_CARDS_FOR_BANK:
+      if (state.id === action.id) {
+        debugger
+        return {
+          ...state,
+          cards: state.newCards
+        }
+      }
+    case types.default:
       return state;
   }
 };
@@ -33,6 +41,8 @@ const banks = (state = [],
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_BANK:
       return state.filter(t => t.id !== action.id);
+    case types.UPDATE_CARDS_FOR_BANK:
+      return state.map(t => bank(t, action));
     default:
       return state;
   }

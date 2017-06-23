@@ -38,8 +38,17 @@ function createBankFailure(data) {
   };
 }
 
-function destroyCardFromBank(data) {
+function updateCardsForBank(data) {
   debugger
+  return {
+    type: types.UPDATE_CARDS_FOR_BANK,
+    id: data.id,
+    newCards: data.cards
+  }
+}
+
+function destroyCardFromBank(data) {
+
   return {
     type: types.DESTROY_CARD_FROM_BANK,
     bankId: data.bankId,
@@ -127,7 +136,6 @@ export function addCardToBank(bankId, cardName) {
 }
 
 export function deleteCardFromBank(bank, cardName) {
-  debugger
   console.log("deleteCardFromBank");
 
   const cardsArray = bank.cards
@@ -143,19 +151,28 @@ export function deleteCardFromBank(bank, cardName) {
 
 
 
-  //   return (dispatch) => {
+  return (dispatch) => {
 
-  //   return banksService().update({
-  //     bankId,
-  //     data: {
-
-//     }
-//   })
-//     .then(() => dispatch(destroyCardFromBank(bankId, cardName)))
-//     .catch(() => dispatch(destroyCardFromBankFailure({
-//       bankId,
-//       cardName,
-//       error: "Oops, womething went wrong, we couldn't delete the card"
-//     })))
-// };
+    return banksService().updateBank({
+      id: bank.id,
+      data: {
+        isUpdateCards: true,
+        cards: cardsArray
+      }
+    })
+      .then(() => {
+        debugger
+        dispatch(updateCardsForBank(bank.id, cardsArray)
+        )
+      }
+    )
+      .catch(() => {
+        debugger
+        dispatch(createBankFailure({
+          id: bank.id,
+          error: "Oops, womething went wrong, we couldn't delete the card"
+        }))
+      }
+    )
+  };
 }

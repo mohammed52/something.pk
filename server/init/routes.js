@@ -78,6 +78,7 @@ export default (app) => {
     app.get('/bank', banksController.all);
     app.post('/bank/:id', banksController.add);
     app.delete('/bank/:id', banksController.remove);
+    app.put('/bank/:id', banksController.update);
   } else {
     console.warn(unsupportedMessage('banks routes'));
   }

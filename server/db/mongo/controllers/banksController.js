@@ -33,10 +33,12 @@ export function add(req, res) {
  * Update a topic
  */
 export function update(req, res) {
+  console.log("bankUpdate");
   const query = {
     id: req.params.id
   };
   const isIncrement = req.body.isIncrement;
+  const isUpdateCards = req.body.isUpdateCards;
   const isFull = req.body.isFull;
   const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
   const data = _.omit(req.body, omitKeys);
@@ -50,10 +52,11 @@ export function update(req, res) {
 
       return res.status(200).send('Updated successfully');
     });
-  } else {
+  } else if (isUpdateCards) {
+    debugger
     Bank.findOneAndUpdate(query, {
-      $inc: {
-        count: isIncrement ? 1 : -1
+      $set: {
+        cards: data.cards
       }
     }, (err) => {
       if (err) {
