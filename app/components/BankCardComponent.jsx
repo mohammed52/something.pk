@@ -32,12 +32,34 @@ var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
+const ENTER_KEY_CODE = 13;
 
 class BankCardComponent extends Component {
   constructor(props) {
     super(props)
     this.deleteCard = this.deleteCard.bind(this)
+    this.onSave = this.onSave.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onCardInputChange = this.onCardInputChange.bind(this)
 
+    this.state = {
+      newCard: ""
+    };
+  }
+
+  onSave() {
+    console.log("onSave");
+    const addCardToBank = this.props.addCardToBank
+    addCardToBank(this.props.bank, this.state.newCard)
+    this.refs.refInputAddCard.value = '';
+  }
+
+
+  onKeyDown(event) {
+    if (event.keyCode === ENTER_KEY_CODE) {
+      console.log("enter pressed")
+      this.onSave()
+    }
   }
 
   deleteCard(cardName) {
@@ -46,6 +68,12 @@ class BankCardComponent extends Component {
     console.log("this.props.bank", this.props.bank);
     console.log("cardName", cardName);
     deleteCardFromBank(this.props.bank, cardName)
+  }
+
+  onCardInputChange(event) {
+    this.setState({
+      newCard: event.target.value
+    })
   }
 
   render() {
@@ -59,6 +87,7 @@ class BankCardComponent extends Component {
                                   card={cards[i]}
                                   iteration={i}
                                   deleteCardFromBank={this.deleteCard} />
+
         )
       }
 
@@ -83,6 +112,15 @@ class BankCardComponent extends Component {
             {arrSingleCardRowComponents}
           </tbody>
         </table>
+        <div>
+          <ControlLabel>
+            Add Bank:
+          </ControlLabel>
+          <input id="id-add-new-card"
+                 onKeyDown={this.onKeyDown}
+                 ref="refInputAddCard"
+                 onChange={this.onCardInputChange} />
+        </div>
       </div>
       );
   }
@@ -91,7 +129,7 @@ class BankCardComponent extends Component {
 BankCardComponent.propTypes = {
   bank: PropTypes.object.isRequired,
   deleteCardFromBank: PropTypes.func.isRequired,
-
+  addCardToBank: PropTypes.func.isRequired
 };
 
 export default BankCardComponent;

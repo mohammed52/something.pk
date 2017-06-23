@@ -39,7 +39,6 @@ function createBankFailure(data) {
 }
 
 function updateCardsForBank(data) {
-  debugger
   return {
     type: types.UPDATE_CARDS_FOR_BANK,
     id: data.id,
@@ -130,9 +129,36 @@ export function destroyBank(id) {
   };
 }
 
-export function addCardToBank(bankId, cardName) {
-  console.log("addCardToBank");
-  return
+function updateCardForBankService(bank, cardsArray) {
+  return (dispatch) => {
+
+    return banksService().updateBank({
+      id: bank.id,
+      data: {
+        isUpdateCards: true,
+        cards: cardsArray
+      }
+    })
+      .then(() => {
+        dispatch(updateCardsForBank(bank.id, cardsArray)
+        )
+      }
+    )
+      .catch(() => {
+        dispatch(createBankFailure({
+          id: bank.id,
+          error: "Oops, womething went wrong, we couldn't delete the card"
+        }))
+      }
+    )
+  };
+}
+
+export function addCardToBank(bank, cardName) {
+  const cardsArray = bank.cards
+  cardsArray.push(cardName)
+  bank.cards = cardsArray
+  return updateCardForBankService(bank, cardsArray)
 }
 
 export function deleteCardFromBank(bank, cardName) {
@@ -148,31 +174,5 @@ export function deleteCardFromBank(bank, cardName) {
   console.log("cardsArray", cardsArray);
   bank.cards = cardsArray
   console.log("bank", bank);
-
-
-
-  return (dispatch) => {
-
-    return banksService().updateBank({
-      id: bank.id,
-      data: {
-        isUpdateCards: true,
-        cards: cardsArray
-      }
-    })
-      .then(() => {
-        debugger
-        dispatch(updateCardsForBank(bank.id, cardsArray)
-        )
-      }
-    )
-      .catch(() => {
-        debugger
-        dispatch(createBankFailure({
-          id: bank.id,
-          error: "Oops, womething went wrong, we couldn't delete the card"
-        }))
-      }
-    )
-  };
+  return updateCardForBankService(bank, cardsArray)
 }

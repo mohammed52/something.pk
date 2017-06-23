@@ -52,10 +52,9 @@ class CardsContainer extends Component {
     return (
       <div>
         <AddCardComponent />
-        <AllCardsComponent banks={banks}
-                           deleteCardFromBank={this.props.deleteCardFromBank} />
+        <AllCardsComponent banks={banks} deleteCardFromBank={this.props.deleteCardFromBank} addCardToBank={this.props.addCardToBank} />
       </div>
-    );
+      );
   }
 }
 

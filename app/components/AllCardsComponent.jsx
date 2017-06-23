@@ -41,10 +41,8 @@ class AllCardsComponent extends Component {
 
     for (var i = 0; i < banks.length; i++) {
       arrBankCardComponents.push(
-        <div className="well"
-             key={"arrBankCardComponents" + i}>
-          <BankCardComponent bank={banks[i]}
-                             deleteCardFromBank={this.props.deleteCardFromBank} />
+        <div className="well" key={"arrBankCardComponents" + i}>
+          <BankCardComponent bank={banks[i]} deleteCardFromBank={this.props.deleteCardFromBank} addCardToBank={this.props.addCardToBank} />
         </div>
 
       )
@@ -56,13 +54,15 @@ class AllCardsComponent extends Component {
         AllCardsComponent
         {arrBankCardComponents}
       </div>
-    );
+      );
   }
 }
 
 AllCardsComponent.propTypes = {
   banks: PropTypes.array.isRequired,
   deleteCardFromBank: PropTypes.func.isRequired,
+  addCardToBank: PropTypes.func.isRequired,
+
 };
 
 export default AllCardsComponent;
