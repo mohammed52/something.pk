@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
-import { fetchVoteData, fetchBanksData } from './fetch-data'
+import { fetchVoteData, fetchBanksData, fetchCitiesData } from './fetch-data'
 import { fetchCommentsData } from './fetch-comments-data';
 import { CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 
@@ -40,16 +40,10 @@ export default (store) => {
   };
 
   return (
-    <Route path="/"
-           component={App}>
-      <IndexRoute component={ShowDiscountsPage}
-                  fetchData={fetchVoteData}
-                  fetchCommentsData={fetchCommentsData} />
-      <Route path="login"
-             component={LoginOrRegisterPage}
-             onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage}
-             onEnter={requireAuth}>
+    <Route path="/" component={App}>
+      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
+      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
         <Route path="dashboard"
                component={DashboardPage}
                onEnter={testFn}
@@ -58,12 +52,9 @@ export default (store) => {
                component={BanksPage}
                onEnter={testFn}
                fetchData={fetchBanksData} />
-        <Route path="cards"
-               component={CardsPage}
-               fetchData={fetchBanksData} />
-        <Route path="cities"
-               component={CitiesPage} />
+        <Route path="cards" component={CardsPage} fetchData={fetchBanksData} />
+        <Route path="cities" component={CitiesPage} fetchData={fetchCitiesData} />
       </Route>
     </Route>
-  );
+    );
 };

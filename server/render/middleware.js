@@ -82,6 +82,12 @@ export default function render(req, res) {
                 data
               });
             }
+            case ( '/cities'): {
+              store.dispatch({
+                type: types.REQUEST_SUCCESS_CITIES,
+                data
+              });
+            }
             default: {
               //
             }
