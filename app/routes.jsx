@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import { fetchVoteData, fetchBanksData } from './fetch-data'
 import { fetchCommentsData } from './fetch-comments-data';
-import { CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
+import { CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -61,6 +61,8 @@ export default (store) => {
         <Route path="cards"
                component={CardsPage}
                fetchData={fetchBanksData} />
+        <Route path="cities"
+               component={CitiesPage} />
       </Route>
     </Route>
   );

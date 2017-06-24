@@ -9,6 +9,7 @@ const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
 const commentsController = controllers && controllers.comments;
 const banksController = controllers && controllers.banks;
+const citiesController = controllers && controllers.cities;
 
 
 export default (app) => {
@@ -81,6 +82,16 @@ export default (app) => {
     app.put('/bank/:id', banksController.update);
   } else {
     console.warn(unsupportedMessage('banks routes'));
+  }
+
+  if (citiesController) {
+    console.log("citiesController");
+    app.get('/city', citiesController.all);
+    app.post('/city/:id', citiesController.add);
+    app.delete('/city/:id', citiesController.remove);
+    app.put('/city/:id', citiesController.update);
+  } else {
+    console.warn(unsupportedMessage('cities routes'));
   }
 
 

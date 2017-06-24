@@ -58,7 +58,9 @@ class BankCardComponent extends Component {
   onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE) {
       console.log("enter pressed")
-      this.onSave()
+      if (this.state.newCard !== "") {
+        this.onSave()
+      }
     }
   }
 
@@ -122,7 +124,7 @@ class BankCardComponent extends Component {
                  onChange={this.onCardInputChange} />
         </div>
       </div>
-      );
+    );
   }
 }
 

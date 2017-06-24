@@ -6,5 +6,6 @@ export { default as EditBanksPage } from 'pages/EditBanksPage';
 export { default as WrapperLoggedInPage } from 'pages/WrapperLoggedInPage';
 export { default as BanksPage } from 'pages/BanksPage';
 export { default as CardsPage } from 'pages/CardsPage';
+export { default as CitiesPage } from 'pages/CitiesPage';
 // export { default as About } from 'pages/About';
 

@@ -3,4 +3,5 @@ export default function loadModels() {
   require('./user');
   require('./comments');
   require('./banksModel');
+  require('./citiesModel');
 }
