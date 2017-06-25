@@ -5,12 +5,13 @@ import City from '../models/citiesModel';
  * List
  */
 export function all(req, res) {
+  console.log("cities all");
   City.find({}).exec((err, cities) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');
     }
-
+    // console.log(res.json(cities))
     return res.json(cities);
   });
 }

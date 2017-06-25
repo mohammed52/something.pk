@@ -216,8 +216,20 @@ Stratis is a Blockchain as a Service (BaaS) platform
 --
 ctrl+m: find closing bracket in ST3
 --
+when running node-inspector , you can add break points, even if you cant modify code
+--
+How to use node-inspector:
+1. node-inspector
+2. node --debug compiled/server.dev
+--
+a quick brown fox jumped over the lazy dog
+--
 a quick brown fox jumped over the lazy dog
 --
 a quick brown fox jumped over the lazy dog
 --
-
+Q: Error: Can't set headers after they are sent , app crashing ??
+Ans: apparently its working now, no change to code
+--
+a quick brown fox jumped over the lazy dog
+==
