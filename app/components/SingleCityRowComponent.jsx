@@ -6,12 +6,7 @@ import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
 
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import testStyles from '../css/components/test';
-
-
 
 const cxTest = classNames.bind(testStyles);
 
@@ -34,19 +29,22 @@ var Input = ReactBootstrap.Input
 var bootbox = require('bootbox');
 
 
-class SingleCardRowComponent extends Component {
+const ENTER_KEY_CODE = 13;
+
+class SingleCityRowComponent extends Component {
 
   constructor(props) {
-    super(props);
-    this.deleteCard = this.deleteCard.bind(this)
+    super(props)
+    this.deleteACity = this.deleteACity.bind(this)
   }
 
-  deleteCard() {
+  deleteACity() {
 
-    const deleteCardMessage = "Do you want to delete Card? This cannot be undone."
+
+    const deleteCityMessage = "Do you want to delete City? This cannot be undone."
     bootbox.confirm({
-      title: "Delete Card?",
-      message: deleteCardMessage,
+      title: "City Card?",
+      message: deleteCityMessage,
       buttons: {
         cancel: {
           label: '<i class="fa fa-times"></i> Cancel',
@@ -61,9 +59,8 @@ class SingleCardRowComponent extends Component {
         const MAPLOG = true
         if (result === true) {
 
-          console.log("delete");
-          const deleteCardFromBank = this.props.deleteCardFromBank;
-          deleteCardFromBank(this.props.card)
+          const destroyCity = this.props.destroyCity
+          destroyCity(this.props.city.id)
 
         } else {
           console.log("result", result)
@@ -73,18 +70,24 @@ class SingleCardRowComponent extends Component {
   }
 
   render() {
+    const city = this.props.city
+    const index = this.props.index
+
     return (
       <tr>
         <td>
-          {this.props.iteration + 1}
+          {index + 1}
         </td>
         <td>
-          {this.props.card}
+          {city.name}
+        </td>
+        <td>
+          {city.shortCode}
         </td>
         <td>
           <button className="btn btn-link"
                   type="button"
-                  onClick={this.deleteCard}>
+                  onClick={this.deleteACity}>
             <i className="fa fa-trash-o"
                aria-hidden="true" />
           </button>
@@ -94,10 +97,10 @@ class SingleCardRowComponent extends Component {
   }
 }
 
-SingleCardRowComponent.propTypes = {
-  card: PropTypes.string.isRequired,
-  iteration: PropTypes.number.isRequired,
-  deleteCardFromBank: PropTypes.func.isRequired
+SingleCityRowComponent.propTypes = {
+  city: PropTypes.object.isRequired,
+  destroyCity: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
 
-export default SingleCardRowComponent;
+export default SingleCityRowComponent;

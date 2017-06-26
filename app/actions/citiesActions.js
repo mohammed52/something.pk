@@ -86,6 +86,7 @@ export function createCity(city) {
 }
 
 export function destroyCity(id) {
+  console.log("destroyCity");
   return (dispatch) => {
     return citiesService().deleteCity({
       id

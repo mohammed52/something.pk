@@ -7,7 +7,7 @@ import $ from "jquery"
 import classNames from 'classnames/bind';
 
 import testStyles from '../css/components/test';
-
+import SingleCityRowComponent from './SingleCityRowComponent'
 const cxTest = classNames.bind(testStyles);
 
 /*
@@ -35,6 +35,7 @@ class CitiesComponent extends Component {
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onNewCityInputChange = this.onNewCityInputChange.bind(this);
     this.onNewCityShortCodeChange = this.onNewCityShortCodeChange.bind(this);
+    this.deleteCity = this.deleteCity.bind(this)
 
     this.state = {
       newCityName: "",
@@ -72,6 +73,13 @@ class CitiesComponent extends Component {
 
   }
 
+  deleteCity(event) {
+    console.log("deleteCity");
+    const destroyCity = this.props.destroyCity
+    console.log("event", event);
+
+  }
+
   render() {
 
     var arrSingleCityRowComponent = []
@@ -81,21 +89,10 @@ class CitiesComponent extends Component {
       for (var i = 0; i < cities.length; i++) {
         const city = cities[i]
         arrSingleCityRowComponent.push(
-          <tr key={"arrSingleCityRowComponent" + i}>
-            <th>
-              {i + 1}
-            </th>
-            <th>
-              {city.name}
-            </th>
-            <th>
-              {city.shortCode}
-            </th>
-            <th>
-              [delete]
-            </th>
-          </tr>
-
+          <SingleCityRowComponent city={city}
+                                  destroyCity={this.props.destroyCity}
+                                  index={i}
+                                  key={"SingleCityRowComponent" + i} />
         )
       }
     }
@@ -146,13 +143,14 @@ class CitiesComponent extends Component {
           </table>
         </div>
       </div>
-      );
+    );
   }
 }
 
 CitiesComponent.propTypes = {
   children: PropTypes.object,
   createCity: PropTypes.func.isRequired,
+  destroyCity: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired
 };
 

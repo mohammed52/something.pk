@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import CitiesComponent from '../components/CitiesComponent'
 
 
-import { createCity } from '../actions/citiesActions';
+import { createCity, destroyCity } from '../actions/citiesActions';
 
 var ReactBootstrap = require('react-bootstrap')
 var Button = ReactBootstrap.Button
@@ -29,9 +29,11 @@ class CitiesContainer extends Component {
     return (
       <div>
         CitiesContainer
-        <CitiesComponent createCity={this.props.createCity} cities={this.props.cities} />
+        <CitiesComponent createCity={this.props.createCity}
+                         cities={this.props.cities}
+                         destroyCity={this.props.destroyCity} />
       </div>
-      );
+    );
   }
 }
 
@@ -47,4 +49,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   createCity,
+  destroyCity
 })(CitiesContainer);
