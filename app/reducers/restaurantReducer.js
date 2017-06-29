@@ -9,7 +9,7 @@ const restaurant = (state = {},
     case types.CREATE_RESTAURANT_REQUEST:
       return {
         id: action.id,
-        name: action.fullName,
+        name: action.name,
         logoUrl: action.logoUrl,
       };
     case types.default:
