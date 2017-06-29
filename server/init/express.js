@@ -16,7 +16,7 @@ var cors = require('cors')
 
 
 export default (app) => {
-  app.set('port', (process.env.PORT || 3000));
+  app.set('port', (process.env.PORT || 5000));
 
   if (ENV === 'production') {
     app.use(gzip());
