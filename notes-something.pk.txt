@@ -224,5 +224,5 @@ Ans: ensure the props are passed to the component in html markup
 Q: action called but collection is not created??
 Ans: controllers and routes not defined on the server
 --
-ctrl+p: go to file ST3
+ctrl+p: go to a specific file in ST3
 --
