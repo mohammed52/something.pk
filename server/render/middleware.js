@@ -88,6 +88,12 @@ export default function render(req, res) {
                 data
               });
             }
+            case ( '/restaurants'): {
+              store.dispatch({
+                type: types.REQUEST_SUCCESS_RESTAURANTS,
+                data
+              });
+            }
             default: {
               //
             }

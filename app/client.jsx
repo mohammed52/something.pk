@@ -18,6 +18,8 @@ import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
 // server-generated HTML
 const initialState = window.__INITIAL_STATE__;
 
+require('dotenv').config()
+
 const store = configureStore(initialState, browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(store);
@@ -66,6 +68,12 @@ function onUpdate() {
         case ( '/cities'): {
           return store.dispatch({
             type: types.REQUEST_SUCCESS_CITIES,
+            data
+          });
+        }
+        case ( '/restaurants'): {
+          return store.dispatch({
+            type: types.REQUEST_SUCCESS_RESTAURANTS,
             data
           });
         }

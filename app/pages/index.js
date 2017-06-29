@@ -7,5 +7,6 @@ export { default as WrapperLoggedInPage } from 'pages/WrapperLoggedInPage';
 export { default as BanksPage } from 'pages/BanksPage';
 export { default as CardsPage } from 'pages/CardsPage';
 export { default as CitiesPage } from 'pages/CitiesPage';
+export { default as RestaurantsPage } from 'pages/RestaurantsPage';
 // export { default as About } from 'pages/About';
 

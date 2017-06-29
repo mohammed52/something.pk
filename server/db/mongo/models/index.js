@@ -4,4 +4,5 @@ export default function loadModels() {
   require('./comments');
   require('./banksModel');
   require('./citiesModel');
+  require('./restaurantsModel');
 }

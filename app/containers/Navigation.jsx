@@ -53,7 +53,7 @@ class Navigation extends Component {
           Cities
         </Link>
         <Link className={cx('item')}
-              to="/resturants">
+              to="/restaurants">
           Restaurants
         </Link>
         <Link className={cx('item')}

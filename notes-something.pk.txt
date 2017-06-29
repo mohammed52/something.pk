@@ -222,26 +222,22 @@ How to use node-inspector:
 1. node-inspector
 2. node --debug compiled/server.dev
 --
-a quick brown fox jumped over the lazy dog
---
-a quick brown fox jumped over the lazy dog
---
-a quick brown fox jumped over the lazy dog
---
 Q: Error: Can't set headers after they are sent , app crashing ??
 Ans: apparently its working now, no change to code
 --
-a quick brown fox jumped over the lazy dog
-==
-a quick brown fox jumped over the lazy dog
-==
-a quick brown fox jumped over the lazy dog
+alt+F4: close window
 --
-a quick brown fox jumped over the lazy dog
+hide env variables, 
 --
-a quick brown fox jumped over the lazy dog
+Q: fs error, module not found? when using the module "dotenv"
+Ans: set fs: 'empty' in webpack.config -> node
 --
-a quick brown fox jumped over the lazy dog
+Q: unable to read env variables from process.env ?? wasted 06 hours
+Ans: 
 --
-a quick brown fox jumped over the lazy dog
+ctrl+shift+space: ST3 select all code in closing brackets
 --
+Q: can not read property restaurants of undefined, mapStateToProps
+Ans:
+--
+

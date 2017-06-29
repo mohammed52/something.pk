@@ -20,7 +20,8 @@ module.exports = (env = {}) => {
   const hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
   const node = {
     __dirname: true,
-    __filename: true
+    __filename: true,
+    fs: 'empty'
   };
 
   const prodServerRender = {

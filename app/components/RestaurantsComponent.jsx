@@ -5,7 +5,6 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-import SingleBankRowComponent from './SingleBankRowComponent'
 // import { Button } from 'react-bootstrap';
 
 import testStyles from '../css/components/test';
@@ -34,20 +33,18 @@ var Input = ReactBootstrap.Input
 const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
-class AddBankComponent extends Component {
+class RestaurantComponent extends Component {
   constructor(props) {
     super(props);
-    this.btnAddBank = this.btnAddBank.bind(this)
-    this.onChangeFullName = this.onChangeFullName.bind(this)
-    this.onChangeShortName = this.onChangeShortName.bind(this)
+    this.btnAddRestaurant = this.btnAddRestaurant.bind(this)
+    this.onChangeRestaurantName = this.onChangeRestaurantName.bind(this)
     this.open = this.open.bind(this)
     this.close = this.close.bind(this)
 
     this.state = {
-      uploadedFile: null,
-      uploadedFileCloudinaryUrl: '',
-      fullNameField: "",
-      shortNameField: "",
+      uploadedRestaurantLogo: null,
+      uploadedRestaurantLogoCloudinaryUrl: '',
+      restaurantNameField: "",
       showModal: true
     };
   }
@@ -56,7 +53,7 @@ class AddBankComponent extends Component {
 
   onImageDrop(files) {
     this.setState({
-      uploadedFile: files[0]
+      uploadedRestaurantLogo: files[0]
     });
 
     this.handleImageUpload(files[0]);
@@ -77,49 +74,39 @@ class AddBankComponent extends Component {
 
       if (response.body.secure_url !== '') {
         this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+          uploadedRestaurantLogoCloudinaryUrl: response.body.secure_url
         });
       }
     });
   }
 
-  btnAddBank() {
+  btnAddRestaurant() {
 
-    let tmpBank = {
-      fullName: this.state.fullNameField,
-      shortName: this.state.shortNameField,
-      logoUrl: this.state.uploadedFileCloudinaryUrl,
+    let tmpRestaurant = {
+      fullName: this.state.restaurantNameField,
+      logoUrl: this.state.uploadedRestaurantLogoCloudinaryUrl,
       cards: ["card1", "card2"]
     }
 
-    // this.refs.someName.refBankFullName = '';
+    // this.refs.someName.refRestaurantFullName = '';
 
-    this.refs.refBankFullName.value = '';
-    this.refs.refBankShortName.value = '';
+    this.refs.refRestaurantFullName.value = '';
 
     this.setState({
-      fullNameField: "",
-      shortNameField: "",
-      uploadedFileCloudinaryUrl: ""
+      restaurantNameField: "",
+      uploadedRestaurantLogoCloudinaryUrl: ""
     })
 
-    const {createBank} = this.props;
-    createBank(tmpBank)
+    const {createRestaurant} = this.props;
+    createRestaurant(tmpRestaurant)
   }
 
-  onChangeFullName(event) {
+  onChangeRestaurantName(event) {
     const MAPLOG = true;
     if (MAPLOG) console.log(event.target.value);
     this.setState({
-      fullNameField: event.target.value
-    })
-  }
-  onChangeShortName(event) {
-    const MAPLOG = true;
-    if (MAPLOG) console.log(event.target.value);
-    this.setState({
-      shortNameField: event.target.value
-    })
+      restaurantNameField: event.target.value
+    });
   }
 
   close() {
@@ -139,49 +126,40 @@ class AddBankComponent extends Component {
 
     const {children} = this.props;
 
-    const allBanks = this.props.banks;
-    let trArrBanks = []
-    for (var i = 0; i < allBanks.length; i++) {
+    const allRestaurants = this.props.restaurants;
+    let trArrRestaurants = []
+    // for (var i = 0; i < allRestaurants.length; i++) {
 
-      const tmpBank = allBanks[i]
-      const tmpKey = "SingleBankRowComponent" + i + tmpBank.id
-      const tmpIterator = i
-      trArrBanks.push(
-        <SingleBankRowComponent key={tmpKey}
-                                bank={tmpBank}
-                                iterator={tmpIterator}
-                                destroyBank={this.props.destroyBank} />
-      );
-    }
+    //   const tmpRestaurant = allRestaurants[i]
+    //   const tmpKey = "SingleRestaurantRowComponent" + i + tmpRestaurant.id
+    //   const tmpIterator = i
+    //   trArrRestaurants.push(
+    //     <SingleRestaurantRowComponent key={tmpKey}
+    //                                   bank={tmpRestaurant}
+    //                                   iterator={tmpIterator}
+    //                                   destroyRestaurant={this.props.destroyRestaurant} />
+    //   );
+    // }
     return (
       <div>
         <form className="testbg-1">
-          <h3>Add New Bank</h3>
+          <h3>Add New Restaurant</h3>
           <div className="well">
             <table className="table">
               <tbody>
                 <tr>
                   <td>
                     <ControlLabel>
-                      Full Name
+                      Name
                     </ControlLabel>
                     <br/>
                     <input id="id-bank-full-name"
                            required="true"
-                           onChange={this.onChangeFullName}
-                           defaultValue={this.state.fullNameField}
-                           ref="refBankFullName" />
+                           onChange={this.onChangeRestaurantName}
+                           defaultValue={this.state.restaurantNameField}
+                           ref="refRestaurantFullName" />
                     <br/>
                     <br/>
-                    <ControlLabel>
-                      Short Name
-                    </ControlLabel>
-                    <br/>
-                    <input id="id-bank-short-name"
-                           required="true"
-                           onChange={this.onChangeShortName}
-                           defaultValue={this.state.shortNameField}
-                           ref="refBankShortName" />
                   </td>
                   <td>
                     <Dropzone multiple={false}
@@ -194,12 +172,12 @@ class AddBankComponent extends Component {
                   </td>
                   <td>
                     <div>
-                      {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                      {this.state.uploadedRestaurantLogoCloudinaryUrl === '' ? null :
                        <div>
                          <p>
-                           {this.state.uploadedFile.name}
+                           {this.state.uploadedRestaurantLogo.name}
                          </p>
-                         <img src={this.state.uploadedFileCloudinaryUrl}
+                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl}
                               alt="uploaded image" />
                        </div>}
                     </div>
@@ -209,17 +187,16 @@ class AddBankComponent extends Component {
             </table>
             <button className="btn btn-primary"
                     type="button"
-                    onClick={this.btnAddBank}
-                    disabled={(this.state.uploadedFileCloudinaryUrl !== ""
-                              && this.refs.refBankFullName.value !== "" &&
-                              this.refs.refBankShortName.value !== "") ? false : true}>
-              Add Bank
+                    onClick={this.btnAddRestaurant}
+                    disabled={(this.state.uploadedRestaurantLogoCloudinaryUrl !== ""
+                              && this.refs.refRestaurantFullName.value !== "") ? false : true}>
+              Add Restaurant
             </button>
             <br/>
           </div>
         </form>
         <div>
-          <h4>All Existing Banks</h4>
+          <h4>All Existing Restaurants</h4>
           <div className="well">
             <table className="table">
               <tbody>
@@ -234,13 +211,10 @@ class AddBankComponent extends Component {
                     Full Name
                   </th>
                   <th>
-                    Short Name
-                  </th>
-                  <th>
                     Actions
                   </th>
                 </tr>
-                {trArrBanks}
+                {trArrRestaurants}
               </tbody>
             </table>
           </div>
@@ -250,11 +224,10 @@ class AddBankComponent extends Component {
   }
 }
 
-AddBankComponent.propTypes = {
-  children: PropTypes.object,
-  createBank: PropTypes.func.isRequired,
-  banks: PropTypes.array.isRequired,
-  destroyBank: PropTypes.func.isRequired
+RestaurantComponent.propTypes = {
+  createRestaurant: PropTypes.func.isRequired,
+  restaurants: PropTypes.array.isRequired,
+  destroyRestaurant: PropTypes.func.isRequired
 };
 
-export default AddBankComponent;
+export default RestaurantComponent;
