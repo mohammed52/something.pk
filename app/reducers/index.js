@@ -15,6 +15,7 @@ const isFetching = (state = false, action) => {
     case types.CREATE_BANK_REQUEST:
     case types.CREATE_CARD_REQUEST:
     case types.CREATE_REQUEST_TOPIC:
+    case types.CREATE_RESTAURANT_REQUEST:
       return true;
     case types.REQUEST_SUCCESS:
     case types.REQUEST_SUCCESS_BANKS:
@@ -23,6 +24,7 @@ const isFetching = (state = false, action) => {
     case types.REQUEST_FAILURE:
     case types.CREATE_BANK_SUCCESS:
     case types.CREATE_CITY_SUCCESS:
+    case types.CREATE_RESTAURANT_FAILURE:
       return false;
     default:
       return state;

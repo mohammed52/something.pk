@@ -6,6 +6,7 @@ import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
 // import { Button } from 'react-bootstrap';
+import SingleRestaurantRowComponent from './SingleRestaurantRowComponent'
 
 import testStyles from '../css/components/test';
 
@@ -83,9 +84,8 @@ class RestaurantComponent extends Component {
   btnAddRestaurant() {
 
     let tmpRestaurant = {
-      fullName: this.state.restaurantNameField,
+      name: this.state.restaurantNameField,
       logoUrl: this.state.uploadedRestaurantLogoCloudinaryUrl,
-      cards: ["card1", "card2"]
     }
 
     // this.refs.someName.refRestaurantFullName = '';
@@ -128,18 +128,18 @@ class RestaurantComponent extends Component {
 
     const allRestaurants = this.props.restaurants;
     let trArrRestaurants = []
-    // for (var i = 0; i < allRestaurants.length; i++) {
+    for (var i = 0; i < allRestaurants.length; i++) {
 
-    //   const tmpRestaurant = allRestaurants[i]
-    //   const tmpKey = "SingleRestaurantRowComponent" + i + tmpRestaurant.id
-    //   const tmpIterator = i
-    //   trArrRestaurants.push(
-    //     <SingleRestaurantRowComponent key={tmpKey}
-    //                                   bank={tmpRestaurant}
-    //                                   iterator={tmpIterator}
-    //                                   destroyRestaurant={this.props.destroyRestaurant} />
-    //   );
-    // }
+      const tmpRestaurant = allRestaurants[i]
+      const tmpKey = "SingleRestaurantRowComponent" + i + tmpRestaurant.id
+      const tmpIterator = i
+      trArrRestaurants.push(
+        <SingleRestaurantRowComponent key={tmpKey}
+                                      restaurant={tmpRestaurant}
+                                      iteration={tmpIterator}
+                                      destroyRestaurant={this.props.destroyRestaurant} />
+      );
+    }
     return (
       <div>
         <form className="testbg-1">
@@ -153,7 +153,7 @@ class RestaurantComponent extends Component {
                       Name
                     </ControlLabel>
                     <br/>
-                    <input id="id-bank-full-name"
+                    <input id="id-restaurant-full-name"
                            required="true"
                            onChange={this.onChangeRestaurantName}
                            defaultValue={this.state.restaurantNameField}
@@ -162,9 +162,7 @@ class RestaurantComponent extends Component {
                     <br/>
                   </td>
                   <td>
-                    <Dropzone multiple={false}
-                              accept="image/jpg,image/png,image/jpeg"
-                              onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -177,8 +175,7 @@ class RestaurantComponent extends Component {
                          <p>
                            {this.state.uploadedRestaurantLogo.name}
                          </p>
-                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl}
-                              alt="uploaded image" />
+                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl} alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -208,7 +205,7 @@ class RestaurantComponent extends Component {
                     Logo
                   </th>
                   <th>
-                    Full Name
+                    Name
                   </th>
                   <th>
                     Actions
@@ -220,7 +217,7 @@ class RestaurantComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 

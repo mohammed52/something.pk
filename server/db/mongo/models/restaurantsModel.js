@@ -17,5 +17,5 @@ const RestaurantsSchema = new mongoose.Schema({
 
 // Compiles the schema into a model, opening (or creating, if
 // nonexistent) the 'Bank' collection in the MongoDB database
-export default mongoose.model('Restaunts', RestaurantsSchema);
+export default mongoose.model('Restaurants', RestaurantsSchema);
 

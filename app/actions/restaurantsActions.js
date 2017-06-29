@@ -17,7 +17,7 @@ function createRestaurantRequest(data) {
   return {
     type: types.CREATE_RESTAURANT_REQUEST,
     id: data.id,
-    name: data.fullName,
+    name: data.name,
     logoUrl: data.logoUrl,
   };
 }
@@ -49,14 +49,14 @@ export function createRestaurant(restaurant) {
     if (MAPLOG) console.log("action createRestaurant");
     // If the text box is empty
 
-    if (restaurant.fullName.trim().length <= 0) return;
+    if (restaurant.name.trim().length <= 0) return;
 
-    const id = md5.hash(restaurant.fullName);
+    const id = md5.hash(restaurant.name);
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
     const data = {
       id: id,
-      name: restaurant.fullName,
+      name: restaurant.name,
       logoUrl: restaurant.logoUrl,
     };
     if (MAPLOG) console.log("data", data);

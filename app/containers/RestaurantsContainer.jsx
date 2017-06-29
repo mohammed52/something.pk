@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import { createRestaurant, restaurants, destroyRestaurant } from '../actions/restaurantsActions';
+import { createRestaurant, destroyRestaurant } from '../actions/restaurantsActions';
 
 
 import RestaurantsComponent from '../components/RestaurantsComponent'
@@ -33,9 +33,9 @@ class RestaurantsContainer extends Component {
     return (
       <div>
         RestaurantsContainer
-        <RestaurantsComponent />
+        <RestaurantsComponent createRestaurant={this.props.createRestaurant} destroyRestaurant={this.props.destroyRestaurant} restaurants={this.props.restaurants} />
       </div>
-    );
+      );
   }
 }
 
@@ -51,7 +51,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   createRestaurant,
-  restaurants,
   destroyRestaurant
 })(RestaurantsContainer);
 

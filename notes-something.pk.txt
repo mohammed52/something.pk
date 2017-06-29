@@ -216,28 +216,13 @@ Stratis is a Blockchain as a Service (BaaS) platform
 --
 ctrl+m: find closing bracket in ST3
 --
-when running node-inspector , you can add break points, even if you cant modify code
+a quick brown fox jumped over the lazy dog
 --
-How to use node-inspector:
-1. node-inspector
-2. node --debug compiled/server.dev
+Q: the redux props are null in the component?? 
+Ans: ensure the props are passed to the component in html markup
 --
-Q: Error: Can't set headers after they are sent , app crashing ??
-Ans: apparently its working now, no change to code
+Q: action called but collection is not created??
+Ans: controllers and routes not defined on the server
 --
-alt+F4: close window
+ctrl+p: go to file ST3
 --
-hide env variables, 
---
-Q: fs error, module not found? when using the module "dotenv"
-Ans: set fs: 'empty' in webpack.config -> node
---
-Q: unable to read env variables from process.env ?? wasted 06 hours
-Ans: 
---
-ctrl+shift+space: ST3 select all code in closing brackets
---
-Q: can not read property restaurants of undefined, mapStateToProps
-Ans:
---
-

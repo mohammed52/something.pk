@@ -10,6 +10,7 @@ const topicsController = controllers && controllers.topics;
 const commentsController = controllers && controllers.comments;
 const banksController = controllers && controllers.banks;
 const citiesController = controllers && controllers.cities;
+const restaurantsController = controllers && controllers.restaurants;
 
 
 export default (app) => {
@@ -94,5 +95,14 @@ export default (app) => {
     console.warn(unsupportedMessage('cities routes'));
   }
 
+  if (restaurantsController) {
+    console.log("restaurantsController");
+    app.get('/restaurant', restaurantsController.all);
+    app.post('/restaurant/:id', restaurantsController.add);
+    app.delete('/restaurant/:id', restaurantsController.remove);
+    app.put('/restaurant/:id', restaurantsController.update);
+  } else {
+    console.warn(unsupportedMessage('restaurants routes'));
+  }
 
 };
