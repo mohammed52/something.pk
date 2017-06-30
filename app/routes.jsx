@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import { fetchVoteData, fetchBanksData, fetchCitiesData, fetchRestaurantsData } from './fetch-data'
 import { fetchCommentsData } from './fetch-comments-data';
-import { RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
+import { DealsPage, RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 
 /*
  * @param {Redux Store}
@@ -40,22 +40,36 @@ export default (store) => {
   };
 
   return (
-    <Route path="/" component={App}>
-      <IndexRoute component={ShowDiscountsPage} fetchData={fetchVoteData} fetchCommentsData={fetchCommentsData} />
-      <Route path="login" component={LoginOrRegisterPage} onEnter={redirectAuth} />
-      <Route component={WrapperLoggedInPage} onEnter={requireAuth}>
+    <Route path="/"
+           component={App}>
+      <IndexRoute component={ShowDiscountsPage}
+                  fetchData={fetchVoteData}
+                  fetchCommentsData={fetchCommentsData} />
+      <Route path="login"
+             component={LoginOrRegisterPage}
+             onEnter={redirectAuth} />
+      <Route component={WrapperLoggedInPage}
+             onEnter={requireAuth}>
         <Route path="dashboard"
                component={DashboardPage}
-               onEnter={testFn}
-               fetchData={fetchVoteData} />
+               onEnter={testFn} />
         <Route path="banks"
                component={BanksPage}
                onEnter={testFn}
                fetchData={fetchBanksData} />
-        <Route path="cards" component={CardsPage} fetchData={fetchBanksData} />
-        <Route path="cities" component={CitiesPage} fetchData={fetchCitiesData} />
-        <Route path="restaurants" component={RestaurantsPage} fetchData={fetchRestaurantsData} />
+        <Route path="cards"
+               component={CardsPage}
+               fetchData={fetchBanksData} />
+        <Route path="cities"
+               component={CitiesPage}
+               fetchData={fetchCitiesData} />
+        <Route path="restaurants"
+               component={RestaurantsPage}
+               fetchData={fetchRestaurantsData} />
+        <Route path="deals"
+               component={DealsPage}
+               fetchData={fetchBanksData} />
       </Route>
     </Route>
-    );
+  );
 };
