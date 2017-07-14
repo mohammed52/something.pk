@@ -116,7 +116,7 @@ class BankCardComponent extends Component {
         </table>
         <div>
           <ControlLabel>
-            Add Bank:
+            Add Card:
           </ControlLabel>
           <input id="id-add-new-card"
                  onKeyDown={this.onKeyDown}

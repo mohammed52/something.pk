@@ -94,6 +94,12 @@ export default function render(req, res) {
                 data
               });
             }
+            case ( '/deals'): {
+              store.dispatch({
+                type: types.REQUEST_SUCCESS_BANKS,
+                data
+              });
+            }
             default: {
               //
             }

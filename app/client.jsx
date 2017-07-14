@@ -77,6 +77,12 @@ function onUpdate() {
             data
           });
         }
+        case ( '/deals'): {
+          return store.dispatch({
+            type: types.REQUEST_SUCCESS_BANKS,
+            data
+          });
+        }
         default: {
           return store.dispatch({
             type: types.REQUEST_SUCCESS_TOPIC,

@@ -31,6 +31,9 @@ var Radio = ReactBootstrap.Radio;
 var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
+var ButtonToolbar = ReactBootstrap.ButtonToolbar
+var DropdownButton = ReactBootstrap.DropdownButton
+var MenuItem = ReactBootstrap.MenuItem
 
 const ENTER_KEY_CODE = 13;
 
@@ -50,16 +53,34 @@ class DealComponent extends Component {
   render() {
     return (
       <div>
-        deals page
+        deals component
+        <ButtonToolbar>
+          <DropdownButton title="Default button"
+                          id="dropdown-size-medium">
+            <MenuItem eventKey="1">
+              Action
+            </MenuItem>
+            <MenuItem eventKey="2">
+              Another action
+            </MenuItem>
+            <MenuItem eventKey="3">
+              Something else here
+            </MenuItem>
+            <MenuItem divider />
+            <MenuItem eventKey="4">
+              Separated link
+            </MenuItem>
+          </DropdownButton>
+        </ButtonToolbar>
       </div>
     );
   }
 }
 
 DealComponent.propTypes = {
-// bank: PropTypes.object.isRequired,
-// deleteCardFromBank: PropTypes.func.isRequired,
-// addCardToBank: PropTypes.func.isRequired
+  // bank: PropTypes.object.isRequired,
+  // deleteCardFromBank: PropTypes.func.isRequired,
+  // addCardToBank: PropTypes.func.isRequired
 };
 
 export default DealComponent;
