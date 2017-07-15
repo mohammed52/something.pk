@@ -4,6 +4,8 @@ import comments from './comments'
 import banks from './banksController'
 import cities from './citiesController'
 import restaurants from './restaurantsController'
+import deals from './dealsController'
+
 
 
 export { topics, users, comments, banks, cities, restaurants };
@@ -14,5 +16,6 @@ export default {
   comments,
   banks,
   cities,
-  restaurants
+  restaurants,
+  deals
 };

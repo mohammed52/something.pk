@@ -10,7 +10,6 @@ import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';
 import fetchDataForRoute from './utils/fetchDataForRoute';
-import fetchCommentsDataForRoute from './utils/fetchCommentsDataForRoute';
 
 
 // import Bootstrap from 'bootstrap/dist/css/bootstrap.css';

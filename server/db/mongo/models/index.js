@@ -5,4 +5,5 @@ export default function loadModels() {
   require('./banksModel');
   require('./citiesModel');
   require('./restaurantsModel');
+  require('./dealsModel');
 }

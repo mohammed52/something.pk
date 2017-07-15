@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import { fetchVoteData, fetchBanksData, fetchCitiesData, fetchRestaurantsData } from './fetch-data'
-import { fetchCommentsData } from './fetch-comments-data';
 import { DealsPage, RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 
 /*
@@ -43,8 +42,7 @@ export default (store) => {
     <Route path="/"
            component={App}>
       <IndexRoute component={ShowDiscountsPage}
-                  fetchData={fetchVoteData}
-                  fetchCommentsData={fetchCommentsData} />
+                  fetchData={fetchVoteData} />
       <Route path="login"
              component={LoginOrRegisterPage}
              onEnter={redirectAuth} />
@@ -52,10 +50,9 @@ export default (store) => {
              onEnter={requireAuth}>
         <Route path="dashboard"
                component={DashboardPage}
-               onEnter={testFn} />
+               />
         <Route path="banks"
                component={BanksPage}
-               onEnter={testFn}
                fetchData={fetchBanksData} />
         <Route path="cards"
                component={CardsPage}
@@ -68,6 +65,7 @@ export default (store) => {
                fetchData={fetchRestaurantsData} />
         <Route path="deals"
                component={DealsPage}
+               onEnter={testFn}
                fetchData={fetchBanksData} />
       </Route>
     </Route>

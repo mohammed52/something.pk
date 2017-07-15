@@ -24,6 +24,8 @@ class BanksContainer extends Component {
     super(props);
   }
 
+
+
   render() {
 
     const {destroyBank} = this.props

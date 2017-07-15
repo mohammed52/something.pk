@@ -4,7 +4,6 @@ import configureStore from '../../app/store/configureStore';
 import * as types from '../../app/types';
 import pageRenderer from './pageRenderer';
 import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
-import fetchCommentsDataForRoute from '../../app/utils/fetchCommentsDataForRoute';
 
 /*
  * Export render function to be used in server/config/routes.js

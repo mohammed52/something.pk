@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DealComponent from '../components/DealComponent'
+import { getCities } from '../actions/citiesActions';
+
 
 // import { createDeal, destroyDeal } from '../actions/dealsActions';
 
@@ -24,9 +26,12 @@ class DealsContainer extends Component {
     super(props);
   }
 
-  render() {
+  componentWillMount() {
+    console.log("componentWillMount");
+    getCities()
+  }
 
-    const {destroyDeal} = this.props
+  render() {
 
     return (
       <div>

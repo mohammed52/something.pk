@@ -10,6 +10,13 @@ function destroy(id) {
   };
 }
 
+function saveCities(data) {
+  return {
+    type: types.REQUEST_SUCCESS_CITIES,
+    data
+  };
+}
+
 function createCityRequest(data) {
   const MAPLOG = true;
   if (MAPLOG) console.log("createCityRequest");
@@ -97,4 +104,25 @@ export function destroyCity(id) {
         error: 'Oops! Something went wrong and we couldn\'t add your vote'
       })));
   };
+}
+
+export function getCities() {
+  console.log("getCities");
+  return (dispatch) => {
+
+    return citiesService().getCities()
+      .then(res => {
+        console.log("catchingError");
+        return dispatch(saveCities(res.data))
+      })
+      // Returning [] as a placeholder now so it does not error out when this service
+      // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
+      .catch(() => {
+        console.log("catchingError");
+        dispatch(createCityFailure({
+          error: 'Oops! Something went wrong and we couldn\'t get the cities'
+        }))
+      }
+    );
+  }
 }

@@ -1,8 +1,7 @@
-import { voteService } from '../services';
+import { dealsService } from '../services';
 
-const fetchCommentsData = () => {
-
-  return voteService().getComments()
+const fetchDealsData = () => {
+  return dealsService().getDeals()
     .then(res => {
       return res.data
     })
@@ -11,5 +10,5 @@ const fetchCommentsData = () => {
     .catch(() => []);
 };
 
-export default fetchCommentsData;
+export default fetchDealsData;
 

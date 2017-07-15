@@ -11,6 +11,7 @@ const commentsController = controllers && controllers.comments;
 const banksController = controllers && controllers.banks;
 const citiesController = controllers && controllers.cities;
 const restaurantsController = controllers && controllers.restaurants;
+const dealsController = controllers && controllers.deals;
 
 
 export default (app) => {
@@ -103,6 +104,16 @@ export default (app) => {
     app.put('/restaurant/:id', restaurantsController.update);
   } else {
     console.warn(unsupportedMessage('restaurants routes'));
+  }
+
+  if (dealsController) {
+    console.log("dealsController");
+    app.get('/deal', dealsController.all);
+    app.post('/deal/:id', dealsController.add);
+    app.delete('/deal/:id', dealsController.remove);
+    app.put('/deal/:id', dealsController.update);
+  } else {
+    console.warn(unsupportedMessage('deals routes'));
   }
 
 };

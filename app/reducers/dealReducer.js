@@ -19,6 +19,7 @@ const deal = (state = {},
         comments: action.comments
       };
     case types.default:
+    default:
       return state;
   }
 };
@@ -37,8 +38,6 @@ const deals = (state = [],
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_DEAL:
       return state.filter(t => t.id !== action.id);
-    case types.UPDATE_CARDS_FOR_DEAL:
-      return state.map(t => deal(t, action));
     default:
       return state;
   }
