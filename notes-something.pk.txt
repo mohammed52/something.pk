@@ -259,7 +259,9 @@ Ans: ensure props are passed to the component when used in the html markup
 Q: apparantly the heroku application is not working any more ???
 Ans: 
 --
-a quick brown fox jumped over the lazy dog
---
 for react-bootstrap dropdown buttons, see component prop types on help page to use event controls
+--
+const in code is converted into var in the browser, interesting
+--
+in react, if sometimes the props are not defined error, try restarting the server
 --

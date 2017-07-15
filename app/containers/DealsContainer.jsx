@@ -33,7 +33,8 @@ class DealsContainer extends Component {
         deals container
         <DealComponent createDeal={this.props.createDeal}
                        deals={this.props.deals}
-                       destroyDeal={this.props.destroyDeal} />
+                       destroyDeal={this.props.destroyDeal}
+                       banks={this.props.banks} />
       </div>
     );
   }
@@ -47,7 +48,8 @@ DealsContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // deals: state.deal.deals,
+    banks: state.bank.banks,
+  // deals: state.deal.deals
   };
 }
 

@@ -40,7 +40,7 @@ const ENTER_KEY_CODE = 13;
 class DealComponent extends Component {
   constructor(props) {
     super(props)
-    // this.deleteCard = this.deleteCard.bind(this)
+    this.onBankSelected = this.onBankSelected.bind(this)
     // this.onSave = this.onSave.bind(this);
     // this.onKeyDown = this.onKeyDown.bind(this);
     // this.onCardInputChange = this.onCardInputChange.bind(this)
@@ -50,26 +50,40 @@ class DealComponent extends Component {
   // };
   }
 
+  onBankSelected(eventKey, event) {
+    console.log("onBankSelected");
+    console.log("event", event);
+    console.log("eventKey", eventKey);
+    const banks = this.props.banks
+    console.log("banks[eventKey-1]", banks[eventKey - 1]);
+  }
+
   render() {
+
+    const banks = this.props.banks
+    const arrMenuItemDropdown = []
+
+    for (let i = 0; i < banks.length; i++) {
+      const bank = banks[i]
+      console.log("bank.fullName", bank.fullName);
+      arrMenuItemDropdown.push(
+        <MenuItem key={"arrMenuItemDropdown" + i}
+                  eventKey={i + 1}
+                  onSelect={this.onBankSelected}>
+          {bank.fullName}
+        </MenuItem>
+
+      )
+
+    }
+
     return (
       <div>
         deals component
         <ButtonToolbar>
           <DropdownButton title="Default button"
                           id="dropdown-size-medium">
-            <MenuItem eventKey="1">
-              Action
-            </MenuItem>
-            <MenuItem eventKey="2">
-              Another action
-            </MenuItem>
-            <MenuItem eventKey="3">
-              Something else here
-            </MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey="4">
-              Separated link
-            </MenuItem>
+            {arrMenuItemDropdown}
           </DropdownButton>
         </ButtonToolbar>
       </div>
@@ -78,9 +92,11 @@ class DealComponent extends Component {
 }
 
 DealComponent.propTypes = {
-  // bank: PropTypes.object.isRequired,
-  // deleteCardFromBank: PropTypes.func.isRequired,
-  // addCardToBank: PropTypes.func.isRequired
+  banks: PropTypes.array.isRequired,
+
+// bank: PropTypes.object.isRequired,
+// deleteCardFromBank: PropTypes.func.isRequired,
+// addCardToBank: PropTypes.func.isRequired
 };
 
 export default DealComponent;
