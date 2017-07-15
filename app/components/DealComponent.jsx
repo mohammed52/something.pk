@@ -45,9 +45,9 @@ class DealComponent extends Component {
     // this.onKeyDown = this.onKeyDown.bind(this);
     // this.onCardInputChange = this.onCardInputChange.bind(this)
 
-  // this.state = {
-  //   newCard: ""
-  // };
+    this.state = {
+      bankDeals: []
+    };
   }
 
   onBankSelected(eventKey, event) {
@@ -67,9 +67,7 @@ class DealComponent extends Component {
       const bank = banks[i]
       console.log("bank.fullName", bank.fullName);
       arrMenuItemDropdown.push(
-        <MenuItem key={"arrMenuItemDropdown" + i}
-                  eventKey={i + 1}
-                  onSelect={this.onBankSelected}>
+        <MenuItem key={"arrMenuItemDropdown" + i} eventKey={i + 1} onSelect={this.onBankSelected}>
           {bank.fullName}
         </MenuItem>
 
@@ -81,13 +79,12 @@ class DealComponent extends Component {
       <div>
         deals component
         <ButtonToolbar>
-          <DropdownButton title="Default button"
-                          id="dropdown-size-medium">
+          <DropdownButton title="Default button" id="dropdown-size-medium">
             {arrMenuItemDropdown}
           </DropdownButton>
         </ButtonToolbar>
       </div>
-    );
+      );
   }
 }
 
