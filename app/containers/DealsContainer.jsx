@@ -28,6 +28,7 @@ class DealsContainer extends Component {
 
   componentWillMount() {
     console.log("componentWillMount");
+    const getCities = this.props.getCities()
     getCities()
   }
 
@@ -39,7 +40,8 @@ class DealsContainer extends Component {
         <DealComponent createDeal={this.props.createDeal}
                        deals={this.props.deals}
                        destroyDeal={this.props.destroyDeal}
-                       banks={this.props.banks} />
+                       banks={this.props.banks}
+                       fetchCities={this.props.getCities} />
       </div>
     );
   }
@@ -60,5 +62,5 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   // createDeal,
-  // destroyDeal
+  getCities
 })(DealsContainer);

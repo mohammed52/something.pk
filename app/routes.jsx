@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import { fetchVoteData, fetchBanksData, fetchCitiesData, fetchRestaurantsData } from './fetch-data'
 import { DealsPage, RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
+import { getCities } from './actions/citiesActions';
 
 /*
  * @param {Redux Store}
@@ -35,6 +36,7 @@ export default (store) => {
   const testFn = () => {
     const MAPLOG = true;
     if (MAPLOG) console.log("testfn");
+    getCities()
 
   };
 
@@ -49,8 +51,7 @@ export default (store) => {
       <Route component={WrapperLoggedInPage}
              onEnter={requireAuth}>
         <Route path="dashboard"
-               component={DashboardPage}
-               />
+               component={DashboardPage} />
         <Route path="banks"
                component={BanksPage}
                fetchData={fetchBanksData} />
