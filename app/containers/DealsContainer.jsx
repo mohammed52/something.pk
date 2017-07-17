@@ -44,24 +44,28 @@ class DealsContainer extends Component {
                        destroyDeal={this.props.destroyDeal}
                        banks={this.props.banks}
                        restaurants={this.props.restaurants}
-                       cities={this.props.cities} />
+                       cities={this.props.cities}
+                       deals={this.props.deals} />
       </div>
-      );
+    );
   }
 }
 
 DealsContainer.propTypes = {
-  // children: PropTypes.object,
-  // createDeal: PropTypes.func.isRequired,
-  // destroyDeal: PropTypes.func.isRequired
+  banks: PropTypes.array.isRequired,
+  deals: PropTypes.array.isRequired,
+  restaurants: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
 };
+
 
 function mapStateToProps(state) {
   return {
+    cities: state.city.cities,
     banks: state.bank.banks,
     restaurants: state.restaurant.restaurants,
-    cities: state.restaurant.cities,
-  // deals: state.deal.deals
+    deals: state.deal.deals,
+
   };
 }
 

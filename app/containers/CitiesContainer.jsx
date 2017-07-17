@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 
@@ -37,13 +37,14 @@ class CitiesContainer extends Component {
   }
 }
 
-// CitiesContainer.propTypes = {
-
-// };
+CitiesContainer.propTypes = {
+  cities: PropTypes.array.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
     cities: state.city.cities,
+
   };
 }
 

@@ -10,7 +10,7 @@ import classNames from 'classnames/bind';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import testStyles from '../css/components/test';
-import SingleCardRowComponent from './SingleCardRowComponent'
+import AddNewDealComponent from './AddNewDealComponent'
 
 
 
@@ -45,8 +45,11 @@ class DealComponent extends Component {
     // this.onKeyDown = this.onKeyDown.bind(this);
     // this.onCardInputChange = this.onCardInputChange.bind(this)
 
+
+
     this.state = {
-      bankDeals: []
+      bankDeals: [],
+      bank: null
     };
   }
 
@@ -56,18 +59,25 @@ class DealComponent extends Component {
     console.log("eventKey", eventKey);
     const banks = this.props.banks
     console.log("banks[eventKey-1]", banks[eventKey - 1]);
+
+    this.setState({
+      bank: banks[eventKey - 1]
+    })
   }
 
   render() {
 
-    const banks = this.props.banks
+    const {banks, deals, restaurants, cities} = this.props
+
     const arrMenuItemDropdown = []
 
     for (let i = 0; i < banks.length; i++) {
       const bank = banks[i]
       console.log("bank.fullName", bank.fullName);
       arrMenuItemDropdown.push(
-        <MenuItem key={"arrMenuItemDropdown" + i} eventKey={i + 1} onSelect={this.onBankSelected}>
+        <MenuItem key={"arrMenuItemDropdown" + i}
+                  eventKey={i + 1}
+                  onSelect={this.onBankSelected}>
           {bank.fullName}
         </MenuItem>
 
@@ -79,21 +89,25 @@ class DealComponent extends Component {
       <div>
         deals component
         <ButtonToolbar>
-          <DropdownButton title="Default button" id="dropdown-size-medium">
+          <DropdownButton title={(this.state.bank === null ? "Select Bank" : this.state.bank.fullName)}
+                          id="dropdown-size-medium">
             {arrMenuItemDropdown}
           </DropdownButton>
         </ButtonToolbar>
+        <AddNewDealComponent cities={cities}
+                             deals={deals}
+                             restaurants={restaurants}
+                             bank={this.state.bank} />
       </div>
-      );
+    );
   }
 }
 
 DealComponent.propTypes = {
   banks: PropTypes.array.isRequired,
-
-// bank: PropTypes.object.isRequired,
-// deleteCardFromBank: PropTypes.func.isRequired,
-// addCardToBank: PropTypes.func.isRequired
+  deals: PropTypes.array.isRequired,
+  restaurants: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
 };
 
 export default DealComponent;
