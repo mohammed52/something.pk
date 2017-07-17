@@ -227,15 +227,5 @@ Ans: controllers and routes not defined on the server
 ctrl+p: go to a specific file in ST3
 --
 Q: Design question: db schema design as per ui flow or as per simple schema design?
-Ans: easiest to understand and modify in the future, a new Deal Collection
---
-Q: how to assign a unique id to a "deal"?
-Ans: use object-hash from npm
---
-restaurant, bank, comments of a deal cannot be changed, will use it to create a hash, make comments mandatory
---
-Q: getCities action is not firing the getCities service
-Ans:
---
-ctrl+shift+[ : ST3 compress code in brackets
+Ans: easiest to understand and modify in the future
 --

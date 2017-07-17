@@ -112,13 +112,11 @@ export function getCities() {
 
     return citiesService().getCities()
       .then(res => {
-        console.log("catchingError");
         return dispatch(saveCities(res.data))
       })
       // Returning [] as a placeholder now so it does not error out when this service
       // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
       .catch(() => {
-        console.log("catchingError");
         dispatch(createCityFailure({
           error: 'Oops! Something went wrong and we couldn\'t get the cities'
         }))

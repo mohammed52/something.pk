@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import DealComponent from '../components/DealComponent'
 import { getCities } from '../actions/citiesActions';
+import { getRestaurants } from '../actions/restaurantsActions';
 
 
 // import { createDeal, destroyDeal } from '../actions/dealsActions';
@@ -28,8 +29,10 @@ class DealsContainer extends Component {
 
   componentWillMount() {
     console.log("componentWillMount");
-    const getCities = this.props.getCities()
+    const getCities = this.props.getCities
+    const getRestaurants = this.props.getRestaurants
     getCities()
+    getRestaurants()
   }
 
   render() {
@@ -38,12 +41,12 @@ class DealsContainer extends Component {
       <div>
         deals container
         <DealComponent createDeal={this.props.createDeal}
-                       deals={this.props.deals}
                        destroyDeal={this.props.destroyDeal}
                        banks={this.props.banks}
-                       fetchCities={this.props.getCities} />
+                       restaurants={this.props.restaurants}
+                       cities={this.props.cities} />
       </div>
-    );
+      );
   }
 }
 
@@ -56,11 +59,13 @@ DealsContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     banks: state.bank.banks,
+    restaurants: state.restaurant.restaurants,
+    cities: state.restaurant.cities,
   // deals: state.deal.deals
   };
 }
 
 export default connect(mapStateToProps, {
-  // createDeal,
+  getRestaurants,
   getCities
 })(DealsContainer);

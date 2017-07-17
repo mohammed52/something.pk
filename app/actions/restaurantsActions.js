@@ -36,6 +36,13 @@ function createRestaurantFailure(data) {
   };
 }
 
+function saveRestaurants(data) {
+  return {
+    type: types.REQUEST_SUCCESS_RESTAURANTS,
+    data
+  }
+}
+
 
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
@@ -98,6 +105,25 @@ export function destroyRestaurant(id) {
         error: 'Oops! Something went wrong and we couldn\'t add your vote'
       })));
   };
+}
+
+export function getRestaurants() {
+  console.log("getRestaurants");
+  return (dispatch) => {
+
+    return restaurantsService().getRestaurants()
+      .then(res => {
+        return dispatch(saveRestaurants(res.data))
+      })
+      // Returning [] as a placeholder now so it does not error out when this service
+      // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
+      .catch(() => {
+        dispatch(createRestaurantFailure({
+          error: 'Oops! Something went wrong and we couldn\'t get the cities'
+        }))
+      }
+    );
+  }
 }
 
 
