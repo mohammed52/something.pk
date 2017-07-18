@@ -229,10 +229,6 @@ ctrl+p: go to a specific file in ST3
 Q: Design question: db schema design as per ui flow or as per simple schema design?
 Ans: easiest to understand and modify in the future
 --
-functions and objects both can be retrieved from the properties in brackets {}
+get reference to react component in event handler (when using inputs in an array) :
+https://stackoverflow.com/questions/28049603/get-reference-to-react-component-in-event-handler
 --
-ctrl+shift+j: ST3 select code in html opening and closing tags
---
-when you click on error cursor, the cursor goes to the exact location line and character
---
-

@@ -38,10 +38,28 @@ class AddNewDealComponent extends Component {
   constructor(props) {
     super(props)
     this.onRestaurantSelected = this.onRestaurantSelected.bind(this)
+    this.onChangeCardDeal = this.onChangeCardDeal.bind(this)
+    this.onChangeStandardDeal = this.onChangeStandardDeal.bind(this)
 
     this.state = {
-      restaurant: null
+      restaurant: null,
+      defaultCardDeal: "15% Off on the menu",
+      standardDeal: "",
+      cardDeals: []
     };
+  }
+
+  onChangeCardDeal(refName, event) {
+    console.log("event", event);
+    console.log("value", event.target.value);
+    console.log("refName", refName);
+    let tmpArrCardDeals = this.state.cardDeals
+    tmpArrCardDeals[Number(refName.charAt(0))] = event.target.value
+    this.setState({
+      cardDeals: tmpArrCardDeals
+    })
+
+
   }
 
   onRestaurantSelected(eventKey, event) {
@@ -50,6 +68,13 @@ class AddNewDealComponent extends Component {
     console.log(restaurants[eventKey - 1].name)
     this.setState({
       restaurant: restaurants[eventKey - 1].name
+    })
+  }
+
+  onChangeStandardDeal(event) {
+    console.log("event.target.value", event.target.value);
+    this.setState({
+      standardDeal: event.target.value
     })
   }
 
@@ -68,9 +93,7 @@ class AddNewDealComponent extends Component {
         const restaurant = restaurants[i]
         console.log("restaurant.name", restaurant.name);
         arrRestaurantsDropdown.push(
-          <MenuItem key={"arrRestaurantsDropdown" + i}
-                    eventKey={i + 1}
-                    onSelect={this.onRestaurantSelected}>
+          <MenuItem key={"arrRestaurantsDropdown" + i} eventKey={i + 1} onSelect={this.onRestaurantSelected}>
             {restaurant.name}
           </MenuItem>
 
@@ -78,28 +101,49 @@ class AddNewDealComponent extends Component {
 
       }
 
+      // load cards deals input array
+      const cards = bank.cards;
+      const arrCardsDealsInput = [];
+
+      for (var i = 0; i < cards.length; i++) {
+        arrCardsDealsInput.push(
+          <div key={"arrCardsDealsInput" + i}>
+            <strong>{cards[i] + " Deal: "}</strong>
+            <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')} defaultValue={this.state.defaultCardDeal} />
+            <br/>
+            <br/>
+          </div>
+        )
+      }
 
       return (
         <div>
           Add New Deal Component bank is not null
           <div className="well">
             <div>
-              <span>Bank Name:</span>
+              <span><strong>{"Bank Name: "}</strong></span>
               {this.props.bank.fullName}
             </div>
+            <br/>
             <div>
-              add new bank here
+              <strong>{"Select Restaurant: "}</strong>
               <ButtonToolbar>
-                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant)}
-                                id="dropdown-size-medium">
+                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant)} id="dropdown-size-medium">
                   {arrRestaurantsDropdown}
                 </DropdownButton>
               </ButtonToolbar>
-              show card deals here
+              <br/>
+              {arrCardsDealsInput}
+              <strong>{"Standard Deal: "}</strong>
+              <input onChange={this.onChangeStandardDeal} defaultValue=" 40% off on Fridays" />
+              <br/>
+              <Button bsStyle="primary">
+                Create Deal
+              </Button>
             </div>
           </div>
         </div>
-      );
+        );
     }
   }
 }
