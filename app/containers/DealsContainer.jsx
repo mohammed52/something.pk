@@ -7,7 +7,7 @@ import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
 
 
-// import { createDeal, destroyDeal } from '../actions/dealsActions';
+import { createDeal, destroyDeal } from '../actions/dealsActions';
 
 var ReactBootstrap = require('react-bootstrap')
 var Button = ReactBootstrap.Button
@@ -47,7 +47,7 @@ class DealsContainer extends Component {
                        cities={this.props.cities}
                        deals={this.props.deals} />
       </div>
-    );
+      );
   }
 }
 
@@ -71,5 +71,7 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getRestaurants,
-  getCities
+  getCities,
+  createDeal,
+  destroyDeal
 })(DealsContainer);

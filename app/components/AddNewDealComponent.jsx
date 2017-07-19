@@ -32,6 +32,8 @@ var ButtonToolbar = ReactBootstrap.ButtonToolbar
 var DropdownButton = ReactBootstrap.DropdownButton
 var MenuItem = ReactBootstrap.MenuItem
 
+var DatePicker = require("react-bootstrap-date-picker");
+
 const ENTER_KEY_CODE = 13;
 
 class AddNewDealComponent extends Component {
@@ -40,13 +42,33 @@ class AddNewDealComponent extends Component {
     this.onRestaurantSelected = this.onRestaurantSelected.bind(this)
     this.onChangeCardDeal = this.onChangeCardDeal.bind(this)
     this.onChangeStandardDeal = this.onChangeStandardDeal.bind(this)
+    this.handleChangeDate = this.handleChangeDate.bind(this)
+    this.handleChangeComments = this.handleChangeComments.bind(this)
+    this.onClickCreateDeal = this.onClickCreateDeal.bind(this)
+
+    var selectedDate = new Date().toISOString();
 
     this.state = {
       restaurant: null,
       defaultCardDeal: "15% Off on the menu",
       standardDeal: "",
-      cardDeals: []
+      cardDeals: [],
+      selectedDate: selectedDate,console.log("",);
+      comments: ""
     };
+  }
+
+  handleChangeComments(event) {
+    this.setState({
+      comments: event.target.value
+    })
+  }
+
+  handleChangeDate(selectedDate, formattedValue) {
+    this.setState({
+      selectedDate, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
+      formattedValue // Formatted String, ex: "11/19/2016" 
+    });
   }
 
   onChangeCardDeal(refName, event) {
@@ -76,6 +98,10 @@ class AddNewDealComponent extends Component {
     this.setState({
       standardDeal: event.target.value
     })
+  }
+
+  onClickCreateDeal() {
+    console.log("onClickCreateDeal");
   }
 
   render() {
@@ -127,17 +153,31 @@ class AddNewDealComponent extends Component {
             <br/>
             <div>
               <strong>{"Select Restaurant: "}</strong>
-              <ButtonToolbar>
-                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant)} id="dropdown-size-medium">
-                  {arrRestaurantsDropdown}
-                </DropdownButton>
-              </ButtonToolbar>
+              <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant)} id="dropdown-size-medium">
+                {arrRestaurantsDropdown}
+              </DropdownButton>
+              <br/>
               <br/>
               {arrCardsDealsInput}
               <strong>{"Standard Deal: "}</strong>
               <input onChange={this.onChangeStandardDeal} defaultValue=" 40% off on Fridays" />
               <br/>
-              <Button bsStyle="primary">
+              <br/>
+              <ControlLabel>
+                {"Set Deal Expiry: "}
+              </ControlLabel>
+              <span><DatePicker id="example-datepicker"
+                                value={this.state.selectedDate}
+                                onChange={this.handleChangeDate}
+                                width="200px"/></span>
+              <br/>
+              <ControlLabel>
+                {"Comments: "}
+              </ControlLabel>
+              <input onChange={this.handleChangeComments} defaultValue="" isRequired/>
+              <br/>
+              <br/>
+              <Button bsStyle="primary" onClick={this.onClickCreateDeal}>
                 Create Deal
               </Button>
             </div>
@@ -153,6 +193,10 @@ AddNewDealComponent.propTypes = {
   deals: PropTypes.array.isRequired,
   restaurants: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired,
+
+  createDeal: PropTypes.func.isRequired,
+  destroyDeal: PropTypes.func.isRequired,
+
 };
 
 export default AddNewDealComponent;
