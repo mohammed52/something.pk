@@ -232,3 +232,4 @@ Ans: easiest to understand and modify in the future
 get reference to react component in event handler (when using inputs in an array) :
 https://stackoverflow.com/questions/28049603/get-reference-to-react-component-in-event-handler
 --
+required="true" // add property to react-bootstrap component 
