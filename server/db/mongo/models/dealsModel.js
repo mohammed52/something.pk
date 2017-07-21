@@ -4,12 +4,12 @@
  */
 import mongoose from 'mongoose';
 
+var Schema = mongoose.Schema
+
 const DealSchema = new mongoose.Schema({
   id: String,
-  restaurantId: String,
-  restaurantName: String,
-  bankId: String,
-  bankName: String,
+  restaurantId: Schema.ObjectId,
+  bankId: Schema.ObjectId,
   cardDeals: Array,
   generalDeal: String,
   expiry: String,

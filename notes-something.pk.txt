@@ -236,3 +236,7 @@ required="true" // add property to react-bootstrap component
 --
 we promptly judged antique ivory buckles for the next prize and a quick brown fox jumped over the lazy dog
 --
+Q: Mongoose object schema inside another schema ? 
+Ans: Easy Answer: save _id of the other collection, right answer: use populate feature: 
+https://stackoverflow.com/a/8737142
+--
