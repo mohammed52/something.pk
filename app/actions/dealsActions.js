@@ -17,10 +17,14 @@ function createDealRequest(data) {
   return {
     type: types.CREATE_DEAL_REQUEST,
     id: data.id,
-    fullName: data.fullName,
-    shortName: data.shortName,
-    logoUrl: data.logoUrl,
-    cards: data.cards
+    restaurantId: data.restaurantId,
+    restaurantName: data.restaurantName,
+    bankId: data.bankId,
+    bankName: data.bankName,
+    cardDeals: data.cardDeals,
+    generalDeal: data.generalDeal,
+    expiry: data.expiry,
+    comments: data.comments
   };
 }
 
@@ -79,22 +83,22 @@ export function createDeal(deal) {
     // First dispatch an optimistic update
     dispatch(createDealRequest(data));
 
-    return dealsService().createDeal({
-      id,
-      data
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          if (MAPLOG) console.log("response successfull");
-          return dispatch(createDealSuccess());
-        }
-      })
-      .catch(() => {
-        return dispatch(createDealFailure({
-          id,
-          error: 'Oops! Something went wrong and we couldn\'t create your deal'
-        }));
-      });
+  // return dealsService().createDeal({
+  //   id,
+  //   data
+  // })
+  //   .then((res) => {
+  //     if (res.status === 200) {
+  //       if (MAPLOG) console.log("response successfull");
+  //       return dispatch(createDealSuccess());
+  //     }
+  //   })
+  //   .catch(() => {
+  //     return dispatch(createDealFailure({
+  //       id,
+  //       error: 'Oops! Something went wrong and we couldn\'t create your deal'
+  //     }));
+  //   });
   };
 }
 

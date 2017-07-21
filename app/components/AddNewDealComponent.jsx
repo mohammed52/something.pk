@@ -52,16 +52,16 @@ class AddNewDealComponent extends Component {
     const cards = this.props.bank.cards
     const cardDeals = []
     for (var i = 0; i < cards.length; i++) {
-      cardDeals[i] = ""
+      cardDeals[i] = "test card deal" + i
     }
 
     this.state = {
       restaurant: null,
       defaultCardDeal: "15% Off on the menu",
-      standardDeal: "",
+      standardDeal: "standard deal",
       cardDeals: cardDeals,
-      selectedDate: "",
-      comments: ""
+      selectedDate: selectedDate,
+      comments: "def_comments_1"
     };
   }
 
@@ -94,9 +94,9 @@ class AddNewDealComponent extends Component {
   onRestaurantSelected(eventKey, event) {
     console.log("onRestaurantSelected")
     const restaurants = this.props.restaurants
-    console.log(restaurants[eventKey - 1].name)
+    console.log(restaurants[eventKey - 1])
     this.setState({
-      restaurant: restaurants[eventKey - 1].name
+      restaurant: restaurants[eventKey - 1]
     })
   }
 
@@ -133,7 +133,21 @@ class AddNewDealComponent extends Component {
   }
 
   onClickCreateDeal() {
-    this.checkDealIdOk() === true ? console.log("createDeal") : console.log("no deal created");
+    if (this.checkDealIdOk()) {
+      console.log("createDeal")
+      const data = {
+        restaurant: this.state.restaurant,
+        bank: this.props.bank,
+        cardDeals: this.state.cardDeals,
+        generalDeal: this.state.standardDeal,
+        expiry: this.state.selectedDate,
+        comments: this.state.comments
+      };
+      const {createDeal} = this.props
+      console.log("data", data);
+
+
+    } else console.log("no deal created");
 
   }
   render() {
@@ -214,7 +228,7 @@ class AddNewDealComponent extends Component {
                 {"Comments: "}
               </ControlLabel>
               <input onChange={this.handleChangeComments}
-                     defaultValue=""
+                     defaultValue={this.state.comments}
                      required="true" />
               <br/>
               <br/>
