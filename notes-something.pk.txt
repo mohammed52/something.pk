@@ -240,3 +240,7 @@ Q: Mongoose object schema inside another schema ?
 Ans: Easy Answer: save _id of the other collection, right answer: use populate feature: 
 https://stackoverflow.com/a/8737142
 --
+Q: getDeals from the dealsServices not being called in the dealsActions?? wasted 06 hours
+Ans: used node inspector to solve it, in DealsContainer->ComponentWillMount->getDeals()->
+was not using const getDeals = this.props.getDeals(), redux action methods can only be used after retriving from the props, node-inspector was showing the method as null -> IMP!!!
+--

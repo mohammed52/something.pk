@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import DealComponent from '../components/DealComponent'
 import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
+import { getDeals } from '../actions/dealsActions';
 
 
 import { createDeal, destroyDeal } from '../actions/dealsActions';
@@ -31,8 +32,10 @@ class DealsContainer extends Component {
     console.log("componentWillMount");
     const getCities = this.props.getCities
     const getRestaurants = this.props.getRestaurants
+    const getDeals = this.props.getDeals
     getCities()
     getRestaurants()
+    getDeals()
   }
 
   render() {
@@ -47,7 +50,7 @@ class DealsContainer extends Component {
                        cities={this.props.cities}
                        deals={this.props.deals} />
       </div>
-      );
+    );
   }
 }
 
@@ -72,6 +75,7 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   getRestaurants,
   getCities,
+  getDeals,
   createDeal,
   destroyDeal
 })(DealsContainer);

@@ -40,6 +40,13 @@ function createDealFailure(data) {
   };
 }
 
+function saveDeals(data) {
+  return {
+    type: types.REQUEST_SUCCESS_DEALS,
+    data
+  }
+}
+
 
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
@@ -79,22 +86,23 @@ export function createDeal(deal) {
     // First dispatch an optimistic update
     dispatch(createDealRequest(data));
 
-  // return dealsService().createDeal({
-  //   id,
-  //   data
-  // })
-  //   .then((res) => {
-  //     if (res.status === 200) {
-  //       if (MAPLOG) console.log("response successfull");
-  //       return dispatch(createDealSuccess());
-  //     }
-  //   })
-  //   .catch(() => {
-  //     return dispatch(createDealFailure({
-  //       id,
-  //       error: 'Oops! Something went wrong and we couldn\'t create your deal'
-  //     }));
-  //   });
+    return dealsService().createDeal({
+      id,
+      data
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          if (MAPLOG) console.log("response successfull");
+          return dispatch(createDealSuccess());
+        }
+      })
+      .catch(() => {
+        console.log("oops Something went wrong, deal not saved");
+        return dispatch(createDealFailure({
+          id,
+          error: 'Oops! Something went wrong and we couldn\'t create your deal'
+        }));
+      });
   };
 }
 
@@ -109,4 +117,25 @@ export function destroyDeal(id) {
         error: 'Oops! Something went wrong and we couldn\'t add your vote'
       })));
   };
+}
+
+export function getDeals() {
+  console.log("getDeals");
+  return (dispatch) => {
+
+    return dealsService().getDeals()
+      .then(res => {
+        console.log("deals response successfull");
+        return dispatch(saveDeals(res.data))
+      })
+      // Returning [] as a placeholder now so it does not error out when this service
+      // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
+      .catch(() => {
+        console.log("deals response failure");
+        dispatch(createDealFailure({
+          error: 'Oops! Something went wrong and we couldn\'t get the deals'
+        }))
+      }
+    );
+  }
 }

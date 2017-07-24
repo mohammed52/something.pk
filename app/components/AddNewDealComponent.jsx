@@ -57,7 +57,7 @@ class AddNewDealComponent extends Component {
 
     this.state = {
       restaurant: null,
-      defaultCardDeal: "15% Off on the menu",
+      defaultCardDeal: "15% off on the Menu",
       standardDeal: "standard deal",
       cardDeals: cardDeals,
       selectedDate: selectedDate,
@@ -79,15 +79,20 @@ class AddNewDealComponent extends Component {
   }
 
   onChangeCardDeal(refName, event) {
-    console.log("event", event);
-    console.log("value", event.target.value);
-    console.log("refName", refName);
+    /*    console.log("event", event);
+        console.log("value", event.target.value);
+        console.log("refName", refName);*/
     let tmpArrCardDeals = this.state.cardDeals
-    tmpArrCardDeals[Number(refName.charAt(0))] = event.target.value
+    const index = Number(refName.charAt(0))
+    const bank = this.props.bank
+    // console.log("bank.cards[index]", bank.cards[index]);
+
+    tmpArrCardDeals[index] = event.target.value
+    // console.log("tmpArrCardDeals[index]", tmpArrCardDeals[index]);
+
     this.setState({
       cardDeals: tmpArrCardDeals
     })
-
 
   }
 
@@ -145,6 +150,7 @@ class AddNewDealComponent extends Component {
       };
       const {createDeal} = this.props
       console.log("data", data);
+      createDeal(data)
 
 
     } else console.log("no deal created");
@@ -165,7 +171,9 @@ class AddNewDealComponent extends Component {
         const restaurant = restaurants[i]
         console.log("restaurant.name", restaurant.name);
         arrRestaurantsDropdown.push(
-          <MenuItem key={"arrRestaurantsDropdown" + i} eventKey={i + 1} onSelect={this.onRestaurantSelected}>
+          <MenuItem key={"arrRestaurantsDropdown" + i}
+                    eventKey={i + 1}
+                    onSelect={this.onRestaurantSelected}>
             {restaurant.name}
           </MenuItem>
 
@@ -181,7 +189,9 @@ class AddNewDealComponent extends Component {
         arrCardsDealsInput.push(
           <div key={"arrCardsDealsInput" + i}>
             <strong>{cards[i] + " Deal: "}</strong>
-            <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')} defaultValue={this.state.defaultCardDeal} required="true" />
+            <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')}
+                   defaultValue={this.state.defaultCardDeal}
+                   required="true" />
             <br/>
             <br/>
           </div>
@@ -199,14 +209,17 @@ class AddNewDealComponent extends Component {
             <br/>
             <div>
               <strong>{"Select Restaurant: "}</strong>
-              <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)} id="dropdown-size-medium">
+              <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)}
+                              id="dropdown-size-medium">
                 {arrRestaurantsDropdown}
               </DropdownButton>
               <br/>
               <br/>
               {arrCardsDealsInput}
               <strong>{"Standard Deal: "}</strong>
-              <input onChange={this.onChangeStandardDeal} required="true" defaultValue=" 40% off on Fridays" />
+              <input onChange={this.onChangeStandardDeal}
+                     required="true"
+                     defaultValue=" 40% off on Fridays" />
               <br/>
               <br/>
               <ControlLabel>
@@ -220,16 +233,20 @@ class AddNewDealComponent extends Component {
               <ControlLabel>
                 {"Comments: "}
               </ControlLabel>
-              <input onChange={this.handleChangeComments} defaultValue={this.state.comments} required="true" />
+              <input onChange={this.handleChangeComments}
+                     defaultValue={this.state.comments}
+                     required="true" />
               <br/>
               <br/>
-              <Button bsStyle="primary" onClick={this.onClickCreateDeal} disabled={!this.checkDealIdOk()}>
+              <Button bsStyle="primary"
+                      onClick={this.onClickCreateDeal}
+                      disabled={!this.checkDealIdOk()}>
                 Create Deal
               </Button>
             </div>
           </div>
         </div>
-        );
+      );
     }
   }
 }

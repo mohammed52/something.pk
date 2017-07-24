@@ -119,7 +119,7 @@ export function getRestaurants() {
       // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
       .catch(() => {
         dispatch(createRestaurantFailure({
-          error: 'Oops! Something went wrong and we couldn\'t get the cities'
+          error: 'Oops! Something went wrong and we couldn\'t get the restaurants'
         }))
       }
     );
