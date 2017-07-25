@@ -202,47 +202,56 @@ class AddNewDealComponent extends Component {
         <div>
           Add New Deal Component bank is not null
           <div className="well">
-            <div>
-              <span><strong>{"Bank Name: "}</strong></span>
-              {this.props.bank.fullName}
+            <div className="row">
+              <div className="col-xs-6">
+                <div>
+                  <strong>{"Bank Name: "}</strong>
+                  {this.props.bank.fullName}
+                </div>
+              </div>
+              <div className="col-xs-6">
+                <strong>{"Select Restaurant: "}</strong>
+                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)}
+                                id="dropdown-size-medium">
+                  {arrRestaurantsDropdown}
+                </DropdownButton>
+              </div>
             </div>
-            <br/>
-            <div>
-              <strong>{"Select Restaurant: "}</strong>
-              <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)}
-                              id="dropdown-size-medium">
-                {arrRestaurantsDropdown}
-              </DropdownButton>
-              <br/>
-              <br/>
-              {arrCardsDealsInput}
-              <strong>{"Standard Deal: "}</strong>
-              <input onChange={this.onChangeStandardDeal}
-                     required="true"
-                     defaultValue=" 40% off on Fridays" />
-              <br/>
-              <br/>
-              <ControlLabel>
-                {"Set Deal Expiry: "}
-              </ControlLabel>
-              <span><DatePicker id="example-datepicker"
-                                value={this.state.selectedDate}
-                                onChange={this.handleChangeDate}
-                                width="200px"/></span>
-              <br/>
-              <ControlLabel>
-                {"Comments: "}
-              </ControlLabel>
-              <input onChange={this.handleChangeComments}
-                     defaultValue={this.state.comments}
-                     required="true" />
-              <br/>
-              <br/>
-              <Button bsStyle="primary"
-                      onClick={this.onClickCreateDeal}
-                      disabled={!this.checkDealIdOk()}>
-                Create Deal
-              </Button>
+          </div>
+          <div className="well">
+            <div className="row">
+              <div className="col-xs-6">
+                {arrCardsDealsInput}
+              </div>
+              <div className="col-xs-6">
+                <strong>{"Standard Deal: "}</strong>
+                <input onChange={this.onChangeStandardDeal}
+                       required="true"
+                       defaultValue=" 40% off on Fridays" />
+                <br/>
+                <br/>
+                <ControlLabel>
+                  {"Set Deal Expiry: "}
+                </ControlLabel>
+                <span><DatePicker id="example-datepicker"
+                                  value={this.state.selectedDate}
+                                  onChange={this.handleChangeDate}
+                                  width="200px"/></span>
+                <br/>
+                <ControlLabel>
+                  {"Comments: "}
+                </ControlLabel>
+                <input onChange={this.handleChangeComments}
+                       defaultValue={this.state.comments}
+                       required="true" />
+                <br/>
+                <br/>
+                <Button bsStyle="primary"
+                        onClick={this.onClickCreateDeal}
+                        disabled={!this.checkDealIdOk()}>
+                  Create Deal
+                </Button>
+              </div>
             </div>
           </div>
         </div>

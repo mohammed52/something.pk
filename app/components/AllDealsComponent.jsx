@@ -10,10 +10,6 @@ import classNames from 'classnames/bind';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import testStyles from '../css/components/test';
-import AddNewDealComponent from './AddNewDealComponent'
-import AllDealsComponent from './AllDealsComponent'
-
-
 
 const cxTest = classNames.bind(testStyles);
 
@@ -70,43 +66,9 @@ class DealComponent extends Component {
 
     const {banks, deals, restaurants, cities} = this.props
 
-    const arrMenuItemDropdown = []
-
-    for (let i = 0; i < banks.length; i++) {
-      const bank = banks[i]
-      console.log("bank.fullName", bank.fullName);
-      arrMenuItemDropdown.push(
-        <MenuItem key={"arrMenuItemDropdown" + i}
-                  eventKey={i + 1}
-                  onSelect={this.onBankSelected}>
-          {bank.fullName}
-        </MenuItem>
-
-      )
-
-    }
-
     return (
       <div>
-        deals component
-        <ButtonToolbar>
-          <DropdownButton title={(this.state.bank === null ? "Select Bank" : this.state.bank.fullName)}
-                          id="dropdown-size-medium">
-            {arrMenuItemDropdown}
-          </DropdownButton>
-        </ButtonToolbar>
-        {this.state.bank !== null ?
-         <AddNewDealComponent cities={cities}
-                              deals={deals}
-                              restaurants={restaurants}
-                              bank={this.state.bank}
-                              createDeal={this.props.createDeal}
-                              destroyDeal={this.props.destroyDeal} />
-         :
-         <div>
-           first select the bank
-         </div>}
-        <AllDealsComponent />
+        All Deals Here
       </div>
     );
   }
