@@ -13,6 +13,7 @@ const deal = (state = {},
         bankId: action.bankId,
         cardDeals: action.cardDeals,
         generalDeal: action.generalDeal,
+        cities: action.cities,
         expiry: action.expiry,
         comments: action.comments
       };

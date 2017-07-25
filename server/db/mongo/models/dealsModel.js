@@ -11,6 +11,7 @@ const DealSchema = new mongoose.Schema({
   restaurantId: Schema.ObjectId,
   bankId: Schema.ObjectId,
   cardDeals: Array,
+  cities: Array,
   generalDeal: String,
   expiry: String,
   comments: String

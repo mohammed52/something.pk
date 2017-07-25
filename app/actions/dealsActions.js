@@ -20,6 +20,7 @@ function createDealRequest(data) {
     restaurantId: data.restaurantId,
     bankId: data.bankId,
     cardDeals: data.cardDeals,
+    cities: data.cities,
     generalDeal: data.generalDeal,
     expiry: data.expiry,
     comments: data.comments
@@ -73,9 +74,11 @@ export function createDeal(deal) {
       restaurantId: deal.restaurantId,
       bankId: deal.bankId,
       cardDeals: deal.cardDeals,
+      cities: deal.cities,
       generalDeal: deal.generalDeal,
       expiry: deal.expiry,
-      comments: deal.comments
+      comments: deal.comments,
+
     };
     if (MAPLOG) console.log("data", data);
 

@@ -244,3 +244,10 @@ Q: getDeals from the dealsServices not being called in the dealsActions?? wasted
 Ans: used node inspector to solve it, in DealsContainer->ComponentWillMount->getDeals()->
 was not using const getDeals = this.props.getDeals(), redux action methods can only be used after retriving from the props, node-inspector was showing the method as null -> IMP!!!
 --
+react bootstrap checkbox, getValue:
+https://stackoverflow.com/a/42683037
+--
+have to shift to Graph QL from Rest APIs
+--
+I am worried about the many in browser calculations that would need to be performed to display the deals, I'll use the _id at the moment, if the speed is not ok, will change the design and add all the deals info to the deals collection
+--
