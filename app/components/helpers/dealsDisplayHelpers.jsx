@@ -25,7 +25,7 @@ export function getCities(citiesIdArr, allCities) {
 
             citiesStr += allCities[j].name
           } else
-            citiesStr = "-" + allCities[j].name
+            citiesStr += "-" + allCities[j].name
 
           break
         }

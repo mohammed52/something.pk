@@ -49,7 +49,7 @@ class SingleBankDealRowComponent extends Component {
   }
 
   render() {
-    const {bank, cardDeals, citiesStr, restaurant, serialNumber} = this.props
+    const {bank, cardDeals, citiesStr, restaurant, serialNumber, deal} = this.props
 
     return (
 
@@ -70,21 +70,40 @@ class SingleBankDealRowComponent extends Component {
         <td>
           <div>
             <strong>{restaurant.name}</strong>
-            <br/>
-            <br/>
-            {cardDeals}
+            {cardDeals === "" ? <div></div> :
+             <div>
+               {cardDeals.split('\n').map((item, key) => {
+                  return <span key={key}>{item}<br/></span>
+                })}
+             </div>}
+            <div>
+              {deal.generalDeal !== "" ?
+               
+               <div>
+                 <br/>
+                 {deal.generalDeal}
+               </div>
+               :
+               <div>
+               </div>}
+            </div>
+            <div>
+              <br/>
+              {citiesStr}
+            </div>
           </div>
         </td>
         <td>
           Actions
         </td>
       </tr>
-    );
+      );
   }
 }
 
 SingleBankDealRowComponent.propTypes = {
   bank: PropTypes.object.isRequired,
+  deal: PropTypes.object.isRequired,
   cardDeals: PropTypes.string.isRequired,
   citiesStr: PropTypes.string.isRequired,
   restaurant: PropTypes.object.isRequired,

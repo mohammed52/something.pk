@@ -56,49 +56,60 @@ class AllDealsComponent extends Component {
     var trArrDeals = []
 
 
-    for (var i = 0; i < deals.length; i++) {
-      if (deals[i].bankId === this.props.bank._id) {
-        const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
-        const citiesStr = getCities(deals[i].cities, cities)
-        const cardDeals = getCardDeals(deals[i].cardDeals, bank)
-        trArrDeals.push(
-          <SingleBankDealRowComponent bank={this.props.bank}
-                                      restaurant={restaurant}
-                                      citiesStr={citiesStr}
-                                      cardDeals={cardDeals}
-                                      key={"trArrDeals" + i}
-                                      serialNumber={trArrDeals.length+1} />
-        )
+
+    if (bank !== null) {
+      for (var i = 0; i < deals.length; i++) {
+        if (deals[i].bankId === this.props.bank._id) {
+          const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
+          const citiesStr = getCities(deals[i].cities, cities)
+          const cardDeals = getCardDeals(deals[i].cardDeals, bank)
+          trArrDeals.push(
+            <SingleBankDealRowComponent deal={deals[i]}
+                                        bank={this.props.bank}
+                                        restaurant={restaurant}
+                                        citiesStr={citiesStr}
+                                        cardDeals={cardDeals}
+                                        key={"trArrDeals" + i}
+                                        serialNumber={trArrDeals.length + 1} />
+          )
+        }
       }
     }
 
 
     return (
       <div>
-        All Deals Here
-        <div className="well">
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>
-                  S/N
-                </th>
-                <th>
-                  Logo
-                </th>
-                <th>
-                  Deals
-                </th>
-                <th>
-                  Actions
-                </th>
-              </tr>
-              {trArrDeals}
-            </tbody>
-          </table>
-        </div>
+        {this.props.bank !== null ?
+         <div>
+           All Deals Here
+           <div className="well">
+             <table className="table">
+               <tbody>
+                 <tr>
+                   <th>
+                     S/N
+                   </th>
+                   <th>
+                     Logo
+                   </th>
+                   <th>
+                     Deals
+                   </th>
+                   <th>
+                     Actions
+                   </th>
+                 </tr>
+                 {trArrDeals}
+               </tbody>
+             </table>
+           </div>
+         </div>
+         :
+         <div>
+           Select Bank
+         </div>}
       </div>
-    );
+      );
   }
 }
 

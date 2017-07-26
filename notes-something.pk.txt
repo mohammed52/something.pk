@@ -251,3 +251,8 @@ have to shift to Graph QL from Rest APIs
 --
 I am worried about the many in browser calculations that would need to be performed to display the deals, I'll use the _id at the moment, if the speed is not ok, will change the design and add all the deals info to the deals collection
 --
+Q: new line char not displaying in the react div?? wasted 01 hour
+Ans: use map to split and insert <br/>
+--
+add 02 discounts from each bank so that all possible display combinations can be discovered
+--
