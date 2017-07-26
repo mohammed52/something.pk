@@ -6,7 +6,6 @@ import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
 import { getRestaurant, getCities, getCardDeals } from './helpers/dealsDisplayHelpers'
-import SingleBankDealRowComponent from './SingleBankDealRowComponent'
 
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,7 +35,7 @@ var MenuItem = ReactBootstrap.MenuItem
 
 const ENTER_KEY_CODE = 13;
 
-class AllDealsComponent extends Component {
+class SingleBankDealRowComponent extends Component {
   constructor(props) {
     super(props)
     // this.onBankSelected = this.onBankSelected.bind(this)
@@ -50,66 +49,48 @@ class AllDealsComponent extends Component {
   }
 
   render() {
-
-    const {bank, deals, restaurants, cities} = this.props
-
-    var trArrDeals = []
-
-
-    for (var i = 0; i < deals.length; i++) {
-      if (deals[i].bankId === this.props.bank._id) {
-        const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
-        const citiesStr = getCities(deals[i].cities, cities)
-        const cardDeals = getCardDeals(deals[i].cardDeals, bank)
-        trArrDeals.push(
-          <SingleBankDealRowComponent bank={this.props.bank}
-                                      restaurant={restaurant}
-                                      citiesStr={citiesStr}
-                                      cardDeals={cardDeals}
-                                      key={"trArrDeals" + i}
-                                      serialNumber={trArrDeals.length+1} />
-        )
-      }
-    }
-
+    const {bank, cardDeals, citiesStr, restaurant, serialNumber} = this.props
 
     return (
-      <div>
-        All Deals Here
-        <div className="well">
-          <table className="table">
-            <tbody>
-              <tr>
-                <th>
-                  S/N
-                </th>
-                <th>
-                  Logo
-                </th>
-                <th>
-                  Deals
-                </th>
-                <th>
-                  Actions
-                </th>
-              </tr>
-              {trArrDeals}
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+      <tr>
+        <td>
+          {serialNumber}
+        </td>
+        <td>
+          <div>
+            {typeof restaurant.logoUrl === "undefined" ? <div>
+                                                           no-image
+                                                         </div> : <img src={restaurant.logoUrl}
+                                                                       alt={restaurant.name}
+                                                                       height="50"
+                                                                       width="50" />}
+          </div>
+        </td>
+        <td>
+          <div>
+            <strong>{restaurant.name}</strong>
+            <br/>
+            <br/>
+            {cardDeals}
+          </div>
+        </td>
+        <td>
+          Actions
+        </td>
+      </tr>
     );
   }
 }
 
-AllDealsComponent.propTypes = {
+SingleBankDealRowComponent.propTypes = {
   bank: PropTypes.object.isRequired,
-  deals: PropTypes.array.isRequired,
-  restaurants: PropTypes.array.isRequired,
-  cities: PropTypes.array.isRequired,
+  cardDeals: PropTypes.string.isRequired,
+  citiesStr: PropTypes.string.isRequired,
+  restaurant: PropTypes.object.isRequired,
+  serialNumber: PropTypes.number.isRequired,
 
-  createDeal: PropTypes.func.isRequired,
   destroyDeal: PropTypes.func.isRequired,
 };
 
-export default AllDealsComponent;
+export default SingleBankDealRowComponent;
