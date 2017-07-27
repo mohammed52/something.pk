@@ -256,3 +256,4 @@ Ans: use map to split and insert <br/>
 --
 add 02 discounts from each bank so that all possible display combinations can be discovered
 --
+banks may 
