@@ -33,20 +33,57 @@ var ButtonToolbar = ReactBootstrap.ButtonToolbar
 var DropdownButton = ReactBootstrap.DropdownButton
 var MenuItem = ReactBootstrap.MenuItem
 
+var bootbox = require('bootbox');
+
 const ENTER_KEY_CODE = 13;
 
 class SingleBankDealRowComponent extends Component {
   constructor(props) {
     super(props)
-    // this.onBankSelected = this.onBankSelected.bind(this)
-    // this.onSave = this.onSave.bind(this);
-    // this.onKeyDown = this.onKeyDown.bind(this);
-    // this.onCardInputChange = this.onCardInputChange.bind(this)
+    this.deleteBank = this.deleteBank.bind(this)
+
     this.state = {
       bankDeals: [],
       bank: null
     };
   }
+
+  deleteDeal() {
+
+    const deleteQuoteMessage = "Do you want to delete bank? This cannot be undone."
+    bootbox.confirm({
+      title: "Delete Deal?",
+      message: deleteQuoteMessage,
+      buttons: {
+        cancel: {
+          label: '<i class="fa fa-times"></i> Cancel',
+          className: 'btn-default'
+        },
+        confirm: {
+          label: '<i class="fa fa-check"></i> Delete',
+          className: 'btn-danger'
+        }
+      },
+      callback: function(result) {
+        const MAPLOG = true
+        if (result === true) {
+
+          console.log("delete");
+          const deal = this.props.deal
+          const {destroyDeal} = this.props
+
+          destroyDeal(deal.id)
+
+        } else {
+          console.log("result", result)
+        }
+      }.bind(this)
+    });
+
+
+
+  }
+
 
   render() {
     const {bank, cardDeals, citiesStr, restaurant, serialNumber, deal} = this.props
@@ -97,7 +134,7 @@ class SingleBankDealRowComponent extends Component {
           Actions
         </td>
       </tr>
-      );
+    );
   }
 }
 

@@ -256,4 +256,17 @@ Ans: use map to split and insert <br/>
 --
 add 02 discounts from each bank so that all possible display combinations can be discovered
 --
-banks may 
+Automatic merge failed; fix conflicts and then commit the result:
+https://stackoverflow.com/a/3407920/1874356
+--
+vulcanJS has meteor at its core, its react + GraphQL
+--
+Bank AlFalah has seperate discount files for seperate cards, need to be able to add card discounts directly in the deals
+--
+Store card names and deals, both in the file
+--
+1. delete deal
+2. add new card discounts to the bank deals
+3. use restaurant name if the picture is not available
+4. see all bank card deals to see all possible display options
+--
