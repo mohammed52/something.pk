@@ -40,7 +40,7 @@ const ENTER_KEY_CODE = 13;
 class SingleBankDealRowComponent extends Component {
   constructor(props) {
     super(props)
-    this.deleteBank = this.deleteBank.bind(this)
+    this.deleteDeal = this.deleteDeal.bind(this)
 
     this.state = {
       bankDeals: [],
@@ -50,7 +50,7 @@ class SingleBankDealRowComponent extends Component {
 
   deleteDeal() {
 
-    const deleteQuoteMessage = "Do you want to delete bank? This cannot be undone."
+    const deleteQuoteMessage = "Do you want to delete deal? This cannot be undone."
     bootbox.confirm({
       title: "Delete Deal?",
       message: deleteQuoteMessage,
@@ -131,10 +131,12 @@ class SingleBankDealRowComponent extends Component {
           </div>
         </td>
         <td>
-          Actions
+          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o" aria-hidden="true" />
+          </button>
         </td>
       </tr>
-    );
+      );
   }
 }
 

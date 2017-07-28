@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 import DealComponent from '../components/DealComponent'
 import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
-import { getDeals } from '../actions/dealsActions';
+import { getDeals, createDeal, destroyDeal } from '../actions/dealsActions';
 
-
-import { createDeal, destroyDeal } from '../actions/dealsActions';
 
 var ReactBootstrap = require('react-bootstrap')
 var Button = ReactBootstrap.Button
@@ -50,7 +48,7 @@ class DealsContainer extends Component {
                        cities={this.props.cities}
                        deals={this.props.deals} />
       </div>
-    );
+      );
   }
 }
 
@@ -59,6 +57,8 @@ DealsContainer.propTypes = {
   deals: PropTypes.array.isRequired,
   restaurants: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired,
+
+  destroyDeal: PropTypes.func.isRequired,
 };
 
 

@@ -70,7 +70,8 @@ class AllDealsComponent extends Component {
                                         citiesStr={citiesStr}
                                         cardDeals={cardDeals}
                                         key={"trArrDeals" + i}
-                                        serialNumber={trArrDeals.length + 1} />
+                                        serialNumber={trArrDeals.length + 1}
+                                        destroyDeal={this.props.destroyDeal} />
           )
         }
       }
