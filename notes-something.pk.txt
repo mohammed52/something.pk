@@ -256,13 +256,4 @@ Ans: use map to split and insert <br/>
 --
 add 02 discounts from each bank so that all possible display combinations can be discovered
 --
-vulcanJS has meteor at its core, react + GraphQL
---
-ubl discount alliance has address details in cities, need to be able to add custom address in the deals
---
-bank alfalah has different pdf discount files for different card types
---
-need to have option to add delete card options in the deals - BAF
---
-mix and match random deals to verify how they will appear on the live website
---
+banks may 
