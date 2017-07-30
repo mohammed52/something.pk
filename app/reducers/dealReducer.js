@@ -36,7 +36,8 @@ const deals = (state = [],
     case types.CREATE_DEAL_FAILURE:
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_DEAL:
-      return state.filter(t => t.id !== action.id);
+      const updatedState = state.filter(t => t.id !== action.id)
+      return updatedState;
     default:
       return state;
   }

@@ -36,6 +36,20 @@ class DealsContainer extends Component {
     getDeals()
   }
 
+  componentWillUpdate() {
+    console.log("componentWillUpdate");
+  // const getCities = this.props.getCities
+  // const getRestaurants = this.props.getRestaurants
+  // const getDeals = this.props.getDeals
+  // getCities()
+  // getRestaurants()
+  // getDeals()
+  }
+
+  componentWillReceiveProps() {
+    console.log("componentWillReceiveProps");
+  }
+
   render() {
 
     return (
@@ -48,7 +62,7 @@ class DealsContainer extends Component {
                        cities={this.props.cities}
                        deals={this.props.deals} />
       </div>
-      );
+    );
   }
 }
 

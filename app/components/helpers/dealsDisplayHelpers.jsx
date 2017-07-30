@@ -49,6 +49,6 @@ export function getCardDeals(cardDeals, bank) {
       }
     }
   }
-  console.log("dealText", dealText);
+  // console.log("dealText", dealText);
   return dealText
 }

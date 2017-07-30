@@ -55,11 +55,11 @@ class DealComponent extends Component {
   }
 
   onBankSelected(eventKey, event) {
-    console.log("onBankSelected");
-    console.log("event", event);
-    console.log("eventKey", eventKey);
+    // console.log("onBankSelected");
+    // console.log("event", event);
+    // console.log("eventKey", eventKey);
     const banks = this.props.banks
-    console.log("banks[eventKey-1]", banks[eventKey - 1]);
+    // console.log("banks[eventKey-1]", banks[eventKey - 1]);
 
     this.setState({
       bank: banks[eventKey - 1]
@@ -74,9 +74,11 @@ class DealComponent extends Component {
 
     for (let i = 0; i < banks.length; i++) {
       const bank = banks[i]
-      console.log("bank.fullName", bank.fullName);
+      // console.log("bank.fullName", bank.fullName);
       arrMenuItemDropdown.push(
-        <MenuItem key={"arrMenuItemDropdown" + i} eventKey={i + 1} onSelect={this.onBankSelected}>
+        <MenuItem key={"arrMenuItemDropdown" + i}
+                  eventKey={i + 1}
+                  onSelect={this.onBankSelected}>
           {bank.fullName}
         </MenuItem>
 
@@ -88,7 +90,8 @@ class DealComponent extends Component {
       <div>
         deals component
         <ButtonToolbar>
-          <DropdownButton title={(this.state.bank === null ? "Select Bank" : this.state.bank.fullName)} id="dropdown-size-medium">
+          <DropdownButton title={(this.state.bank === null ? "Select Bank" : this.state.bank.fullName)}
+                          id="dropdown-size-medium">
             {arrMenuItemDropdown}
           </DropdownButton>
         </ButtonToolbar>
@@ -110,7 +113,7 @@ class DealComponent extends Component {
                            createDeal={this.props.createDeal}
                            destroyDeal={this.props.destroyDeal} />
       </div>
-      );
+    );
   }
 }
 

@@ -110,14 +110,14 @@ class AddNewDealComponent extends Component {
   onRestaurantSelected(eventKey, event) {
     console.log("onRestaurantSelected")
     const restaurants = this.props.restaurants
-    console.log(restaurants[eventKey - 1])
+    // console.log(restaurants[eventKey - 1])
     this.setState({
       restaurant: restaurants[eventKey - 1]
     })
   }
 
   onChangeStandardDeal(event) {
-    console.log("event.target.value", event.target.value);
+    // console.log("event.target.value", event.target.value);
     this.setState({
       standardDeal: event.target.value
     })
@@ -140,17 +140,17 @@ class AddNewDealComponent extends Component {
       this.state.restaurant !== null &&
       this.state.comments !== "" &&
       this.dealPresent()) {
-      console.log("deal is ok");
+      // console.log("deal is ok");
       return true
     } else {
-      console.log("no deal");
+      // console.log("no deal");
       return false
     }
   }
 
   onClickCreateDeal() {
     if (this.checkDealIdOk()) {
-      console.log("createDeal")
+      // console.log("createDeal")
       var citiesIds = []
       for (var i = 0; i < this.state.cities.length; i++) {
         if (this.state.cities[i]) {
@@ -169,21 +169,22 @@ class AddNewDealComponent extends Component {
         comments: this.state.comments
       };
       const {createDeal} = this.props
-      console.log("data", data);
+      // console.log("data", data);
       createDeal(data)
 
 
-    } else console.log("no deal created");
+    }
+    // else console.log("no deal created");
 
   }
 
   onChangeCheckBoxGroup(refName, event) {
-    console.log("onChangeCheckBoxGroup");
-    console.log("event.target.value", event.target.value);
-    console.log("event.target", event.target);
+    // console.log("onChangeCheckBoxGroup");
+    // console.log("event.target.value", event.target.value);
+    // console.log("event.target", event.target);
 
     const index = Number(refName.charAt(0))
-    console.log("index", index);
+    // console.log("index", index);
     var tmpCities = this.state.cities
 
     tmpCities[index] = !this.state.cities[index]
@@ -205,9 +206,11 @@ class AddNewDealComponent extends Component {
       const arrRestaurantsDropdown = []
       for (let i = 0; i < restaurants.length; i++) {
         const restaurant = restaurants[i]
-        console.log("restaurant.name", restaurant.name);
+        // console.log("restaurant.name", restaurant.name);
         arrRestaurantsDropdown.push(
-          <MenuItem key={"arrRestaurantsDropdown" + i} eventKey={i + 1} onSelect={this.onRestaurantSelected}>
+          <MenuItem key={"arrRestaurantsDropdown" + i}
+                    eventKey={i + 1}
+                    onSelect={this.onRestaurantSelected}>
             {restaurant.name}
           </MenuItem>
 
@@ -223,7 +226,9 @@ class AddNewDealComponent extends Component {
         arrCardsDealsInput.push(
           <div key={"arrCardsDealsInput" + i}>
             <strong>{cards[i] + " Deal: "}</strong>
-            <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')} defaultValue={this.state.defaultCardDeal} required="true" />
+            <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')}
+                   defaultValue={this.state.defaultCardDeal}
+                   required="true" />
             <br/>
             <br/>
           </div>
@@ -255,7 +260,8 @@ class AddNewDealComponent extends Component {
               </div>
               <div className="col-xs-6">
                 <strong>{"Select Restaurant: "}</strong>
-                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)} id="dropdown-size-medium">
+                <DropdownButton title={(this.state.restaurant === null ? "Select Restaurant" : this.state.restaurant.name)}
+                                id="dropdown-size-medium">
                   {arrRestaurantsDropdown}
                 </DropdownButton>
               </div>
@@ -268,7 +274,9 @@ class AddNewDealComponent extends Component {
               </div>
               <div className="col-xs-6">
                 <strong>{"Standard Deal: "}</strong>
-                <input onChange={this.onChangeStandardDeal} required="true" defaultValue="" />
+                <input onChange={this.onChangeStandardDeal}
+                       required="true"
+                       defaultValue="" />
                 <br/>
                 <br/>
                 <ControlLabel>
@@ -290,17 +298,21 @@ class AddNewDealComponent extends Component {
                 <ControlLabel>
                   {"Comments: "}
                 </ControlLabel>
-                <input onChange={this.handleChangeComments} defaultValue={this.state.comments} required="true" />
+                <input onChange={this.handleChangeComments}
+                       defaultValue={this.state.comments}
+                       required="true" />
                 <br/>
                 <br/>
-                <Button bsStyle="primary" onClick={this.onClickCreateDeal} disabled={!this.checkDealIdOk()}>
+                <Button bsStyle="primary"
+                        onClick={this.onClickCreateDeal}
+                        disabled={!this.checkDealIdOk()}>
                   Create Deal
                 </Button>
               </div>
             </div>
           </div>
         </div>
-        );
+      );
     }
   }
 }

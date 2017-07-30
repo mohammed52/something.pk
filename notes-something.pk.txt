@@ -270,3 +270,7 @@ Store card names and deals, both in the file
 3. use restaurant name if the picture is not available
 4. see all bank card deals to see all possible display options
 --
+Q: All bank deals not showing when you delete a single bank deal ?? even when you toggle banks ? deals not showing in the redux store after deal deleted ??
+Q: Incorrect deal from wrong bank is being deleted??
+Ans: different deal have same ids in the db?? bank name and restaurant not being used in the generation of deal ids, save proper ids in the db and it works
+--

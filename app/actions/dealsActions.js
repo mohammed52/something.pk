@@ -61,7 +61,7 @@ export function createDeal(deal) {
     if (MAPLOG) console.log("action createDeal");
     // If the text box is empty
 
-    const dealIdText = deal.restaurantName + deal.bankName + deal.comments
+    const dealIdText = deal.restaurantId + deal.bankId + deal.comments
 
     if (dealIdText.trim().length <= 0) return;
 
