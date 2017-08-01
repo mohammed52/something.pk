@@ -55,7 +55,10 @@ class AddNewDealComponent extends Component {
     const cities = this.props.cities
     const cardDeals = []
     for (var i = 0; i < cards.length; i++) {
-      cardDeals[i] = ""
+      cardDeals[i] = {
+        cardName: cards[i],
+        deal: ""
+      }
     }
 
     var citiesCheckedValues = []
@@ -98,7 +101,7 @@ class AddNewDealComponent extends Component {
     const bank = this.props.bank
     // console.log("bank.cards[index]", bank.cards[index]);
 
-    tmpArrCardDeals[index] = event.target.value
+    tmpArrCardDeals[index].deal = event.target.value
     // console.log("tmpArrCardDeals[index]", tmpArrCardDeals[index]);
 
     this.setState({
@@ -169,7 +172,7 @@ class AddNewDealComponent extends Component {
         comments: this.state.comments
       };
       const {createDeal} = this.props
-      // console.log("data", data);
+      console.log("data", data);
       createDeal(data)
 
 

@@ -131,12 +131,15 @@ class SingleBankDealRowComponent extends Component {
           </div>
         </td>
         <td>
-          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 
