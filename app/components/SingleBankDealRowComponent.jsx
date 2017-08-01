@@ -41,6 +41,7 @@ class SingleBankDealRowComponent extends Component {
   constructor(props) {
     super(props)
     this.deleteDeal = this.deleteDeal.bind(this)
+    this.updateDeal = this.updateDeal.bind(this)
 
     this.state = {
       bankDeals: [],
@@ -84,10 +85,25 @@ class SingleBankDealRowComponent extends Component {
 
   }
 
+  updateDeal() {
+    console.log("updateDeal");
+  }
+
 
   render() {
-    const {bank, cardDeals, citiesStr, restaurant, serialNumber, deal} = this.props
+    const {bank, citiesStr, restaurant, serialNumber, deal} = this.props
 
+    const arrDivCardDeals = []
+    const cardDeals = deal.cardDeals
+    for (var i = 0; i < cardDeals.length; i++) {
+      arrDivCardDeals.push(
+        <div>
+          {cardDeals[i].cardName + ": "}
+          <input type="text"
+                 defaultValue={cardDeals[i].deal} />
+        </div>
+      )
+    }
     return (
 
       <tr>
@@ -109,20 +125,13 @@ class SingleBankDealRowComponent extends Component {
             <strong>{restaurant.name}</strong>
             {cardDeals === "" ? <div></div> :
              <div>
-               {cardDeals.split('\n').map((item, key) => {
-                  return <span key={key}>{item}<br/></span>
-                })}
+               {arrDivCardDeals}
              </div>}
             <div>
-              {deal.generalDeal !== "" ?
-               
-               <div>
-                 <br/>
-                 {deal.generalDeal}
-               </div>
-               :
-               <div>
-               </div>}
+              <br/>
+              {"Standard Deal: "}
+              <input type="text"
+                     defaultValue={deal.generalDeal} />
             </div>
             <div>
               <br/>
@@ -135,6 +144,12 @@ class SingleBankDealRowComponent extends Component {
                   type="button"
                   onClick={this.deleteDeal}>
             <i className="fa fa-trash-o"
+               aria-hidden="true" />
+          </button>
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.updateDeal}>
+            <i className="fa fa-floppy-o"
                aria-hidden="true" />
           </button>
         </td>

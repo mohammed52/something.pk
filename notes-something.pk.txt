@@ -241,3 +241,5 @@ Q: All bank deals not showing when you delete a single bank deal ?? even when yo
 Q: Incorrect deal from wrong bank is being deleted??
 Ans: different deal have same ids in the db?? bank name and restaurant not being used in the generation of deal ids, save proper ids in the db and it works
 --
+you will change when you start generating revenues from the tech, so focus on creating and launching a commercial product
+--
