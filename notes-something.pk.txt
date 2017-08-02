@@ -250,3 +250,5 @@ Credit Cards in Pakistan: https://pakwired.com/list-credit-cards-offered-banks-p
 contact all local online publications at launch of something.pk:
 google : startup news pakistan , technology news pakistan, for list
 --
+heroku config, see all config vars
+--
