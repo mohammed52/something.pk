@@ -252,3 +252,5 @@ google : startup news pakistan , technology news pakistan, for list
 --
 heroku config, see all config vars
 --
+provide flags to V8 in your Procfile
+--
