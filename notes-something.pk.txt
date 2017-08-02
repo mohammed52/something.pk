@@ -241,5 +241,12 @@ Q: All bank deals not showing when you delete a single bank deal ?? even when yo
 Q: Incorrect deal from wrong bank is being deleted??
 Ans: different deal have same ids in the db?? bank name and restaurant not being used in the generation of deal ids, save proper ids in the db and it works
 --
-you will change when you start generating revenues from the tech, so focus on creating and launching a commercial product
+your attitude towards tech will change when you start generating revenues from the tech, so focus on creating and launching a commercial product
+--
+using mLab uri in your code enables you to directly use the live db in the cloud
+--
+Credit Cards in Pakistan: https://pakwired.com/list-credit-cards-offered-banks-pakistan/
+--
+contact all local online publications at launch of something.pk:
+google : startup news pakistan , technology news pakistan, for list
 --
