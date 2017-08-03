@@ -250,3 +250,6 @@ Credit Cards in Pakistan: https://pakwired.com/list-credit-cards-offered-banks-p
 contact all local online publications at launch of something.pk:
 google : startup news pakistan , technology news pakistan, for list
 --
+1. try if node inspector is any help
+2. upload the green field boiler plate project to heroku
+--
