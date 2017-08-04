@@ -254,3 +254,17 @@ heroku config, see all config vars
 --
 provide flags to V8 in your Procfile
 --
+stormy-meadow-13907 // old WORKING basic Heroku app
+--
+Clone Heroku Repo:
+git clone https://git.heroku.com/thawing-lake-20958.git
+--
+
+--
+SMD app: mongodb://heroku_1p903gx7:rtipp81bt3usttno0e89e1v1ng@ds027709.mlab.com:27709/heroku_1p903gx7
+THL app: mongodb://heroku_47kh9fld:hrbdtn3coro52vbrcho4i5ti3f@ds155411.mlab.com:55411/heroku_47kh9fld
+
+THL mLab: dmongodb://<dbuser>:<dbpassword>@ds155411.mlab.com:55411/heroku_47kh9fld
+--
+next effort has to be aroung gmail or chrome browser
+--
