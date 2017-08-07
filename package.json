@@ -80,6 +80,7 @@
     "file-loader": "^0.11.1",
     "font-awesome": "^4.7.0",
     "helmet": "^3.5.0",
+    "hoist-non-react-statics": "^2.2.1",
     "jquery": "^2.2.4",
     "json-loader": "^0.5.4",
     "lodash": "^4.16.2",

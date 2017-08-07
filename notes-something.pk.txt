@@ -268,3 +268,7 @@ THL mLab: dmongodb://<dbuser>:<dbpassword>@ds155411.mlab.com:55411/heroku_47kh9f
 --
 next effort has to be aroung gmail or chrome browser
 --
+this project uses yarn!!
+--
+strange, node_modules folder dissapeared
+--
