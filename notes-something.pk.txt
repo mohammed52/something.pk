@@ -272,3 +272,10 @@ this project uses yarn!!
 --
 strange, node_modules folder dissapeared
 --
+how to push on Heroku-3:
+1. change api end point in config->app.js->https://thawing-lake-20958.herokuapp.com
+2. change MONGODB_URI: server->db->mongo->constants-> ...
+3. git push heroku master
+4. heroku ps:scale web=1
+5. heroku open
+--
