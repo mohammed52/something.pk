@@ -102,7 +102,6 @@ class SingleBankDealRowComponent extends Component {
 
   }
 
-
   render() {
     const {bank, citiesStr, restaurant, serialNumber, deal} = this.props
 
