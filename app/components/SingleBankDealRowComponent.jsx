@@ -42,10 +42,10 @@ class SingleBankDealRowComponent extends Component {
     super(props)
     this.deleteDeal = this.deleteDeal.bind(this)
     this.updateDeal = this.updateDeal.bind(this)
+    this.onChangeCardDeal = this.onChangeCardDeal.bind(this)
 
     this.state = {
-      bankDeals: [],
-      bank: null
+      bankCardDeals: this.props.deal.cardDeals
     };
   }
 
@@ -89,6 +89,19 @@ class SingleBankDealRowComponent extends Component {
     console.log("updateDeal");
   }
 
+  onChangeCardDeal(refName, event) {
+    //refName is the card name starting with index
+    console.log("cardName", refName);
+    console.log("event.target.value", event.target.value);
+    var cardDeals = this.state.bankCardDeals
+    const index = Number(refName.charAt(0))
+    cardDeals[index].deal = event.target.value
+    this.setState({
+      bankCardDeals: cardDeals
+    })
+
+  }
+
 
   render() {
     const {bank, citiesStr, restaurant, serialNumber, deal} = this.props
@@ -97,10 +110,9 @@ class SingleBankDealRowComponent extends Component {
     const cardDeals = deal.cardDeals
     for (var i = 0; i < cardDeals.length; i++) {
       arrDivCardDeals.push(
-        <div>
+        <div key={"arrDivCardDeals" + i}>
           {cardDeals[i].cardName + ": "}
-          <input type="text"
-                 defaultValue={cardDeals[i].deal} />
+          <input type="text" defaultValue={cardDeals[i].deal} onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
         </div>
       )
     }
@@ -130,8 +142,7 @@ class SingleBankDealRowComponent extends Component {
             <div>
               <br/>
               {"Standard Deal: "}
-              <input type="text"
-                     defaultValue={deal.generalDeal} />
+              <input type="text" defaultValue={deal.generalDeal} onChange={this.onChangeCardDeal} />
             </div>
             <div>
               <br/>
@@ -140,21 +151,15 @@ class SingleBankDealRowComponent extends Component {
           </div>
         </td>
         <td>
-          <button className="btn btn-link"
-                  type="button"
-                  onClick={this.deleteDeal}>
-            <i className="fa fa-trash-o"
-               aria-hidden="true" />
+          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o" aria-hidden="true" />
           </button>
-          <button className="btn btn-link"
-                  type="button"
-                  onClick={this.updateDeal}>
-            <i className="fa fa-floppy-o"
-               aria-hidden="true" />
+          <button className="btn btn-link" type="button" onClick={this.updateDeal}>
+            <i className="fa fa-floppy-o" aria-hidden="true" />
           </button>
         </td>
       </tr>
-    );
+      );
   }
 }
 
