@@ -29,6 +29,7 @@ var Radio = ReactBootstrap.Radio;
 var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
+var Checkbox = ReactBootstrap.Checkbox
 var ButtonToolbar = ReactBootstrap.ButtonToolbar
 var DropdownButton = ReactBootstrap.DropdownButton
 var MenuItem = ReactBootstrap.MenuItem
@@ -43,9 +44,12 @@ class SingleBankDealRowComponent extends Component {
     this.deleteDeal = this.deleteDeal.bind(this)
     this.updateDeal = this.updateDeal.bind(this)
     this.onChangeCardDeal = this.onChangeCardDeal.bind(this)
+    this.onChangeGeneralDeal = this.onChangeGeneralDeal.bind(this)
+    this.onChangeCheckBoxGroup = this.onChangeCheckBoxGroup.bind(this)
 
     this.state = {
-      bankCardDeals: this.props.deal.cardDeals
+      bankCardDeals: this.props.deal.cardDeals,
+      generalDeal: this.props.deal.generalDeal
     };
   }
 
@@ -87,19 +91,33 @@ class SingleBankDealRowComponent extends Component {
 
   updateDeal() {
     console.log("updateDeal");
+    var tmpDeal = this.props.deal
+    tmpDeal.cardDeals = this.state.bankCardDeals
+    tmpDeal.generalDeal = this.state.generalDeal
+    console.log("tmpDeal", tmpDeal);
+  }
+
+  onChangeCheckBoxGroup(refName, event) {
+  console.log("onChangeCheckBoxGroup");
   }
 
   onChangeCardDeal(refName, event) {
     //refName is the card name starting with index
-    console.log("cardName", refName);
-    console.log("event.target.value", event.target.value);
-    var cardDeals = this.state.bankCardDeals
-    const index = Number(refName.charAt(0))
-    cardDeals[index].deal = event.target.value
-    this.setState({
-      bankCardDeals: cardDeals
-    })
+    // console.log("cardName", refName);
+// console.log("event.target.value", event.target.value);
 
+var cardDeals = this.state.bankCardDeals
+const index = Number(refName.charAt(0))
+cardDeals[index].deal = event.target.value
+this.setState({
+  bankCardDeals: cardDeals
+})
+  }
+
+  onChangeGeneralDeal(event) {
+    this.setState({
+      generalDeal: event.target.value
+    })
   }
 
   render() {
@@ -111,10 +129,27 @@ class SingleBankDealRowComponent extends Component {
       arrDivCardDeals.push(
         <div key={"arrDivCardDeals" + i}>
           {cardDeals[i].cardName + ": "}
-          <input type="text" defaultValue={cardDeals[i].deal} onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
+          <input type="text"
+                 defaultValue={cardDeals[i].deal}
+                 onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
         </div>
       )
     }
+
+          var arrCitiesCheckBoxes = []
+      for (var j = 0; j < this.props.deal.cities.length; j++) {
+        arrCitiesCheckBoxes.push(
+          <Checkbox inline
+                    key={"arrCitiesCheckBoxes" + j}
+                    onChange={this.onChangeCheckBoxGroup.bind(this, j + 'refCity')}
+                    // checked={this.state.cities[j]}
+                    checked={true}
+                    >
+            {this.props.deal.cities[j].name}
+          </Checkbox>
+        )
+      }
+
     return (
 
       <tr>
@@ -141,24 +176,33 @@ class SingleBankDealRowComponent extends Component {
             <div>
               <br/>
               {"Standard Deal: "}
-              <input type="text" defaultValue={deal.generalDeal} onChange={this.onChangeCardDeal} />
+              <input type="text"
+                     defaultValue={deal.generalDeal}
+                     onChange={this.onChangeGeneralDeal} />
             </div>
             <div>
               <br/>
               {citiesStr}
             </div>
+            <div>{arrCitiesCheckBoxes}</div>
           </div>
         </td>
         <td>
-          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
           </button>
-          <button className="btn btn-link" type="button" onClick={this.updateDeal}>
-            <i className="fa fa-floppy-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.updateDeal}>
+            <i className="fa fa-floppy-o"
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 

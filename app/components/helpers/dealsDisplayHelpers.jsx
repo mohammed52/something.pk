@@ -13,23 +13,16 @@ export function getRestaurant(restaurantId, allRestaurants) {
   return retRestaurant
 }
 
-export function getCities(citiesIdArr, allCities) {
-  // console.log("citiesIdArr", citiesIdArr);
+export function getCities(citiesArr, allCities) {
+  // console.log("citiesArr", citiesArr);
   // console.log("allCities", allCities);
   var citiesStr = ""
-  for (var i = 0; i < citiesIdArr.length; i++) {
-    if (citiesIdArr[i] !== null) {
-      for (var j = 0; j < allCities.length; j++) {
-        if (allCities[j]._id == citiesIdArr[i]) {
-          if (citiesStr === "") {
-
-            citiesStr += allCities[j].name
-          } else
-            citiesStr += "-" + allCities[j].name
-
-          break
-        }
-      }
+  for (var i = 0; i < citiesArr.length; i++) {
+    if (citiesArr[i] !== null) {
+      if (i === 0)
+        citiesStr += citiesArr[i]
+      else
+        citiesStr = citiesStr + "-" + citiesArr[i]
     }
   }
   // console.log("citiesStr", citiesStr);

@@ -49,6 +49,7 @@ class AddNewDealComponent extends Component {
     this.dealPresent = this.dealPresent.bind(this)
     this.checkDealIdOk = this.checkDealIdOk.bind(this)
     this.onChangeCheckBoxGroup = this.onChangeCheckBoxGroup.bind(this)
+    this.handleChangeCustomLocation = this.handleChangeCustomLocation.bind(this)
 
     var selectedDate = new Date().toISOString();
     const cards = this.props.bank.cards
@@ -65,7 +66,7 @@ class AddNewDealComponent extends Component {
     console.log("cities", cities);
 
     for (var k = 0; k < cities.length; k++) {
-      citiesCheckedValues[k] = true
+      citiesCheckedValues[k] = false
     }
 
     this.state = {
@@ -75,7 +76,8 @@ class AddNewDealComponent extends Component {
       cardDeals: cardDeals,
       selectedDate: selectedDate,
       cities: citiesCheckedValues,
-      comments: "def_comments_1"
+      comments: "def_comments_1",
+      customLocation: "new location"
     };
   }
 
@@ -90,6 +92,12 @@ class AddNewDealComponent extends Component {
       selectedDate, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
       formattedValue // Formatted String, ex: "11/19/2016" 
     });
+  }
+
+  handleChangeCustomLocation(event) {
+    this.setState({
+      customLocation: event.target.value
+    })
   }
 
   onChangeCardDeal(refName, event) {
@@ -154,20 +162,25 @@ class AddNewDealComponent extends Component {
   onClickCreateDeal() {
     if (this.checkDealIdOk()) {
       // console.log("createDeal")
-      var citiesIds = []
+      var cities = []
       for (var i = 0; i < this.state.cities.length; i++) {
         if (this.state.cities[i]) {
-          citiesIds[i] = this.props.cities[i]._id
+          cities[i] = this.props.cities[i].name
         } else {
-          citiesIds[i] = null
+          cities[i] = null
         }
       }
+
+      if (this.state.customLocation != "") {
+        cities.push(this.state.customLocation)
+      }
+
       const data = {
         restaurantId: this.state.restaurant._id,
         bankId: this.props.bank._id,
         cardDeals: this.state.cardDeals,
         generalDeal: this.state.standardDeal,
-        cities: citiesIds,
+        cities: cities,
         expiry: this.state.selectedDate,
         comments: this.state.comments
       };
@@ -297,6 +310,12 @@ class AddNewDealComponent extends Component {
                 <FormGroup>
                   {arrCitiesCheckBoxes}
                 </FormGroup>
+                <br/>
+                <ControlLabel>
+                  {"Add Custom Location: "}
+                </ControlLabel>
+                <input onChange={this.handleChangeCustomLocation}
+                       defaultValue={this.state.customLocation} />
                 <br/>
                 <ControlLabel>
                   {"Comments: "}
