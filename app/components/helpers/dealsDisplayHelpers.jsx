@@ -19,7 +19,7 @@ export function getCities(citiesArr, allCities) {
   var citiesStr = ""
   for (var i = 0; i < citiesArr.length; i++) {
     if (citiesArr[i] !== null) {
-      if (i === 0)
+      if (citiesStr === "")
         citiesStr += citiesArr[i]
       else
         citiesStr = citiesStr + "-" + citiesArr[i]
