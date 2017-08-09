@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import DealComponent from '../components/DealComponent'
 import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
-import { getDeals, createDeal, destroyDeal } from '../actions/dealsActions';
+import { getDeals, createDeal, destroyDeal, updateDeals } from '../actions/dealsActions';
 
 
 var ReactBootstrap = require('react-bootstrap')
@@ -57,6 +57,8 @@ class DealsContainer extends Component {
         deals container
         <DealComponent createDeal={this.props.createDeal}
                        destroyDeal={this.props.destroyDeal}
+                       updateDeals={this.props.updateDeals}
+                       
                        banks={this.props.banks}
                        restaurants={this.props.restaurants}
                        cities={this.props.cities}
@@ -73,6 +75,7 @@ DealsContainer.propTypes = {
   cities: PropTypes.array.isRequired,
 
   destroyDeal: PropTypes.func.isRequired,
+  updateDeals: PropTypes.func.isRequired
 };
 
 
@@ -91,5 +94,6 @@ export default connect(mapStateToProps, {
   getCities,
   getDeals,
   createDeal,
-  destroyDeal
+  destroyDeal,
+  updateDeals
 })(DealsContainer);

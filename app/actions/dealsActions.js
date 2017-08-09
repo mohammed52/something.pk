@@ -11,6 +11,14 @@ function destroy(id) {
   };
 }
 
+function updateDeal(newDeal) {
+  return {
+    type: types.UPDATE_DEAL,
+    id: newDeal.id,
+    newDeal
+  }
+}
+
 function createDealRequest(data) {
   const MAPLOG = true;
   if (MAPLOG) console.log("createDealRequest");
@@ -141,4 +149,22 @@ export function getDeals() {
       }
     );
   }
+}
+
+export function updateDeals(newDeal) {
+  return (dispatch) => {
+    return dealsService().updateDeal({
+      id: newDeal.id,
+      data: {
+        isUpdateDeal: true,
+        deal: newDeal
+      }
+    })
+      .then(() => dispatch(updateDeal(newDeal)))
+      .catch(() => dispatch(createDealFailure({
+        id: newDeal.id,
+        error: 'Oops! Something went wrong and we couldn\'t save the deal'
+      })));
+  };
+
 }

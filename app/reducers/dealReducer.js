@@ -17,6 +17,15 @@ const deal = (state = {},
         expiry: action.expiry,
         comments: action.comments
       };
+    case types.UPDATE_DEAL:
+      if (state.id === action.id) {
+        return {
+          ...state,
+          cardDeals: action.newDeal.cardDeals,
+          expiry: action.newDeal.expiry
+        };
+      }
+      return state;
     case types.default:
     default:
       return state;
@@ -38,6 +47,8 @@ const deals = (state = [],
     case types.DESTROY_DEAL:
       const updatedState = state.filter(t => t.id !== action.id)
       return updatedState;
+    case types.UPDATE_DEAL:
+      return state.map(t => deal(t, action));
     default:
       return state;
   }

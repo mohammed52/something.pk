@@ -71,7 +71,8 @@ class AllDealsComponent extends Component {
                                         cardDeals={cardDeals}
                                         key={"trArrDeals" + i}
                                         serialNumber={trArrDeals.length + 1}
-                                        destroyDeal={this.props.destroyDeal} />
+                                        destroyDeal={this.props.destroyDeal}
+                                        updateDeals={this.props.updateDeals} />
           )
         }
       }
@@ -110,7 +111,7 @@ class AllDealsComponent extends Component {
            Select Bank
          </div>}
       </div>
-      );
+    );
   }
 }
 

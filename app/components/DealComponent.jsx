@@ -111,7 +111,8 @@ class DealComponent extends Component {
                            restaurants={restaurants}
                            bank={this.state.bank}
                            createDeal={this.props.createDeal}
-                           destroyDeal={this.props.destroyDeal} />
+                           destroyDeal={this.props.destroyDeal}
+                           updateDeals={this.props.updateDeals} />
       </div>
     );
   }
@@ -125,6 +126,7 @@ DealComponent.propTypes = {
 
   createDeal: PropTypes.func.isRequired,
   destroyDeal: PropTypes.func.isRequired,
+  updateDeals: PropTypes.func.isRequired
 };
 
 export default DealComponent;

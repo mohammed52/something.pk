@@ -37,26 +37,15 @@ export function update(req, res) {
   const query = {
     id: req.params.id
   };
-  const isIncrement = req.body.isIncrement;
-  const isUpdateCards = req.body.isUpdateCards;
-  const isFull = req.body.isFull;
-  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+  const isUpdateDeal = req.body.isUpdateDeal;
+  const omitKeys = ['id', '_id', '_v', 'isUpdateDeal'];
   const data = _.omit(req.body, omitKeys);
 
-  if (isFull) {
-    Deal.findOneAndUpdate(query, data, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
-
-      return res.status(200).send('Updated successfully');
-    });
-  } else if (isUpdateCards) {
-    debugger
+  if (isUpdateDeal) {
     Deal.findOneAndUpdate(query, {
       $set: {
-        cards: data.cards
+        cardDeals: data.newDeal.cardDeals,
+        expiry: data.newDeal.expiry
       }
     }, (err) => {
       if (err) {

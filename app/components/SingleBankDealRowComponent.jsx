@@ -34,6 +34,8 @@ var ButtonToolbar = ReactBootstrap.ButtonToolbar
 var DropdownButton = ReactBootstrap.DropdownButton
 var MenuItem = ReactBootstrap.MenuItem
 
+var DatePicker = require("react-bootstrap-date-picker");
+
 var bootbox = require('bootbox');
 
 const ENTER_KEY_CODE = 13;
@@ -42,14 +44,16 @@ class SingleBankDealRowComponent extends Component {
   constructor(props) {
     super(props)
     this.deleteDeal = this.deleteDeal.bind(this)
-    this.updateDeal = this.updateDeal.bind(this)
+    this.updateDeals = this.updateDeals.bind(this)
     this.onChangeCardDeal = this.onChangeCardDeal.bind(this)
     this.onChangeGeneralDeal = this.onChangeGeneralDeal.bind(this)
     this.onChangeCheckBoxGroup = this.onChangeCheckBoxGroup.bind(this)
+    this.handleChangeExpiry = this.handleChangeExpiry.bind(this)
 
     this.state = {
       bankCardDeals: this.props.deal.cardDeals,
-      generalDeal: this.props.deal.generalDeal
+      generalDeal: this.props.deal.generalDeal,
+      expiry: this.props.deal.expiry
     };
   }
 
@@ -89,12 +93,18 @@ class SingleBankDealRowComponent extends Component {
 
   }
 
-  updateDeal() {
-    console.log("updateDeal");
+  updateDeals() {
+    console.log("updateDeals");
     var tmpDeal = this.props.deal
     tmpDeal.cardDeals = this.state.bankCardDeals
     tmpDeal.generalDeal = this.state.generalDeal
+    tmpDeal.expiry = this.state.expiry
     console.log("tmpDeal", tmpDeal);
+
+    const updateDeals = this.props.updateDeals
+    updateDeals(tmpDeal)
+
+
   }
 
   onChangeCheckBoxGroup(refName, event) {
@@ -120,6 +130,14 @@ class SingleBankDealRowComponent extends Component {
     })
   }
 
+  handleChangeExpiry(selectedDate, formattedValue) {
+    this.setState({
+      expiry: selectedDate, // ISO String, ex: "2016-11-19T12:00:00.000Z" 
+      formattedValue // Formatted String, ex: "11/19/2016" 
+    });
+
+  }
+
   render() {
     const {bank, citiesStr, restaurant, serialNumber, deal} = this.props
 
@@ -129,7 +147,9 @@ class SingleBankDealRowComponent extends Component {
       arrDivCardDeals.push(
         <div key={"arrDivCardDeals" + i}>
           {cardDeals[i].cardName + ": "}
-          <input type="text" defaultValue={cardDeals[i].deal} onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
+          <input type="text"
+                 defaultValue={cardDeals[i].deal}
+                 onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
         </div>
       )
     }
@@ -141,18 +161,41 @@ class SingleBankDealRowComponent extends Component {
           {serialNumber}
         </td>
         <td>
-          <div>
-            {typeof restaurant.logoUrl === "undefined" ? <div>
-                                                           no-image
-                                                         </div> : <img src={restaurant.logoUrl}
-                                                                       alt={restaurant.name}
-                                                                       height="50"
-                                                                       width="50" />}
+          <div className="row">
+            <div className="col-xs-6">
+              <div>
+                {typeof restaurant.logoUrl === "undefined" ? <div>
+                                                               no-image
+                                                             </div> : <img src={restaurant.logoUrl}
+                                                                           alt={restaurant.name}
+                                                                           height="50"
+                                                                           width="50" />}
+              </div>
+            </div>
+            <div className="col-xs-6">
+              <div>
+                <strong>{restaurant.name}</strong>
+                <br/>
+                {citiesStr}
+              </div>
+            </div>
           </div>
+          <div className="row">
+            <div className="col-xs-6">
+              <ControlLabel>
+                {"Deal Expiry: "}
+              </ControlLabel>
+            </div>
+            <div className="col-xs-6">
+            </div>
+          </div>
+          <span><DatePicker id="example-datepicker"
+                            value={this.state.expiry}
+                            onChange={this.handleChangeExpiry}
+                            width="200px"/></span>
         </td>
         <td>
           <div>
-            <strong>{restaurant.name}</strong>
             {cardDeals === "" ? <div></div> :
              <div>
                {arrDivCardDeals}
@@ -160,27 +203,31 @@ class SingleBankDealRowComponent extends Component {
             <div>
               <br/>
               {"Standard Deal: "}
-              <input type="text" defaultValue={deal.generalDeal} onChange={this.onChangeGeneralDeal} />
+              <input type="text"
+                     defaultValue={deal.generalDeal}
+                     onChange={this.onChangeGeneralDeal} />
             </div>
             <div>
               <br/>
-              {citiesStr}
-            </div>
-            <div>
-              {"Deal Expiry: "}
             </div>
           </div>
         </td>
         <td>
-          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
           </button>
-          <button className="btn btn-link" type="button" onClick={this.updateDeal}>
-            <i className="fa fa-floppy-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.updateDeals}>
+            <i className="fa fa-floppy-o"
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 
@@ -193,6 +240,7 @@ SingleBankDealRowComponent.propTypes = {
   serialNumber: PropTypes.number.isRequired,
 
   destroyDeal: PropTypes.func.isRequired,
+  updateDeals: PropTypes.func.isRequired
 };
 
 export default SingleBankDealRowComponent;
