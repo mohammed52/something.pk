@@ -44,8 +44,9 @@ export function update(req, res) {
   if (isUpdateDeal) {
     Deal.findOneAndUpdate(query, {
       $set: {
-        cardDeals: data.newDeal.cardDeals,
-        expiry: data.newDeal.expiry
+        cardDeals: data.newCardDeals,
+        generalDeal: data.newGeneralDeal,
+        expiry: data.newExpiry
       }
     }, (err) => {
       if (err) {

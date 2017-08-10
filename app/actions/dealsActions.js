@@ -11,11 +11,11 @@ function destroy(id) {
   };
 }
 
-function updateDeal(newDeal) {
+function updateDeal(id, data) {
   return {
     type: types.UPDATE_DEAL,
-    id: newDeal.id,
-    newDeal
+    id,
+    data
   }
 }
 
@@ -151,20 +151,35 @@ export function getDeals() {
   }
 }
 
-export function updateDeals(newDeal) {
+export function updateDeals(oldDeal, newCardDeals, newGeneralDeal, newExpiry) {
   return (dispatch) => {
     return dealsService().updateDeal({
-      id: newDeal.id,
+      id: oldDeal.id,
       data: {
         isUpdateDeal: true,
-        deal: newDeal
+        newCardDeals,
+        newGeneralDeal,
+        newExpiry
       }
     })
-      .then(() => dispatch(updateDeal(newDeal)))
-      .catch(() => dispatch(createDealFailure({
-        id: newDeal.id,
-        error: 'Oops! Something went wrong and we couldn\'t save the deal'
-      })));
+      .then(() => {
+        console.log("deal updated in db");
+        dispatch(updateDeal(oldDeal.id,
+          {
+            newCardDeals,
+            newGeneralDeal,
+            newExpiry
+          }
+        ))
+      })
+      .catch(() => {
+        console.log("update deal failed");
+        dispatch(createDealFailure({
+          id: oldDeal.id,
+          error: 'Oops! Something went wrong and we couldn\'t save the deal'
+        }))
+      }
+    );
   };
 
 }

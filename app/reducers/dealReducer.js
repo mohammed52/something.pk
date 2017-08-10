@@ -21,8 +21,9 @@ const deal = (state = {},
       if (state.id === action.id) {
         return {
           ...state,
-          cardDeals: action.newDeal.cardDeals,
-          expiry: action.newDeal.expiry
+          cardDeals: action.data.newCardDeals,
+          generalDeal: action.data.newGeneralDeal,
+          expiry: action.data.newExpiry
         };
       }
       return state;
