@@ -49,11 +49,13 @@ class SingleBankDealRowComponent extends Component {
     this.onChangeGeneralDeal = this.onChangeGeneralDeal.bind(this)
     this.onChangeCheckBoxGroup = this.onChangeCheckBoxGroup.bind(this)
     this.handleChangeExpiry = this.handleChangeExpiry.bind(this)
+    this.onChangeDisabledCheckbox = this.onChangeDisabledCheckbox.bind(this)
 
     this.state = {
       bankCardDeals: this.props.deal.cardDeals,
       generalDeal: this.props.deal.generalDeal,
-      expiry: this.props.deal.expiry
+      expiry: this.props.deal.expiry,
+      disabled: this.props.deal.disabled
     };
   }
 
@@ -102,7 +104,7 @@ class SingleBankDealRowComponent extends Component {
     console.log("tmpDeal", tmpDeal);
 
     const updateDeals = this.props.updateDeals
-    updateDeals(this.props.deal, this.state.bankCardDeals, this.state.generalDeal, this.state.expiry)
+    updateDeals(this.props.deal, this.state.bankCardDeals, this.state.generalDeal, this.state.expiry, this.state.disabled)
 
 
   }
@@ -138,6 +140,13 @@ class SingleBankDealRowComponent extends Component {
 
   }
 
+  onChangeDisabledCheckbox(event) {
+    console.log("onChangeDisabledCheckbox");
+    this.setState({
+      disabled: !this.state.disabled
+    })
+  }
+
   render() {
     const {bank, citiesStr, restaurant, serialNumber, deal} = this.props
 
@@ -147,7 +156,9 @@ class SingleBankDealRowComponent extends Component {
       arrDivCardDeals.push(
         <div key={"arrDivCardDeals" + i}>
           {cardDeals[i].cardName + ": "}
-          <input type="text" defaultValue={cardDeals[i].deal} onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
+          <input type="text"
+                 defaultValue={cardDeals[i].deal}
+                 onChange={this.onChangeCardDeal.bind(this, i + cardDeals[i].cardName)} />
         </div>
       )
     }
@@ -201,7 +212,9 @@ class SingleBankDealRowComponent extends Component {
             <div>
               <br/>
               {"Standard Deal: "}
-              <input type="text" defaultValue={deal.generalDeal} onChange={this.onChangeGeneralDeal} />
+              <input type="text"
+                     defaultValue={deal.generalDeal}
+                     onChange={this.onChangeGeneralDeal} />
             </div>
             <div>
               <br/>
@@ -209,15 +222,27 @@ class SingleBankDealRowComponent extends Component {
           </div>
         </td>
         <td>
-          <button className="btn btn-link" type="button" onClick={this.deleteDeal}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
+          <Checkbox inline
+                    onChange={this.onChangeDisabledCheckbox}
+                    checked={this.state.disabled}>
+          </Checkbox>
+        </td>
+        <td>
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.deleteDeal}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
           </button>
-          <button className="btn btn-link" type="button" onClick={this.updateDeals}>
-            <i className="fa fa-floppy-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.updateDeals}>
+            <i className="fa fa-floppy-o"
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 

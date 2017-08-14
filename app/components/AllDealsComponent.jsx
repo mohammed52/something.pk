@@ -108,6 +108,9 @@ class AllDealsComponent extends Component {
                      Deals
                    </th>
                    <th>
+                     Disabled
+                   </th>
+                   <th>
                      Actions
                    </th>
                  </tr>

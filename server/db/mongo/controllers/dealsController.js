@@ -46,7 +46,8 @@ export function update(req, res) {
       $set: {
         cardDeals: data.newCardDeals,
         generalDeal: data.newGeneralDeal,
-        expiry: data.newExpiry
+        expiry: data.newExpiry,
+        disabled: data.newDisabled
       }
     }, (err) => {
       if (err) {

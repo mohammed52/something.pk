@@ -31,7 +31,8 @@ function createDealRequest(data) {
     cities: data.cities,
     generalDeal: data.generalDeal,
     expiry: data.expiry,
-    comments: data.comments
+    comments: data.comments,
+    disabled: data.disabled
   };
 }
 
@@ -86,6 +87,7 @@ export function createDeal(deal) {
       generalDeal: deal.generalDeal,
       expiry: deal.expiry,
       comments: deal.comments,
+      disabled: deal.disabled
 
     };
     if (MAPLOG) console.log("data", data);
@@ -151,7 +153,7 @@ export function getDeals() {
   }
 }
 
-export function updateDeals(oldDeal, newCardDeals, newGeneralDeal, newExpiry) {
+export function updateDeals(oldDeal, newCardDeals, newGeneralDeal, newExpiry, newDisabled) {
   return (dispatch) => {
     return dealsService().updateDeal({
       id: oldDeal.id,
@@ -159,7 +161,8 @@ export function updateDeals(oldDeal, newCardDeals, newGeneralDeal, newExpiry) {
         isUpdateDeal: true,
         newCardDeals,
         newGeneralDeal,
-        newExpiry
+        newExpiry,
+        newDisabled
       }
     })
       .then(() => {
@@ -168,7 +171,8 @@ export function updateDeals(oldDeal, newCardDeals, newGeneralDeal, newExpiry) {
           {
             newCardDeals,
             newGeneralDeal,
-            newExpiry
+            newExpiry,
+            newDisabled
           }
         ))
       })

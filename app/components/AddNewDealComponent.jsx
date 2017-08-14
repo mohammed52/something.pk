@@ -226,7 +226,8 @@ class AddNewDealComponent extends Component {
         generalDeal: this.state.standardDeal,
         cities: cities,
         expiry: this.state.selectedDate,
-        comments: this.state.comments
+        comments: this.state.comments,
+        disabled: false
       };
       const {createDeal} = this.props
       console.log("data", data);

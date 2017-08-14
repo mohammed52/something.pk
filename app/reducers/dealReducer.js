@@ -15,7 +15,8 @@ const deal = (state = {},
         generalDeal: action.generalDeal,
         cities: action.cities,
         expiry: action.expiry,
-        comments: action.comments
+        comments: action.comments,
+        disabled: action.disabled
       };
     case types.UPDATE_DEAL:
       if (state.id === action.id) {
@@ -23,7 +24,8 @@ const deal = (state = {},
           ...state,
           cardDeals: action.data.newCardDeals,
           generalDeal: action.data.newGeneralDeal,
-          expiry: action.data.newExpiry
+          expiry: action.data.newExpiry,
+          disabled: action.data.newDisabled
         };
       }
       return state;

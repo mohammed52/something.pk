@@ -139,8 +139,15 @@ class AddBankComponent extends Component {
 
     const {children} = this.props;
 
-    const allBanks = this.props.banks;
+    const allBanks = this.props.banks.slice();
+
+// allBanks.sort((a, b) => {
+//   return a.fullName > b.fullName
+// })
+
+
     let trArrBanks = []
+
     for (var i = 0; i < allBanks.length; i++) {
 
       const tmpBank = allBanks[i]

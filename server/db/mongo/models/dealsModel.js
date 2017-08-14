@@ -14,7 +14,8 @@ const DealSchema = new mongoose.Schema({
   cities: Array,
   generalDeal: String,
   expiry: String,
-  comments: String
+  comments: String,
+  disabled: Boolean
 });
 
 // Compiles the schema into a model, opening (or creating, if
