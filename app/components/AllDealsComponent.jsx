@@ -51,11 +51,21 @@ class AllDealsComponent extends Component {
 
   render() {
 
-    const {bank, deals, restaurants, cities} = this.props
+    const {bank, restaurants, cities} = this.props
+
+    const deals = this.props.deals.slice()
+
+    deals.sort((a, b) => {
+      const restaurantA = getRestaurant(a.restaurantId, restaurants)
+      const restaurantB = getRestaurant(b.restaurantId, restaurants)
+
+      const retVal = restaurantA.name > restaurantB.name
+
+      return retVal
+    })
+
 
     var trArrDeals = []
-
-
 
     if (bank !== null) {
       for (var i = 0; i < deals.length; i++) {

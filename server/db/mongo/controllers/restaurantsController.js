@@ -5,7 +5,7 @@ import Restaurants from '../models/restaurantsModel';
  * List
  */
 export function all(req, res) {
-  Restaurants.find({}).exec((err, restaurants) => {
+  Restaurants.find({}).sort('name').exec((err, restaurants) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');

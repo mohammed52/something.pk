@@ -5,7 +5,7 @@ import Bank from '../models/banksModel';
  * List
  */
 export function all(req, res) {
-  Bank.find({}).exec((err, banks) => {
+  Bank.find({}).sort('fullName').exec((err, banks) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');

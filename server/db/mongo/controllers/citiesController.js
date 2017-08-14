@@ -6,7 +6,7 @@ import City from '../models/citiesModel';
  */
 export function all(req, res) {
   console.log("cities all");
-  City.find({}).exec((err, cities) => {
+  City.find({}).sort('name').exec((err, cities) => {
     if (err) {
       console.log('Error in first query');
       return res.status(500).send('Something went wrong getting the data');

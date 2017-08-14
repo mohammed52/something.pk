@@ -36,6 +36,7 @@ var MenuItem = ReactBootstrap.MenuItem
 var DatePicker = require("react-bootstrap-date-picker");
 
 const ENTER_KEY_CODE = 13;
+const MAX_CARDS = 8
 
 class AddNewDealComponent extends Component {
   constructor(props) {
@@ -50,6 +51,10 @@ class AddNewDealComponent extends Component {
     this.checkDealIdOk = this.checkDealIdOk.bind(this)
     this.onChangeCheckBoxGroup = this.onChangeCheckBoxGroup.bind(this)
     this.handleChangeCustomLocation = this.handleChangeCustomLocation.bind(this)
+    this.resetState = this.resetState.bind(this)
+    this.onClickDuplicateCardDeal = this.onClickDuplicateCardDeal.bind(this)
+
+
 
     var selectedDate = new Date().toISOString();
     const cards = this.props.bank.cards
@@ -77,8 +82,47 @@ class AddNewDealComponent extends Component {
       selectedDate: selectedDate,
       cities: citiesCheckedValues,
       comments: "def_comments_1",
-      customLocation: "new location"
+      customLocation: ""
     };
+  }
+
+  resetState() {
+    var selectedDate = new Date().toISOString();
+    const cards = this.props.bank.cards
+    const cities = this.props.cities
+    const cardDeals = []
+    for (var i = 0; i < cards.length; i++) {
+      cardDeals[i] = {
+        cardName: cards[i],
+        deal: ""
+      }
+    }
+
+    var citiesCheckedValues = []
+    console.log("cities", cities);
+
+    for (var k = 0; k < cities.length; k++) {
+      citiesCheckedValues[k] = false
+    }
+
+    this.setState({
+      restaurant: null,
+      defaultCardDeal: "",
+      standardDeal: "",
+      cardDeals: cardDeals,
+      selectedDate: selectedDate,
+      cities: citiesCheckedValues,
+      comments: "def_comments_1",
+      customLocation: ""
+    });
+
+    this.refs.refCustomLocation.value = '';
+    this.refs.refGeneralDeal.value = '';
+
+    for (var j = 0; j < this.props.bank.cards.length; j++) {
+      this["refs"]["refCardDealInput" + j]["value"] = ""
+    }
+
   }
 
   handleChangeComments(event) {
@@ -178,7 +222,7 @@ class AddNewDealComponent extends Component {
       const data = {
         restaurantId: this.state.restaurant._id,
         bankId: this.props.bank._id,
-        cardDeals: this.state.cardDeals,
+        cardDeals: this.state.cardDeals.slice(),
         generalDeal: this.state.standardDeal,
         cities: cities,
         expiry: this.state.selectedDate,
@@ -187,6 +231,7 @@ class AddNewDealComponent extends Component {
       const {createDeal} = this.props
       console.log("data", data);
       createDeal(data)
+      this.resetState();
 
 
     }
@@ -209,6 +254,41 @@ class AddNewDealComponent extends Component {
     })
 
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.bank !== nextProps.bank) {
+      console.log("componentWillReceiveProps");
+      const cards = nextProps.bank.cards
+      const cardDeals = []
+      for (var i = 0; i < cards.length; i++) {
+        cardDeals[i] = {
+          cardName: cards[i],
+          deal: ""
+        }
+      }
+      this.setState({
+        cardDeals: cardDeals
+      })
+    }
+  }
+
+  onClickDuplicateCardDeal() {
+    var cardDeals = this.state.cardDeals
+    const deal = cardDeals[0].deal
+
+
+    for (var i = 0; i < cardDeals.length; i++) {
+      cardDeals[i].deal = deal
+      this["refs"]["refCardDealInput" + i]["value"] = deal
+    }
+
+    this.setState({
+      cardDeals
+    })
+
+
+  }
+
   render() {
     if (this.props.bank === null) {
       return (
@@ -244,7 +324,8 @@ class AddNewDealComponent extends Component {
             <strong>{cards[i] + " Deal: "}</strong>
             <input onChange={this.onChangeCardDeal.bind(this, i + 'refCard')}
                    defaultValue={this.state.defaultCardDeal}
-                   required="true" />
+                   required="true"
+                   ref={"refCardDealInput" + i} />
             <br/>
             <br/>
           </div>
@@ -286,13 +367,21 @@ class AddNewDealComponent extends Component {
           <div className="well">
             <div className="row">
               <div className="col-xs-6">
+                <div>
+                  <Button bsStyle="primary"
+                          bsSize="xsmall"
+                          onClick={this.onClickDuplicateCardDeal}>
+                    Duplicate Deals
+                  </Button>
+                </div>
                 {arrCardsDealsInput}
               </div>
               <div className="col-xs-6">
                 <strong>{"Standard Deal: "}</strong>
                 <input onChange={this.onChangeStandardDeal}
                        required="true"
-                       defaultValue="" />
+                       defaultValue=""
+                       ref="refGeneralDeal" />
                 <br/>
                 <br/>
                 <ControlLabel>
@@ -315,7 +404,8 @@ class AddNewDealComponent extends Component {
                   {"Add Custom Location: "}
                 </ControlLabel>
                 <input onChange={this.handleChangeCustomLocation}
-                       defaultValue={this.state.customLocation} />
+                       defaultValue={this.state.customLocation}
+                       ref="refCustomLocation" />
                 <br/>
                 <ControlLabel>
                   {"Comments: "}
