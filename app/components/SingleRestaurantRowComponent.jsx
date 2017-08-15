@@ -33,12 +33,18 @@ var Input = ReactBootstrap.Input
 
 var bootbox = require('bootbox');
 
+const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
 class SingleRestaurantRowComponent extends Component {
 
   constructor(props) {
     super(props);
     this.destroyRestaurant = this.destroyRestaurant.bind(this)
+    this.state = {
+      uploadedRestaurantLogo: null,
+      uploadedRestaurantLogoCloudinaryUrl: ''
+    };
   }
 
   destroyRestaurant() {
@@ -72,6 +78,35 @@ class SingleRestaurantRowComponent extends Component {
     });
   }
 
+  onImageDrop(files) {
+    this.setState({
+      uploadedRestaurantLogo: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload(file) {
+
+    console.log(process.env)
+
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err)
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedRestaurantLogoCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
   render() {
 
     const restaurant = this.props.restaurant
@@ -81,12 +116,19 @@ class SingleRestaurantRowComponent extends Component {
           {this.props.iteration + 1}
         </td>
         <td>
-          {typeof restaurant.logoUrl === "undefined" ? <div>
-                                                         no-image
-                                                       </div> : <img src={restaurant.logoUrl}
-                                                                     alt={restaurant.name}
-                                                                     height="50"
-                                                                     width="50" />}
+          {restaurant.logoUrl === "" ? <div>
+                                         <Dropzone multiple={false}
+                                                   accept="image/jpg,image/png,image/jpeg"
+                                                   onDrop={this.onImageDrop.bind(this)}
+                                                   style="width: 50px; height: 50px;">
+                                           <p>
+                                             upload.
+                                           </p>
+                                         </Dropzone>
+                                       </div> : <img src={restaurant.logoUrl}
+                                                     alt={restaurant.name}
+                                                     height="50"
+                                                     width="50" />}
         </td>
         <td>
           {restaurant.name}

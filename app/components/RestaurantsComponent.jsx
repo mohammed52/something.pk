@@ -140,6 +140,18 @@ class RestaurantComponent extends Component {
                                       destroyRestaurant={this.props.destroyRestaurant} />
       );
     }
+
+    var addRestaurantDisable = true
+    if (this.refs.refRestaurantFullName !== undefined) {
+
+      if (this.refs.refRestaurantFullName.value !== "") {
+        addRestaurantDisable = false
+      } else
+        addRestaurantDisable = true
+
+    }
+
+
     return (
       <div>
         <form className="testbg-1">
@@ -185,8 +197,7 @@ class RestaurantComponent extends Component {
             <button className="btn btn-primary"
                     type="button"
                     onClick={this.btnAddRestaurant}
-                    disabled={(this.state.uploadedRestaurantLogoCloudinaryUrl !== ""
-                              && this.refs.refRestaurantFullName.value !== "") ? false : true}>
+                    disabled={addRestaurantDisable}>
               Add Restaurant
             </button>
             <br/>
