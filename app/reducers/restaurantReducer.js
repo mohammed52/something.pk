@@ -12,6 +12,14 @@ const restaurant = (state = {},
         name: action.name,
         logoUrl: action.logoUrl,
       };
+    case types.UPDATE_RESTAURANT:
+      if (state.id === action.id) {
+        return {
+          ...state,
+          logoUrl: action.data.newLogoUrl
+        };
+      }
+      return state;
     case types.default:
     default:
       return state;
@@ -33,6 +41,8 @@ const restaurants = (state = [],
       return state.filter(t => t.id !== action.id);
     case types.DESTROY_RESTAURANT:
       return state.filter(t => t.id !== action.id);
+    case types.UPDATE_RESTAURANT:
+      return state.map(t => restaurant(t, action));
     default:
       return state;
   }

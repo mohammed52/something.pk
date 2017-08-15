@@ -103,13 +103,24 @@ class SingleRestaurantRowComponent extends Component {
         this.setState({
           uploadedRestaurantLogoCloudinaryUrl: response.body.secure_url
         });
+        var restaurant = this.props.restaurant
+        const updateRestaurants = this.props.updateRestaurants
+        updateRestaurants(restaurant, this.state.uploadedRestaurantLogoCloudinaryUrl)
       }
     });
   }
 
+
+
+
   render() {
 
     const restaurant = this.props.restaurant
+
+    var divStyle = {
+      width: '50',
+      height: '50'
+    };
     return (
       <tr>
         <td>
@@ -120,9 +131,9 @@ class SingleRestaurantRowComponent extends Component {
                                          <Dropzone multiple={false}
                                                    accept="image/jpg,image/png,image/jpeg"
                                                    onDrop={this.onImageDrop.bind(this)}
-                                                   style="width: 50px; height: 50px;">
+                                                   style={divStyle}>
                                            <p>
-                                             upload.
+                                             add logo
                                            </p>
                                          </Dropzone>
                                        </div> : <img src={restaurant.logoUrl}
@@ -134,19 +145,23 @@ class SingleRestaurantRowComponent extends Component {
           {restaurant.name}
         </td>
         <td>
-          <button className="btn btn-link" type="button" onClick={this.destroyRestaurant}>
-            <i className="fa fa-trash-o" aria-hidden="true" />
+          <button className="btn btn-link"
+                  type="button"
+                  onClick={this.destroyRestaurant}>
+            <i className="fa fa-trash-o"
+               aria-hidden="true" />
           </button>
         </td>
       </tr>
-      );
+    );
   }
 }
 
 SingleRestaurantRowComponent.propTypes = {
   restaurant: PropTypes.object.isRequired,
   iteration: PropTypes.number.isRequired,
-  destroyRestaurant: PropTypes.func.isRequired
+  destroyRestaurant: PropTypes.func.isRequired,
+  updateRestaurants: PropTypes.func.isRequired
 };
 
 export default SingleRestaurantRowComponent;

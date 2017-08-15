@@ -43,6 +43,14 @@ function saveRestaurants(data) {
   }
 }
 
+function updateRestaurant(id, data) {
+  return {
+    type: types.UPDATE_RESTAURANT,
+    id,
+    data
+  }
+}
+
 
 // This action creator returns a function,
 // which will get executed by Redux-Thunk middleware
@@ -124,6 +132,35 @@ export function getRestaurants() {
       }
     );
   }
+}
+
+export function updateRestaurants(oldRestaurant, newLogoUrl) {
+  return (dispatch) => {
+    return restaurantsService().updateRestaurant({
+      id: oldRestaurant.id,
+      data: {
+        isUpdateRestaurants: true,
+        newLogoUrl
+      }
+    })
+      .then(() => {
+        console.log("restaurant updated in db");
+        dispatch(updateRestaurant(oldRestaurant.id,
+          {
+            newLogoUrl
+          }
+        ))
+      })
+      .catch(() => {
+        console.log("update restaurant failed");
+        dispatch(createRestaurantFailure({
+          id: oldRestaurant.id,
+          error: 'Oops! Something went wrong and we couldn\'t update the restaurant'
+        }))
+      }
+    );
+  };
+
 }
 
 

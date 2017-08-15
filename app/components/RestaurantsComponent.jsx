@@ -137,7 +137,8 @@ class RestaurantComponent extends Component {
         <SingleRestaurantRowComponent key={tmpKey}
                                       restaurant={tmpRestaurant}
                                       iteration={tmpIterator}
-                                      destroyRestaurant={this.props.destroyRestaurant} />
+                                      destroyRestaurant={this.props.destroyRestaurant}
+                                      updateRestaurants={this.props.updateRestaurants} />
       );
     }
 
@@ -174,7 +175,9 @@ class RestaurantComponent extends Component {
                     <br/>
                   </td>
                   <td>
-                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false}
+                              accept="image/jpg,image/png,image/jpeg"
+                              onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -187,7 +190,8 @@ class RestaurantComponent extends Component {
                          <p>
                            {this.state.uploadedRestaurantLogo.name}
                          </p>
-                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl} alt="uploaded image" />
+                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl}
+                              alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -228,14 +232,15 @@ class RestaurantComponent extends Component {
           </div>
         </div>
       </div>
-      );
+    );
   }
 }
 
 RestaurantComponent.propTypes = {
   createRestaurant: PropTypes.func.isRequired,
   restaurants: PropTypes.array.isRequired,
-  destroyRestaurant: PropTypes.func.isRequired
+  destroyRestaurant: PropTypes.func.isRequired,
+  updateRestaurants: PropTypes.func.isRequired
 };
 
 export default RestaurantComponent;

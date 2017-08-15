@@ -33,29 +33,18 @@ export function add(req, res) {
  * Update a topic
  */
 export function update(req, res) {
-  console.log("bankUpdate");
+  console.log("restaurantUpdate");
   const query = {
     id: req.params.id
   };
-  const isIncrement = req.body.isIncrement;
-  const isUpdateCards = req.body.isUpdateCards;
-  const isFull = req.body.isFull;
-  const omitKeys = ['id', '_id', '_v', 'isIncrement', 'isFull'];
+  const isUpdateRestaurants = req.body.isUpdateRestaurants;
+  const omitKeys = ['id', '_id', '_v', 'isUpdateRestaurants'];
   const data = _.omit(req.body, omitKeys);
 
-  if (isFull) {
-    Restaurants.findOneAndUpdate(query, data, (err) => {
-      if (err) {
-        console.log('Error on save!');
-        return res.status(500).send('We failed to save for some reason');
-      }
-
-      return res.status(200).send('Updated successfully');
-    });
-  } else if (isUpdateCards) {
+  if (isUpdateRestaurants) {
     Restaurants.findOneAndUpdate(query, {
       $set: {
-        cards: data.cards
+        logoUrl: data.newLogoUrl
       }
     }, (err) => {
       if (err) {
