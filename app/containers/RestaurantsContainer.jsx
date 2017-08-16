@@ -31,8 +31,11 @@ class RestaurantsContainer extends Component {
   render() {
 
     return (
-      <div>
+      <div className="container-fluid">
         RestaurantsContainer
+        <br/>
+        <br/>
+        <br/>
         <RestaurantsComponent createRestaurant={this.props.createRestaurant}
                               destroyRestaurant={this.props.destroyRestaurant}
                               updateRestaurants={this.props.updateRestaurants}

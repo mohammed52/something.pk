@@ -2,65 +2,69 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-// import EntryBox from '../components/EntryBox';
-// import MainSection from '../components/MainSection';
-// import Scoreboard from '../components/Scoreboard';
-// import CommentsSection from '../components/CommentsSection';
-// import { createTopic, typing, incrementCount, decrementCount, destroyTopic } from '../actions/topics';
-// import { createComment, destroyComment, typingComment } from '../actions/comments';
-
+import { getCities } from '../actions/citiesActions';
+import { getRestaurants } from '../actions/restaurantsActions';
+import { getDeals } from '../actions/dealsActions';
+import DiscountsComponent from '../components/DiscountsComponent'
 import styles from '../css/components/vote';
 
 const cx = classNames.bind(styles);
 
 class ShowDiscountsContainer extends Component {
 
+  componentWillMount() {
+    console.log("componentWillMount");
+    const getCities = this.props.getCities
+    const getRestaurants = this.props.getRestaurants
+    const getDeals = this.props.getDeals
+    getCities()
+    getRestaurants()
+    getDeals()
+  }
+
   render() {
 
     // const {newTopic, topics, createTopic, destroyTopic, incrementCount, decrementCount, newComment, comments} = this.props;
 
     return (
-      <div className={cx('vote')}>
+      // <div className={cx('vote')}>
+      <div>
         ShowDiscountsContainer
+        <DiscountsComponent banks={this.props.banks}
+                            cities={this.props.cities}
+                            deals={this.props.deals}
+                            restaurants={this.props.restaurants} />
       </div>
     );
   }
 }
 
 ShowDiscountsContainer.propTypes = {
-  // topics: PropTypes.array.isRequired,
-  // typing: PropTypes.func.isRequired,
-  // createTopic: PropTypes.func.isRequired,
-  // destroyTopic: PropTypes.func.isRequired,
-  // incrementCount: PropTypes.func.isRequired,
-  // decrementCount: PropTypes.func.isRequired,
-  // newTopic: PropTypes.string,
+  banks: PropTypes.array.isRequired,
+  deals: PropTypes.array.isRequired,
+  restaurants: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
 
-  // comments: PropTypes.array.isRequired,
-  // newComment: PropTypes.string,
-  // createComment: PropTypes.func.isRequired,
-  // destroyComment: PropTypes.func.isRequired,
-  // typingComment: PropTypes.func.isRequired,
+  getRestaurants: PropTypes.func.isRequired,
+  getCities: PropTypes.func.isRequired,
+  getDeals: PropTypes.func.isRequired
+
 };
 
 function mapStateToProps(state) {
   return {
-    // topics: state.topic.topics,
-    // newTopic: state.topic.newTopic,
-    // comments: state.comment.comments,
-    // newComment: state.comment.newComment
+    cities: state.city.cities,
+    banks: state.bank.banks,
+    restaurants: state.restaurant.restaurants,
+    deals: state.deal.deals,
+
   };
 }
 
 // Read more about where to place `connect` here:
 // https://github.com/rackt/react-redux/issues/75#issuecomment-135436563
 export default connect(mapStateToProps, {
-  // createTopic,
-  // typing,
-  // incrementCount,
-  // decrementCount,
-  // destroyTopic,
-  // createComment,
-  // destroyComment,
-  // typingComment
+  getRestaurants,
+  getCities,
+  getDeals
 })(ShowDiscountsContainer);
