@@ -82,7 +82,7 @@ class SingleDiscountComponent extends Component {
         <td>
           <div>
             <div>
-              {restaurant.name}
+              <strong>{restaurant.name}</strong>
             </div>
             {typeof restaurant.logoUrl === "undefined" ? <div>
                                                            no-image
