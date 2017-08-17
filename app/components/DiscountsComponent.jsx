@@ -5,8 +5,10 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
+import SingleDiscountComponent from './SingleDiscountComponent'
 
 import testStyles from '../css/components/test';
+import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
 
 const cxTest = classNames.bind(testStyles);
 
@@ -50,12 +52,35 @@ class DiscountsComponent extends Component {
 
 
   render() {
+    const {deals, restaurants, banks, cities} = this.props
+    const arrDealsDivs = []
+
+    for (var i = 0; i < deals.length; i++) {
+      const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
+      const cities = getCities(deals[i].cities)
+      const bank = getBank(deals[i].bankId, banks)
+      arrDealsDivs.push(
+        <SingleDiscountComponent key={"arrDealsDivs" + i}
+                                 deal={deals[i]}
+                                 restaurant={restaurant}
+                                 bank={bank}
+                                 cities={cities} />
+      )
+
+    }
 
     return (
       <div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
+        <br/>
+        <br/>
+        <table className="table">
+          <tbody>
+            {arrDealsDivs}
+          </tbody>
+        </table>
       </div>
-    );
+      );
   }
 }
 

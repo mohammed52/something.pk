@@ -71,7 +71,7 @@ class AllDealsComponent extends Component {
       for (var i = 0; i < deals.length; i++) {
         if (deals[i].bankId === this.props.bank._id) {
           const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
-          const citiesStr = getCities(deals[i].cities, cities)
+          const citiesStr = getCities(deals[i].cities)
           const cardDeals = getCardDeals(deals[i].cardDeals, bank)
           trArrDeals.push(
             <SingleBankDealRowComponent deal={deals[i]}
@@ -124,7 +124,7 @@ class AllDealsComponent extends Component {
            Select Bank
          </div>}
       </div>
-    );
+      );
   }
 }
 

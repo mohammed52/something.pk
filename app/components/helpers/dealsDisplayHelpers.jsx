@@ -1,3 +1,16 @@
+export function getBank(bankId, allBanks) {
+  var retBank = null
+  for (var i = 0; i < allBanks.length; i++) {
+    if (bankId === allBanks[i]._id) {
+      retBank = allBanks[i]
+      break
+    }
+  }
+  // console.log("retRestaurant", retRestaurant);
+
+  return retBank
+}
+
 export function getRestaurant(restaurantId, allRestaurants) {
   // console.log("restaurantId", restaurantId);
   // console.log("allRestaurants", allRestaurants);
@@ -13,7 +26,7 @@ export function getRestaurant(restaurantId, allRestaurants) {
   return retRestaurant
 }
 
-export function getCities(citiesArr, allCities) {
+export function getCities(citiesArr) {
   // console.log("citiesArr", citiesArr);
   // console.log("allCities", allCities);
   var citiesStr = ""
