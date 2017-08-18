@@ -35,20 +35,21 @@ const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
 class DiscountsComponent extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.btnAddRestaurant = this.btnAddRestaurant.bind(this)
-  //   this.onChangeRestaurantName = this.onChangeRestaurantName.bind(this)
-  //   this.open = this.open.bind(this)
-  //   this.close = this.close.bind(this)
+  constructor(props) {
+    super(props);
+    this.setBankCards = this.setBankCards.bind(this)
 
-  //   this.state = {
-  //     uploadedRestaurantLogo: null,
-  //     uploadedRestaurantLogoCloudinaryUrl: '',
-  //     restaurantNameField: "",
-  //     showModal: true
-  //   };
-  // }
+    this.state = {
+      uploadedRestaurantLogo: null,
+      uploadedRestaurantLogoCloudinaryUrl: '',
+      restaurantNameField: "",
+      showModal: true
+    };
+  }
+
+  setBankCards() {
+    console.log("setBankCards");
+  }
 
 
   render() {
@@ -72,6 +73,11 @@ class DiscountsComponent extends Component {
     return (
       <div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
+        <Button bsStyle="primary"
+                onClick={this.setBankCards}
+                disabled={false}>
+          Set Banks/Cards
+        </Button>
         <br/>
         <br/>
         <table className="table">
@@ -80,7 +86,7 @@ class DiscountsComponent extends Component {
           </tbody>
         </table>
       </div>
-      );
+    );
   }
 }
 

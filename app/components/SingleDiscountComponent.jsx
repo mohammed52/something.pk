@@ -81,26 +81,27 @@ class SingleDiscountComponent extends Component {
       <tr>
         <td>
           <div>
-            <div>
-              <strong>{restaurant.name}</strong>
-            </div>
             {typeof restaurant.logoUrl === "undefined" ? <div>
                                                            no-image
                                                          </div> : <img src={restaurant.logoUrl}
                                                                        alt={restaurant.name}
                                                                        height="100"
                                                                        width="100" />}
-            <div>
-              {cities}
-            </div>
           </div>
         </td>
         <td>
+          <div>
+            <strong>{restaurant.name}</strong>
+          </div>
           <div>
             {arrCardDealsDivs}
           </div>
           <div>
             {deal.generalDeal}
+          </div>
+          <br/>
+          <div>
+            {cities}
           </div>
         </td>
         <td>
@@ -118,7 +119,7 @@ class SingleDiscountComponent extends Component {
         </td>
       </tr>
 
-      );
+    );
   }
 }
 
