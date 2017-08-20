@@ -40,7 +40,7 @@ var bootbox = require('bootbox');
 
 const ENTER_KEY_CODE = 13;
 
-class SingleDiscountComponent extends Component {
+class SingleDealComponent extends Component {
   // constructor(props) {
   //   super(props)
   //   this.deleteDeal = this.deleteDeal.bind(this)
@@ -123,11 +123,11 @@ class SingleDiscountComponent extends Component {
   }
 }
 
-SingleDiscountComponent.propTypes = {
+SingleDealComponent.propTypes = {
   bank: PropTypes.object.isRequired,
   deal: PropTypes.object.isRequired,
   restaurant: PropTypes.object.isRequired,
   cities: PropTypes.string.isRequired,
 };
 
-export default SingleDiscountComponent;
+export default SingleDealComponent;

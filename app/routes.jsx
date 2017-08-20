@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import { fetchVoteData, fetchBanksData, fetchCitiesData, fetchRestaurantsData } from './fetch-data'
-import { DealsPage, RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, ShowDiscountsPage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
+import { DealsPage, RestaurantsPage, CitiesPage, CardsPage, BanksPage, App, HomePage, LoginOrRegisterPage, DashboardPage, WrapperLoggedInPage } from './pages';
 import { getCities } from './actions/citiesActions';
 
 /*
@@ -43,7 +43,7 @@ export default (store) => {
   return (
     <Route path="/"
            component={App}>
-      <IndexRoute component={ShowDiscountsPage}
+      <IndexRoute component={HomePage}
                   fetchData={fetchBanksData} />
       <Route path="login"
              component={LoginOrRegisterPage}

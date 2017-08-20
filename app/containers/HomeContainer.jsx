@@ -5,12 +5,12 @@ import classNames from 'classnames/bind';
 import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
 import { getDeals } from '../actions/dealsActions';
-import DiscountsComponent from '../components/DiscountsComponent'
+import HomeComponent from '../components/HomeComponent'
 import styles from '../css/components/vote';
 
 const cx = classNames.bind(styles);
 
-class ShowDiscountsContainer extends Component {
+class HomeContainer extends Component {
 
   componentWillMount() {
     console.log("componentWillMount");
@@ -29,17 +29,17 @@ class ShowDiscountsContainer extends Component {
     return (
       // <div className={cx('vote')}>
       <div>
-        ShowDiscountsContainer
-        <DiscountsComponent banks={this.props.banks}
-                            cities={this.props.cities}
-                            deals={this.props.deals}
-                            restaurants={this.props.restaurants} />
+        HomeContainer
+        <HomeComponent banks={this.props.banks}
+                       cities={this.props.cities}
+                       deals={this.props.deals}
+                       restaurants={this.props.restaurants} />
       </div>
     );
   }
 }
 
-ShowDiscountsContainer.propTypes = {
+HomeContainer.propTypes = {
   banks: PropTypes.array.isRequired,
   deals: PropTypes.array.isRequired,
   restaurants: PropTypes.array.isRequired,
@@ -67,4 +67,4 @@ export default connect(mapStateToProps, {
   getRestaurants,
   getCities,
   getDeals
-})(ShowDiscountsContainer);
+})(HomeContainer);

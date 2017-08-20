@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Page from '../pages/Page';
-import ShowDiscountsContainer from '../containers/ShowDiscountsContainer';
+import HomeContainer from '../containers/HomeContainer';
 
-class ShowDiscountsPage extends Component {
+class HomePage extends Component {
   getMetaData() {
     return {
       title: this.pageTitle(),
@@ -31,11 +31,11 @@ class ShowDiscountsPage extends Component {
   render() {
     return (
       <Page {...this.getMetaData()}>
-        <ShowDiscountsContainer {...this.props} />
+        <HomeContainer {...this.props} />
       </Page>
     );
   }
 }
 
-export default ShowDiscountsPage;
+export default HomePage;
 

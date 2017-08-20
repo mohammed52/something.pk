@@ -5,7 +5,8 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-import SingleDiscountComponent from './SingleDiscountComponent'
+import SingleDealComponent from './SingleDealComponent'
+import SettingsModal from './SettingsModal'
 
 import testStyles from '../css/components/test';
 import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
@@ -34,16 +35,18 @@ var Input = ReactBootstrap.Input
 const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
-class DiscountsComponent extends Component {
+class HomeComponent extends Component {
   constructor(props) {
     super(props);
     this.setBankCards = this.setBankCards.bind(this)
+    this.saveSettings = this.saveSettings.bind(this)
+    this.closeSettingsModal = this.closeSettingsModal.bind(this)
 
     this.state = {
       uploadedRestaurantLogo: null,
       uploadedRestaurantLogoCloudinaryUrl: '',
       restaurantNameField: "",
-      showModal: true
+      showSettingsModal: true
     };
   }
 
@@ -51,23 +54,32 @@ class DiscountsComponent extends Component {
     console.log("setBankCards");
   }
 
+  saveSettings() {
+    console.log("saveSettings");
+  }
+
+  closeSettingsModal() {
+    console.log("closeSettingsModal");
+  }
 
   render() {
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []
 
-    for (var i = 0; i < deals.length; i++) {
-      const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
-      const cities = getCities(deals[i].cities)
-      const bank = getBank(deals[i].bankId, banks)
-      arrDealsDivs.push(
-        <SingleDiscountComponent key={"arrDealsDivs" + i}
-                                 deal={deals[i]}
-                                 restaurant={restaurant}
-                                 bank={bank}
-                                 cities={cities} />
-      )
+    if (deals !== null && restaurants !== null && banks !== null && cities !== null) {
+      for (var i = 0; i < deals.length; i++) {
+        const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
+        const cities = getCities(deals[i].cities)
+        const bank = getBank(deals[i].bankId, banks)
+        arrDealsDivs.push(
+          <SingleDealComponent key={"arrDealsDivs" + i}
+                               deal={deals[i]}
+                               restaurant={restaurant}
+                               bank={bank}
+                               cities={cities} />
+        )
 
+      }
     }
 
     return (
@@ -85,16 +97,19 @@ class DiscountsComponent extends Component {
             {arrDealsDivs}
           </tbody>
         </table>
+        <SettingsModal onHideSettingsModal={this.closeSettingsModal}
+                       showSettingsModal={this.state.showSettingsModal}
+                       onSaveSettings={this.saveSettings} />
       </div>
     );
   }
 }
 
-DiscountsComponent.propTypes = {
+HomeComponent.propTypes = {
   deals: PropTypes.array.isRequired,
   banks: PropTypes.array.isRequired,
   restaurants: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired
 };
 
-export default DiscountsComponent;
+export default HomeComponent;
