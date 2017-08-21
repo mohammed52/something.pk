@@ -67,7 +67,7 @@ class SingleDealComponent extends Component {
       if (deal.cardDeals[i].cardName !== "" && deal.cardDeals[i].deal !== "") {
 
         arrCardDealsDivs.push(
-          <div>
+          <div key={"arrCardDealsDivs" + i}>
             {deal.cardDeals[i].cardName + ": " + deal.cardDeals[i].deal}
           </div>
         )
@@ -81,12 +81,12 @@ class SingleDealComponent extends Component {
       <tr>
         <td>
           <div>
-            {typeof restaurant.logoUrl === "undefined" ? <div>
-                                                           no-image
-                                                         </div> : <img src={restaurant.logoUrl}
-                                                                       alt={restaurant.name}
-                                                                       height="100"
-                                                                       width="100" />}
+            {typeof restaurant.logoUrl === null ? <div>
+                                                    no-image
+                                                  </div> : <img src={restaurant.logoUrl}
+                                                                alt={restaurant.name}
+                                                                height="100"
+                                                                width="100" />}
           </div>
         </td>
         <td>

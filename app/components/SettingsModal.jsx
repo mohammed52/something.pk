@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import BankSettingsPanelContent from './BankSettingsPanelContent'
 
 var ReactBootstrap = require('react-bootstrap');
 // var Accordion = ReactBootstrap.Accordion;
@@ -9,10 +10,12 @@ var Modal = ReactBootstrap.Modal;
 var Button = ReactBootstrap.Button;
 // var FieldGroup = ReactBootstrap.FieldGroup;
 
-
+var Accordion = ReactBootstrap.Accordion;
+var Panel = ReactBootstrap.Panel;
 var FormGroup = ReactBootstrap.FormGroup;
 var ControlLabel = ReactBootstrap.ControlLabel;
 var FormControl = ReactBootstrap.FormControl;
+var Checkbox = ReactBootstrap.Checkbox
 
 var SettingsModal = React.createClass({
 
@@ -22,9 +25,26 @@ var SettingsModal = React.createClass({
   },
 
   render() {
+    var arrPanels = [];
+    const banks = this.props.banks
+    for (var i = 0; i < banks.length; i++) {
+      const cards = banks[i].cards
+      arrPanels.push(
+        <Panel header={<div>
+                 <Checkbox disabled={true}
+                           inline />
+                 <span>{banks[i].fullName}</span>
+               </div>}
+               eventKey={i + 1}
+               key={"arrPanelsPanel" + i}>
+          <BankSettingsPanelContent cards={cards}
+                                    bank={banks[i]} />
+        </Panel>
+      )
+    }
 
     return (
-      <Modal show={this.props.showSettingsModal}
+      <Modal show={this.props.show}
              onHide={this.props.onHide}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -33,18 +53,10 @@ var SettingsModal = React.createClass({
         </Modal.Header>
         <Modal.Body>
           <FormGroup controlId="formControlsTextarea">
-            <ControlLabel>
-              Receipe
-            </ControlLabel>
-            <FormControl componentClass="input"
-                         id="id-text-new-name"
-                         placeholder="Enter Name of Recepie" />
-            <ControlLabel>
-              Ingredients
-            </ControlLabel>
-            <FormControl componentClass="textarea"
-                         placeholder="Enter ingredients seperated by Commas"
-                         id="id-text-new-ingredients" />
+            accordion panels
+            <Accordion>
+              {arrPanels}
+            </Accordion>
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>

@@ -43,15 +43,15 @@ class HomeComponent extends Component {
     this.closeSettingsModal = this.closeSettingsModal.bind(this)
 
     this.state = {
-      uploadedRestaurantLogo: null,
-      uploadedRestaurantLogoCloudinaryUrl: '',
-      restaurantNameField: "",
       showSettingsModal: true
     };
   }
 
   setBankCards() {
     console.log("setBankCards");
+    this.setState({
+      showSettingsModal: true
+    })
   }
 
   saveSettings() {
@@ -60,6 +60,9 @@ class HomeComponent extends Component {
 
   closeSettingsModal() {
     console.log("closeSettingsModal");
+    this.setState({
+      showSettingsModal: false
+    })
   }
 
   render() {
@@ -97,9 +100,10 @@ class HomeComponent extends Component {
             {arrDealsDivs}
           </tbody>
         </table>
-        <SettingsModal onHideSettingsModal={this.closeSettingsModal}
-                       showSettingsModal={this.state.showSettingsModal}
-                       onSaveSettings={this.saveSettings} />
+        <SettingsModal onHide={this.closeSettingsModal}
+                       show={this.state.showSettingsModal}
+                       onSave={this.saveSettings}
+                       banks={this.props.banks} />
       </div>
     );
   }
