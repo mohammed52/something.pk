@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import $ from 'jquery';
 import BankSettingsPanelContent from './BankSettingsPanelContent'
 
@@ -17,17 +17,58 @@ var ControlLabel = ReactBootstrap.ControlLabel;
 var FormControl = ReactBootstrap.FormControl;
 var Checkbox = ReactBootstrap.Checkbox
 
-var SettingsModal = React.createClass({
+class SettingsModal extends Component {
 
-  btnSave: function() {
+  constructor(props) {
+    super(props)
+    const banks = this.props.banks
+    var tmpBankCardSettings = []
+    for (var i = 0; i < banks.length; i++) {
+      var cardsSettings = []
+      const bankName = banks[i].fullName
+      if (banks[i].cards.length !== 0) {
+        const cards = banks[i].cards
+        for (var j = 0; j < cards.length; j++) {
+          cardsSettings.push({
+            cardName: cards[j],
+            enabled: false
+          })
+        }
+      }
+
+      tmpBankCardSettings.push({
+        bank: banks[i],
+        bankEnabled: false,
+        cardSettings
+      })
+    }
+
+    this.state = {
+      banksCardsSettings: tmpBankCardSettings,
+    };
+  }
+
+
+  btnSave() {
     console.log("btnSave");
 
-  },
+  }
 
   render() {
+
+    const bankCardSettings = this.state.bankCardSettings
+
     var arrPanels = [];
     const banks = this.props.banks
+    tmpBankSettings = null
     for (var i = 0; i < banks.length; i++) {
+      for (var j = 0; j < bankCardSettings.length; j++) {
+        if (bankCardSettings[j].bank.id === banks[i].id) {
+          tmpBankCardSettings = bankCardSettings[j]
+          break
+        }
+      }
+
       const cards = banks[i].cards
       arrPanels.push(
         <Panel header={<div>
@@ -71,7 +112,8 @@ var SettingsModal = React.createClass({
       </Modal>
     );
   }
-});
+}
+;
 
 
 export default SettingsModal;
