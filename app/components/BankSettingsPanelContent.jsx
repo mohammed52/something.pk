@@ -22,9 +22,12 @@ class BankSettingsPanelContent extends Component {
       };
 
     } else {
-      this.setState({
-        cardsSettings: [false]
-      })
+      this.state = {
+        cardsSettings: [{
+          cardName: bank.fullName + "(Any Card)",
+          enabled: true
+        }]
+      }
     }
   }
 
@@ -34,22 +37,25 @@ class BankSettingsPanelContent extends Component {
     // console.log("index", index);
     var tmpCardsSettings = this.state.cardsSettings
 
-    tmpCardsSettings[index] = !this.state.cardsSettings[index].enabled
-    this.setState({
-      cardsSettings: tmpCardsSettings
-    })
+    tmpCardsSettings[index].enabled = !this.state.cardsSettings[index].enabled
+
+    const updateSettingsForBank = this.props.updateSettingsForBank
+
+    updateSettingsForBank(tmpCardsSettings, this.props.bank.id)
 
   }
 
   render() {
     const {cards, bank, settings} = this.props
     const cardsSettings = this.state.cardsSettings
+
     var arrCardsCheckBox = []
     if (cards !== null && cards.length !== 0) {
       for (var i = 0; i < cards.length; i++) {
         arrCardsCheckBox.push(
           <div key={"arrCardsCheckBox" + i}>
-            <Checkbox onChange={this.onChangeCheckBoxGroup.bind(this, i + 'arrCardsCheckBox')} checked={this.state.cardsChecked[i]}>
+            <Checkbox onChange={this.onChangeCheckBoxGroup.bind(this, i + 'arrCardsCheckBox')}
+                      checked={this.state.cardsSettings[i].enabled}>
               {cardsSettings[i].cardName}
             </Checkbox>
           </div>
@@ -58,8 +64,9 @@ class BankSettingsPanelContent extends Component {
     } else {
       arrCardsCheckBox.push(
         <div key={"arrCardsCheckBox"}>
-          <Checkbox onChange={this.onChangeCheckBoxGroup.bind(this, 0 + 'arrCardsCheckBox')} checked={this.state.cardsChecked[0]}>
-            {bank.fullName + " (Any Card)"}
+          <Checkbox onChange={this.onChangeCheckBoxGroup.bind(this, 0 + 'arrCardsCheckBox')}
+                    checked={this.state.cardsSettings[0].enabled}>
+            {this.state.cardsSettings[0].cardName}
           </Checkbox>
         </div>
 
@@ -73,7 +80,7 @@ class BankSettingsPanelContent extends Component {
       <div>
         {arrCardsCheckBox}
       </div>
-      );
+    );
   }
 }
 
