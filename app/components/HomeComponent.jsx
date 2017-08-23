@@ -10,6 +10,7 @@ import SettingsModal from './SettingsModal'
 
 import testStyles from '../css/components/test';
 import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
+import { bankIsEnabledInSettings } from './helpers/settingsHelpers'
 
 const cxTest = classNames.bind(testStyles);
 
@@ -41,9 +42,47 @@ class HomeComponent extends Component {
     this.setBankCards = this.setBankCards.bind(this)
     this.saveSettings = this.saveSettings.bind(this)
     this.closeSettingsModal = this.closeSettingsModal.bind(this)
+    this.updateSettingsForBank = this.updateSettingsForBank.bind(this)
+    const banks = this.props.banks
+    var tmpBankCardSettings = []
+    for (var i = 0; i < banks.length; i++) {
+      var cardsSettings = []
+      const bankName = banks[i].fullName
+      if (banks[i].cards.length !== 0) {
+        const cards = banks[i].cards
+        for (var j = 0; j < cards.length; j++) {
+          if (j === 0) {
+
+            cardsSettings.push({
+              cardName: cards[j],
+              enabled: true
+            })
+          } else {
+            cardsSettings.push({
+              cardName: cards[j],
+              enabled: false
+            })
+
+          }
+
+        }
+      } else {
+        cardsSettings.push({
+          cardName: bankName + "(Any Card)",
+          enabled: true
+        })
+      }
+
+      tmpBankCardSettings.push({
+        bank: banks[i],
+        bankEnabled: true,
+        cardsSettings
+      })
+    }
 
     this.state = {
-      showSettingsModal: true
+      banksCardsSettings: tmpBankCardSettings,
+      showSettingsModal: true,
     };
   }
 
@@ -65,6 +104,32 @@ class HomeComponent extends Component {
     })
   }
 
+  updateSettingsForBank(newCardSettings, bankId) {
+    console.log("newCardSettings", newCardSettings);
+    console.log("bankId", bankId);
+
+    const banksCardsSettings = this.state.banksCardsSettings
+    for (var i = 0; i < banksCardsSettings.length; i++) {
+      if (banksCardsSettings[i].bank.id === bankId) {
+
+        banksCardsSettings[i].cardsSettings = newCardSettings
+
+        var tmpBankEnabled = false
+        for (var j = 0; j < newCardSettings.length; j++) {
+          if (newCardSettings[j].enabled === true) {
+            tmpBankEnabled = true
+          }
+        }
+        banksCardsSettings[i].bankEnabled = tmpBankEnabled
+        break
+      }
+    }
+
+    this.setState({
+      banksCardsSettings
+    })
+  }
+
   render() {
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []
@@ -74,13 +139,17 @@ class HomeComponent extends Component {
         const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
         const cities = getCities(deals[i].cities)
         const bank = getBank(deals[i].bankId, banks)
-        arrDealsDivs.push(
-          <SingleDealComponent key={"arrDealsDivs" + i}
-                               deal={deals[i]}
-                               restaurant={restaurant}
-                               bank={bank}
-                               cities={cities} />
-        )
+        if (bankIsEnabledInSettings(bank, this.state.banksCardsSettings)) {
+
+          arrDealsDivs.push(
+            <SingleDealComponent key={"arrDealsDivs" + i}
+                                 deal={deals[i]}
+                                 restaurant={restaurant}
+                                 bank={bank}
+                                 cities={cities}
+                                 banksCardsSettings={this.state.banksCardsSettings} />
+          )
+        }
 
       }
     }
@@ -88,9 +157,7 @@ class HomeComponent extends Component {
     return (
       <div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
-        <Button bsStyle="primary"
-                onClick={this.setBankCards}
-                disabled={false}>
+        <Button bsStyle="primary" onClick={this.setBankCards} disabled={false}>
           Set Banks/Cards
         </Button>
         <br/>
@@ -103,9 +170,11 @@ class HomeComponent extends Component {
         <SettingsModal onHide={this.closeSettingsModal}
                        show={this.state.showSettingsModal}
                        onSave={this.saveSettings}
-                       banks={this.props.banks} />
+                       banks={this.props.banks}
+                       banksCardsSettings={this.state.banksCardsSettings}
+                       updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-    );
+      );
   }
 }
 

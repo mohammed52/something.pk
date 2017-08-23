@@ -6,6 +6,7 @@ import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
 import { getRestaurant, getCities, getCardDeals } from './helpers/dealsDisplayHelpers'
+import { cardEnabledInSettings } from './helpers/settingsHelpers'
 
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -60,11 +61,13 @@ class SingleDealComponent extends Component {
   // }
 
   render() {
-    const {bank, restaurant, deal, cities} = this.props
+    const {bank, restaurant, deal, cities, banksCardsSettings} = this.props
 
     const arrCardDealsDivs = []
     for (var i = 0; i < deal.cardDeals.length; i++) {
-      if (deal.cardDeals[i].cardName !== "" && deal.cardDeals[i].deal !== "") {
+      if (deal.cardDeals[i].cardName !== ""
+        && deal.cardDeals[i].deal !== ""
+        && cardEnabledInSettings(deal.cardDeals[i].cardName, bank, banksCardsSettings)) {
 
         arrCardDealsDivs.push(
           <div key={"arrCardDealsDivs" + i}>
@@ -119,7 +122,7 @@ class SingleDealComponent extends Component {
         </td>
       </tr>
 
-    );
+      );
   }
 }
 
