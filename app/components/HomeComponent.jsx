@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { instanceOf } from 'prop-types';
 // cloudinary preset somethingpk_default_preset
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
+import Cookies from 'universal-cookie';
 import SingleDealComponent from './SingleDealComponent'
 import SettingsModal from './SettingsModal'
 
@@ -44,40 +46,46 @@ class HomeComponent extends Component {
     this.closeSettingsModal = this.closeSettingsModal.bind(this)
     this.updateSettingsForBank = this.updateSettingsForBank.bind(this)
     const banks = this.props.banks
-    var tmpBankCardSettings = []
-    for (var i = 0; i < banks.length; i++) {
-      var cardsSettings = []
-      const bankName = banks[i].fullName
-      if (banks[i].cards.length !== 0) {
-        const cards = banks[i].cards
-        for (var j = 0; j < cards.length; j++) {
-          if (j === 0) {
 
-            cardsSettings.push({
-              cardName: cards[j],
-              enabled: true
-            })
-          } else {
-            cardsSettings.push({
-              cardName: cards[j],
-              enabled: false
-            })
+
+    const cookies = new Cookies();
+    var tmpBankCardSettings = cookies.get("recepies");
+
+    if (tmpBankCardSettings == null) {
+      for (var i = 0; i < banks.length; i++) {
+        var cardsSettings = []
+        const bankName = banks[i].fullName
+        if (banks[i].cards.length !== 0) {
+          const cards = banks[i].cards
+          for (var j = 0; j < cards.length; j++) {
+            if (j === 0) {
+
+              cardsSettings.push({
+                cardName: cards[j],
+                enabled: true
+              })
+            } else {
+              cardsSettings.push({
+                cardName: cards[j],
+                enabled: false
+              })
+
+            }
 
           }
-
+        } else {
+          cardsSettings.push({
+            cardName: bankName + "(Any Card)",
+            enabled: true
+          })
         }
-      } else {
-        cardsSettings.push({
-          cardName: bankName + "(Any Card)",
-          enabled: true
+
+        tmpBankCardSettings.push({
+          bank: banks[i],
+          bankEnabled: true,
+          cardsSettings
         })
       }
-
-      tmpBankCardSettings.push({
-        bank: banks[i],
-        bankEnabled: true,
-        cardsSettings
-      })
     }
 
     this.state = {
@@ -87,18 +95,21 @@ class HomeComponent extends Component {
   }
 
   setBankCards() {
-    console.log("setBankCards");
     this.setState({
       showSettingsModal: true
     })
   }
 
   saveSettings() {
-    console.log("saveSettings");
+    this.setState({
+      showSettingsModal: false
+    })
+    const cookies = new Cookies();
+    cookies.set('banksCardsSettings', this.state.banksCardsSettings);
+
   }
 
   closeSettingsModal() {
-    console.log("closeSettingsModal");
     this.setState({
       showSettingsModal: false
     })
@@ -157,7 +168,9 @@ class HomeComponent extends Component {
     return (
       <div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
-        <Button bsStyle="primary" onClick={this.setBankCards} disabled={false}>
+        <Button bsStyle="primary"
+                onClick={this.setBankCards}
+                disabled={false}>
           Set Banks/Cards
         </Button>
         <br/>
@@ -174,7 +187,7 @@ class HomeComponent extends Component {
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-      );
+    );
   }
 }
 
@@ -182,7 +195,8 @@ HomeComponent.propTypes = {
   deals: PropTypes.array.isRequired,
   banks: PropTypes.array.isRequired,
   restaurants: PropTypes.array.isRequired,
-  cities: PropTypes.array.isRequired
+  cities: PropTypes.array.isRequired,
+
 };
 
 export default HomeComponent;

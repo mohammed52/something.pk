@@ -19,12 +19,16 @@ var Checkbox = ReactBootstrap.Checkbox
 
 class SettingsModal extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+    this.btnSave = this.btnSave.bind(this)
+
+  }
 
   btnSave() {
     console.log("btnSave");
+    const saveSettings = this.props.onSave
+    saveSettings()
 
   }
 
@@ -49,9 +53,13 @@ class SettingsModal extends Component {
       const cards = banks[i].cards
       arrPanels.push(
         <Panel header={<div>
-                 <Checkbox checked={tmpBankCardSettings.bankEnabled} inline disabled={true} />
+                 <Checkbox checked={tmpBankCardSettings.bankEnabled}
+                           inline
+                           disabled={true} />
                  <span>{banks[i].fullName}</span>
-               </div>} eventKey={i + 1} key={"arrPanelsPanel" + i}>
+               </div>}
+               eventKey={i + 1}
+               key={"arrPanelsPanel" + i}>
           <BankSettingsPanelContent cards={cards}
                                     bank={banks[i]}
                                     settings={tmpBankCardSettings}
@@ -61,7 +69,8 @@ class SettingsModal extends Component {
     }
 
     return (
-      <Modal show={this.props.show} onHide={this.props.onHide}>
+      <Modal show={this.props.show}
+             onHide={this.props.onHide}>
         <Modal.Header closeButton>
           <Modal.Title>
             Settings
@@ -76,7 +85,8 @@ class SettingsModal extends Component {
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={this.btnSave}>
+          <Button bsStyle="primary"
+                  onClick={this.btnSave}>
             Save
           </Button>
           <Button onClick={this.props.onHide}>
@@ -84,9 +94,9 @@ class SettingsModal extends Component {
           </Button>
         </Modal.Footer>
       </Modal>
-      );
+    );
   }
-};
+}
 
 
-export default SettingsModal;
+export default SettingsModal

@@ -72,9 +72,6 @@ class BankSettingsPanelContent extends Component {
 
       )
     }
-    if (bank.fullName === "Faysal Bank Limited") {
-      console.log("Faysal Bank Limited");
-    }
 
     return (
       <div>
