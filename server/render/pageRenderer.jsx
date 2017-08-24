@@ -4,11 +4,14 @@ import { Provider } from 'react-redux';
 import { RouterContext } from 'react-router';
 import Helmet from 'react-helmet';
 import staticAssets from './static-assets';
+import { CookiesProvider } from 'react-cookie';
 
 const createApp = (store, props) => renderToString(
-  <Provider store={store}>
-    <RouterContext {...props} />
-  </Provider>
+  <CookiesProvider cookies={req.universalCookies}>
+    <Provider store={store}>
+      <RouterContext {...props} />
+    </Provider>
+  </CookiesProvider>
 );
 
 const buildPage = ({componentHTML, initialState, headAssets}) => {

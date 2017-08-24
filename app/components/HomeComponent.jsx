@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-import Cookies from 'universal-cookie';
+// import Cookies from 'universal-cookie';
 import SingleDealComponent from './SingleDealComponent'
 import SettingsModal from './SettingsModal'
 
@@ -15,7 +15,7 @@ import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/deals
 import { bankIsEnabledInSettings } from './helpers/settingsHelpers'
 
 const cxTest = classNames.bind(testStyles);
-
+// const cookies = new Cookies();
 /*
  * Note: This is kept as a container-level component,
  *  i.e. We should keep this as the container that does the data-fetching
@@ -48,10 +48,12 @@ class HomeComponent extends Component {
     const banks = this.props.banks
 
 
-    const cookies = new Cookies();
-    var tmpBankCardSettings = cookies.get("recepies");
+    // var tmpBankCardSettings = cookies.get("recepies");
+    var tmpBankCardSettings = null
 
     if (tmpBankCardSettings == null) {
+      tmpBankCardSettings = []
+
       for (var i = 0; i < banks.length; i++) {
         var cardsSettings = []
         const bankName = banks[i].fullName
@@ -104,8 +106,7 @@ class HomeComponent extends Component {
     this.setState({
       showSettingsModal: false
     })
-    const cookies = new Cookies();
-    cookies.set('banksCardsSettings', this.state.banksCardsSettings);
+    // cookies.set('banksCardsSettings', this.state.banksCardsSettings);
 
   }
 
@@ -140,6 +141,12 @@ class HomeComponent extends Component {
       banksCardsSettings
     })
   }
+
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+
+  componentWillMount() {}
 
   render() {
     const {deals, restaurants, banks, cities} = this.props
