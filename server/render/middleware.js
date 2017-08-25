@@ -47,7 +47,7 @@ export default function render(req, res) {
   match({
     routes,
     location: req.url
-  }, (err, redirect, props) => {
+  }, (err, redirect, props, req) => {
 
     if (err) {
       res.status(500).json(err);
@@ -109,7 +109,7 @@ export default function render(req, res) {
           //   data
           // });
 
-          const html = pageRenderer(store, props);
+          const html = pageRenderer(store, props, req);
           res.status(200).send(html);
         })
         .catch((err) => {

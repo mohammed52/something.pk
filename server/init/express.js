@@ -11,6 +11,7 @@ import unsupportedMessage from '../db/unsupportedMessage';
 import { sessionSecret } from '../../config/secrets';
 import { DB_TYPE, ENV } from '../../config/env';
 import { session as dbSession } from '../db';
+const cookiesMiddleware = require('universal-cookie-express');
 
 var cors = require('cors')
 
@@ -29,6 +30,7 @@ export default (app) => {
     extended: true
   })); // for parsing application/x-www-form-urlencoded
   app.use(methodOverride());
+  app.use(cookiesMiddleware())
 
   app.use(express.static(path.join(process.cwd(), 'public')));
 

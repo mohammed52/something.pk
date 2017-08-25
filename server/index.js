@@ -6,7 +6,6 @@ import initPassport from './init/passport';
 import initExpress from './init/express';
 import initRoutes from './init/routes';
 import renderMiddleware from './render/middleware';
-const cookiesMiddleware = require('universal-cookie-express');
 
 const app = express();
 
@@ -31,7 +30,7 @@ if (isDebug) {
     browser: true
   });
   const compiler = webpack(devBrowserConfig);
-  app.use(cookiesMiddleware())
+
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: devBrowserConfig.output.publicPath
