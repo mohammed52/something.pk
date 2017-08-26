@@ -46,10 +46,18 @@ class HomeComponent extends Component {
     this.closeSettingsModal = this.closeSettingsModal.bind(this)
     this.updateSettingsForBank = this.updateSettingsForBank.bind(this)
     const banks = this.props.banks
+    const {cookies} = this.props
 
 
-    // var tmpBankCardSettings = cookies.get("recepies");
+
     var tmpBankCardSettings = null
+    //check if not on server
+    if (typeof (Storage) !== "undefined") {
+      //use the local storage
+      tmpBankCardSettings = localStorage.getItem("banksCardsSettings");
+      console.log("tmpBankCardSettings", tmpBankCardSettings);
+    }
+    // var tmpBankCardSettings = null
 
     if (tmpBankCardSettings == null) {
       tmpBankCardSettings = []
@@ -103,10 +111,25 @@ class HomeComponent extends Component {
   }
 
   saveSettings() {
+    console.log("saveSettings");
     this.setState({
       showSettingsModal: false
     })
-    // cookies.set('banksCardsSettings', this.state.banksCardsSettings);
+    const {cookies} = this.props;
+    const settingsCookie = this.state.banksCardsSettings
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 365);
+    // console.log("this.state.banksCardsSettings", this.state.banksCardsSettings);
+    // console.log("JSON.stringify(settingsCookie)", JSON.stringify(settingsCookie));
+    // cookies.set('settings', JSON.stringify(settingsCookie))
+    // cookies.set('NAME2', 'Muhammad Abbas2');
+    // cookies.set('test_object', {
+    //   name: "Mohammed"
+    // });
+
+    localStorage.setItem('banksCardsSettings', settingsCookie);
+
 
   }
 
@@ -117,9 +140,6 @@ class HomeComponent extends Component {
   }
 
   updateSettingsForBank(newCardSettings, bankId) {
-    console.log("newCardSettings", newCardSettings);
-    console.log("bankId", bankId);
-
     const banksCardsSettings = this.state.banksCardsSettings
     for (var i = 0; i < banksCardsSettings.length; i++) {
       if (banksCardsSettings[i].bank.id === bankId) {
@@ -148,15 +168,15 @@ class HomeComponent extends Component {
 
   componentWillMount() {
     console.log("componentWillMount");
-    const {cookies} = this.props;
-    cookies.set('name', "Muhammad Abbas")
+
   }
+
+
 
   render() {
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []
-    const {cookies} = this.props;
-    const name = cookies.get('name')
+
 
 
     if (deals !== null && restaurants !== null && banks !== null && cities !== null) {
@@ -181,9 +201,6 @@ class HomeComponent extends Component {
 
     return (
       <div>
-        <div>
-          {name}
-        </div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
         <Button bsStyle="primary" onClick={this.setBankCards} disabled={false}>
           Set Banks/Cards
@@ -197,7 +214,7 @@ class HomeComponent extends Component {
         </table>
         <SettingsModal onHide={this.closeSettingsModal}
                        show={this.state.showSettingsModal}
-                       onSave={this.saveSettings}
+                       saveSettings={this.saveSettings}
                        banks={this.props.banks}
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
