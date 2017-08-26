@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import $ from "jquery"
 import classNames from 'classnames/bind';
-// import Cookies from 'universal-cookie';
+import { withCookies, Cookies } from 'react-cookie';
 import SingleDealComponent from './SingleDealComponent'
 import SettingsModal from './SettingsModal'
 
@@ -146,11 +146,18 @@ class HomeComponent extends Component {
     console.log("componentDidMount");
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    console.log("componentWillMount");
+    const {cookies} = this.props;
+    cookies.set('name', "Muhammad Abbas")
+  }
 
   render() {
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []
+    const {cookies} = this.props;
+    const name = cookies.get('name')
+
 
     if (deals !== null && restaurants !== null && banks !== null && cities !== null) {
       for (var i = 0; i < deals.length; i++) {
@@ -174,10 +181,11 @@ class HomeComponent extends Component {
 
     return (
       <div>
+        <div>
+          {name}
+        </div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
-        <Button bsStyle="primary"
-                onClick={this.setBankCards}
-                disabled={false}>
+        <Button bsStyle="primary" onClick={this.setBankCards} disabled={false}>
           Set Banks/Cards
         </Button>
         <br/>
@@ -194,7 +202,7 @@ class HomeComponent extends Component {
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-    );
+      );
   }
 }
 
@@ -204,6 +212,8 @@ HomeComponent.propTypes = {
   restaurants: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired,
 
+  cookies: instanceOf(Cookies).isRequired
+
 };
 
-export default HomeComponent;
+export default withCookies(HomeComponent);
