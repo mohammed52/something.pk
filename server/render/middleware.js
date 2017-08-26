@@ -11,6 +11,7 @@ import fetchDataForRoute from '../../app/utils/fetchDataForRoute';
  * and pass it into the Router.run function.
  */
 export default function render(req, res) {
+  console.log("req1", req);
   const authenticated = req.isAuthenticated();
   const history = createMemoryHistory();
   const store = configureStore({
@@ -47,7 +48,7 @@ export default function render(req, res) {
   match({
     routes,
     location: req.url
-  }, (err, redirect, props, req) => {
+  }, (err, redirect, props) => {
 
     if (err) {
       res.status(500).json(err);
@@ -108,7 +109,7 @@ export default function render(req, res) {
           //   type: types.REQUEST_SUCCESS_TOPIC,
           //   data
           // });
-
+          console.log("req2", req);
           const html = pageRenderer(store, props, req);
           res.status(200).send(html);
         })
