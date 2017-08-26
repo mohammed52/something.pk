@@ -39,33 +39,40 @@ class SettingsModal extends Component {
     var arrPanels = [];
     const banks = this.props.banks
     const updateSettingsForBank = this.props.updateSettingsForBank
+    if (updateSettingsForBank !== null && banks !== null && banksCardsSettings !== null) {
 
-    for (var i = 0; i < banks.length; i++) {
-      var tmpBankCardSettings = null
+      for (var i = 0; i < banks.length; i++) {
+        var tmpBankCardSettings = null
 
-      for (var j = 0; j < banksCardsSettings.length; j++) {
-        if (banksCardsSettings[j].bank.id === banks[i].id) {
-          tmpBankCardSettings = banksCardsSettings[j]
-          break
+        for (var j = 0; j < banksCardsSettings.length; j++) {
+          if (banksCardsSettings[j].bank.id === banks[i].id) {
+            tmpBankCardSettings = banksCardsSettings[j]
+            break
+          }
         }
-      }
 
-      const cards = banks[i].cards
-      arrPanels.push(
-        <Panel header={<div>
-                 <Checkbox checked={tmpBankCardSettings.bankEnabled} inline disabled={true} />
+        const cards = banks[i].cards
+        arrPanels.push(
+          <Panel header={<div>
+                 <Checkbox checked={tmpBankCardSettings.bankEnabled}
+                           inline
+                           disabled={true} />
                  <span>{banks[i].fullName}</span>
-               </div>} eventKey={i + 1} key={"arrPanelsPanel" + i}>
-          <BankSettingsPanelContent cards={cards}
-                                    bank={banks[i]}
-                                    settings={tmpBankCardSettings}
-                                    updateSettingsForBank={updateSettingsForBank} />
-        </Panel>
-      )
+               </div>}
+                 eventKey={i + 1}
+                 key={"arrPanelsPanel" + i}>
+            <BankSettingsPanelContent cards={cards}
+                                      bank={banks[i]}
+                                      settings={tmpBankCardSettings}
+                                      updateSettingsForBank={updateSettingsForBank} />
+          </Panel>
+        )
+      }
     }
 
     return (
-      <Modal show={this.props.show} onHide={this.props.onHide}>
+      <Modal show={this.props.show}
+             onHide={this.props.onHide}>
         <Modal.Header closeButton>
           <Modal.Title>
             Settings
@@ -80,7 +87,8 @@ class SettingsModal extends Component {
           </FormGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={this.btnSave}>
+          <Button bsStyle="primary"
+                  onClick={this.btnSave}>
             Save
           </Button>
           <Button onClick={this.props.onHide}>
@@ -88,7 +96,7 @@ class SettingsModal extends Component {
           </Button>
         </Modal.Footer>
       </Modal>
-      );
+    );
   }
 }
 

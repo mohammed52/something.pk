@@ -54,7 +54,7 @@ class HomeComponent extends Component {
     //check if not on server
     if (typeof (Storage) !== "undefined") {
       //use the local storage
-      tmpBankCardSettings = localStorage.getItem("banksCardsSettings");
+      tmpBankCardSettings = JSON.parse(localStorage.getItem("banksCardsSettings"));
       console.log("tmpBankCardSettings", tmpBankCardSettings);
     }
     // var tmpBankCardSettings = null
@@ -128,7 +128,7 @@ class HomeComponent extends Component {
     //   name: "Mohammed"
     // });
 
-    localStorage.setItem('banksCardsSettings', settingsCookie);
+    localStorage.setItem('banksCardsSettings', JSON.stringify(settingsCookie));
 
 
   }
@@ -179,7 +179,7 @@ class HomeComponent extends Component {
 
 
 
-    if (deals !== null && restaurants !== null && banks !== null && cities !== null) {
+    if (deals !== null && restaurants !== null && banks !== null && cities !== null && this.state.banksCardsSettings !== null) {
       for (var i = 0; i < deals.length; i++) {
         const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
         const cities = getCities(deals[i].cities)
@@ -202,7 +202,9 @@ class HomeComponent extends Component {
     return (
       <div>
         <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
-        <Button bsStyle="primary" onClick={this.setBankCards} disabled={false}>
+        <Button bsStyle="primary"
+                onClick={this.setBankCards}
+                disabled={false}>
           Set Banks/Cards
         </Button>
         <br/>
@@ -219,7 +221,7 @@ class HomeComponent extends Component {
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-      );
+    );
   }
 }
 

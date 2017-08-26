@@ -67,7 +67,7 @@ class AllDealsComponent extends Component {
 
     var trArrDeals = []
 
-    if (bank !== null) {
+    if (bank !== null && deals.length !== 0 && restaurants !== 0 && cities !== 0) {
       for (var i = 0; i < deals.length; i++) {
         if (deals[i].bankId === this.props.bank._id) {
           const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
@@ -124,7 +124,7 @@ class AllDealsComponent extends Component {
            Select Bank
          </div>}
       </div>
-      );
+    );
   }
 }
 
