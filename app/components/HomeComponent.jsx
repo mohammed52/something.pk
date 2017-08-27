@@ -100,7 +100,7 @@ class HomeComponent extends Component {
 
     this.state = {
       banksCardsSettings: tmpBankCardSettings,
-      showSettingsModal: true,
+      showSettingsModal: false,
     };
   }
 
@@ -179,7 +179,7 @@ class HomeComponent extends Component {
 
 
 
-    if (deals !== null && restaurants !== null && banks !== null && cities !== null && this.state.banksCardsSettings !== null) {
+    if (deals !== null && restaurants !== null && banks !== null && cities !== null && this.state.banksCardsSettings !== null && banks.length !== 0) {
       for (var i = 0; i < deals.length; i++) {
         const restaurant = getRestaurant(deals[i].restaurantId, restaurants)
         const cities = getCities(deals[i].cities)
