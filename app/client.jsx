@@ -7,7 +7,7 @@ import { CookiesProvider } from 'react-cookie';
 
 
 import 'bootstrap/dist/js/bootstrap.min.js';
-
+import 'bootstrap/dist/css/bootstrap.css';
 import createRoutes from './routes';
 import * as types from './types';
 import configureStore from './store/configureStore';

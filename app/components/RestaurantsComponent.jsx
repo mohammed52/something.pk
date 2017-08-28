@@ -9,8 +9,8 @@ import classNames from 'classnames/bind';
 import SingleRestaurantRowComponent from './SingleRestaurantRowComponent'
 
 import testStyles from '../css/components/test';
-
-const cxTest = classNames.bind(testStyles);
+// import bsStyles from 'bootstrap/dist/css/bootstrap.css';
+// const bx = classNames.bind(bsStyles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -209,8 +209,8 @@ class RestaurantComponent extends Component {
         </form>
         <div>
           <h4>All Existing Restaurants</h4>
-          <div className="well">
-            <table className="table">
+          <div className='well'>
+            <table className='table'>
               <tbody>
                 <tr>
                   <th>
