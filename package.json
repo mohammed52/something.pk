@@ -106,6 +106,7 @@
     "react-bootstrap": "^0.31.0",
     "react-bootstrap-date-picker": "^5.0.1",
     "react-cookie": "^2.0.8",
+    "react-css-modules": "^4.7.1",
     "react-dom": "^15.5.4",
     "react-dropzone": "^3.13.2",
     "react-helmet": "^5.0.2",
