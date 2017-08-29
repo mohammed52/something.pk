@@ -10,11 +10,14 @@ import { withCookies, Cookies } from 'react-cookie';
 import SingleDealComponent from './SingleDealComponent'
 import SettingsModal from './SettingsModal'
 
+import styles from '../css/components/home';
 import testStyles from '../css/components/test';
 import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
 import { bankIsEnabledInSettings } from './helpers/settingsHelpers'
 
-const cxTest = classNames.bind(testStyles);
+const cx = classNames.bind(styles);
+const testCx = classNames.bind(testStyles);
+
 // const cookies = new Cookies();
 /*
  * Note: This is kept as a container-level component,
@@ -201,10 +204,12 @@ class HomeComponent extends Component {
 
     return (
       <div>
-        <br/> BETA - have a feature in mind for this website? talk to me, let me buy you a drink :)
+        <br/>
+        {"BETA - have a feature in mind for this website? talk to me, let me buy you a drink :) "}
         <Button bsStyle="primary"
                 onClick={this.setBankCards}
-                disabled={false}>
+                disabled={false}
+                bsSize="xsmall">
           Set Banks/Cards
         </Button>
         <br/>

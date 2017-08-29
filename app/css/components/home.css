@@ -1,0 +1,13 @@
+@import '../common/colors';
+@import '../common/typography';
+
+.restaurantLogo{
+	width: 100%;
+}
+.bankLogo{
+	width: 100%;
+}
+
+.tdLogo{
+	width: 200%;
+}

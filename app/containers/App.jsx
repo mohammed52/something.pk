@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import Message from '../containers/Message';
 import styles from '../css/main';
 
-require("bootstrap/dist/css/bootstrap.css")
+require('bootstrap/dist/css/bootstrap.css');
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +25,7 @@ const App = ({children}) => {
       <Message />
       {children}
     </div>
-    );
+  );
 };
 
 App.propTypes = {

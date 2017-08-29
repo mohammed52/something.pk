@@ -7,13 +7,14 @@ import $ from "jquery"
 import classNames from 'classnames/bind';
 import { getRestaurant, getCities, getCardDeals } from './helpers/dealsDisplayHelpers'
 import { cardEnabledInSettings } from './helpers/settingsHelpers'
-
+import styles from '../css/components/home';
+import testStyles from '../css/components/test';
+// const cx = classNames.bind(styles);
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import testStyles from '../css/components/test';
 
-const cxTest = classNames.bind(testStyles);
+// const cxTest = classNames.bind(testStyles);
 
 /*
  * Note: This is kept as a container-level component,
@@ -82,17 +83,16 @@ class SingleDealComponent extends Component {
 
     return (
       <tr>
-        <td>
-          <div>
+        <td className={[testStyles.testbg1].join(' ')}>
+          <div className={testStyles.testbg2}>
             {typeof restaurant.logoUrl === null ? <div>
                                                     no-image
                                                   </div> : <img src={restaurant.logoUrl}
                                                                 alt={restaurant.name}
-                                                                height="100"
-                                                                width="100" />}
+                                                                className={[testStyles.testbg1, styles.restaurantLogo].join(' ')} />}
           </div>
         </td>
-        <td>
+        <td className={[testStyles.testbg1].join(' ')}>
           <div>
             <strong>{restaurant.name}</strong>
           </div>
@@ -107,14 +107,13 @@ class SingleDealComponent extends Component {
             {cities}
           </div>
         </td>
-        <td>
-          <div>
+        <td className={[testStyles.testbg1].join(' ')}>
+          <div className={testStyles.testbg2}>
             {typeof bank.logoUrl === "undefined" ? <div>
                                                      no-image
                                                    </div> : <img src={bank.logoUrl}
                                                                  alt={bank.name}
-                                                                 height="50"
-                                                                 width="50" />}
+                                                                 className={[testStyles.testbg1, styles.bankLogo].join(' ')} />}
           </div>
           <div>
             {bank.fullName}
@@ -122,7 +121,7 @@ class SingleDealComponent extends Component {
         </td>
       </tr>
 
-      );
+    );
   }
 }
 
