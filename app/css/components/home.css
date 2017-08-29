@@ -1,13 +1,79 @@
 @import '../common/colors';
 @import '../common/typography';
 
+.dealsTable{
+  /*padding: 0;*/
+}
+
 .restaurantLogo{
-	width: 100%;
+  /*width: 100%;*/
+  max-width: 16vw;
+   border-radius: 5px;
 }
 .bankLogo{
-	width: 100%;
+  /*width: 100%;*/
+  max-width: 11vw;
+  display: block;
+    margin: auto;
+   border-radius: 5px;
 }
 
 .tdLogo{
-	width: 200%;
+  /*width: 200%;*/
+  padding: 0;
+  margin: 0;
+  vertical-align:top;
+  margin-left: auto;
+  margin-right: auto;
+  align: center;
 }
+.tdBank{
+  /*width: 200%;*/
+  padding: 0;
+  margin: 0;
+  vertical-align:top;
+  margin-left: auto;
+  margin-right: auto;
+  align: center;
+}
+
+.textRestaurantName{
+  font-size: 3.8vw;
+  color: #333333;
+
+}
+
+.textBankName{
+  font-size: 3.3vw;
+  color: #8E969D;
+
+}
+
+.textCardDeal{
+  font-size: 3.5vw;
+  color: #8E969D;
+}
+.textCities{
+  font-size: 3.2vw;
+  color: #8E969D;
+}
+.restaurantWrapper{
+
+  margin: auto; 
+}
+
+.bankLogoWrapper{
+  margin: auto; 
+  text-align: center;
+}
+
+.tdCenterCol{
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
+.trSingleDealRow{
+  border-bottom: 2px solid #EDEDED;
+  padding-top: 200px;
+}
+

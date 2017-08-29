@@ -214,7 +214,7 @@ class HomeComponent extends Component {
         </Button>
         <br/>
         <br/>
-        <table className="table">
+        <table className={[styles.dealsTable].join(' ')}>
           <tbody>
             {arrDealsDivs}
           </tbody>
@@ -226,7 +226,7 @@ class HomeComponent extends Component {
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-    );
+      );
   }
 }
 

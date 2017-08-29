@@ -72,7 +72,8 @@ class SingleDealComponent extends Component {
 
         arrCardDealsDivs.push(
           <div key={"arrCardDealsDivs" + i}>
-            {deal.cardDeals[i].cardName + ": " + deal.cardDeals[i].deal}
+            {deal.cardDeals[i].cardName + ": "}
+            <strong>{deal.cardDeals[i].deal}</strong>
           </div>
         )
       }
@@ -82,46 +83,42 @@ class SingleDealComponent extends Component {
 
 
     return (
-      <tr>
-        <td className={[testStyles.testbg1].join(' ')}>
-          <div className={testStyles.testbg2}>
+      <tr className={[styles.trSingleDealRow].join(' ')}>
+        <td className={[styles.tdLogo].join(' ')}>
+          <div className={[styles.restaurantWrapper].join(' ')}>
             {typeof restaurant.logoUrl === null ? <div>
                                                     no-image
-                                                  </div> : <img src={restaurant.logoUrl}
-                                                                alt={restaurant.name}
-                                                                className={[testStyles.testbg1, styles.restaurantLogo].join(' ')} />}
+                                                  </div> : <img src={restaurant.logoUrl} alt={restaurant.name} className={[styles.restaurantLogo].join(' ')} />}
           </div>
         </td>
-        <td className={[testStyles.testbg1].join(' ')}>
-          <div>
+        <td className={[styles.tdCenterCol].join(' ')}>
+          <div className={styles.textRestaurantName}>
             <strong>{restaurant.name}</strong>
           </div>
-          <div>
+          <div className={styles.textCardDeal}>
             {arrCardDealsDivs}
           </div>
           <div>
             {deal.generalDeal}
           </div>
           <br/>
-          <div>
-            {cities}
+          <div className={styles.textCities}>
+            <strong>{cities}</strong>
           </div>
         </td>
-        <td className={[testStyles.testbg1].join(' ')}>
-          <div className={testStyles.testbg2}>
+        <td className={[styles.tdBank].join(' ')}>
+          <div className={[styles.bankLogoWrapper].join(' ')}>
             {typeof bank.logoUrl === "undefined" ? <div>
                                                      no-image
-                                                   </div> : <img src={bank.logoUrl}
-                                                                 alt={bank.name}
-                                                                 className={[testStyles.testbg1, styles.bankLogo].join(' ')} />}
-          </div>
-          <div>
-            {bank.fullName}
+                                                   </div> : <img src={bank.logoUrl} alt={bank.name} className={[styles.bankLogo].join(' ')} />}
+            <div className={styles.textBankName}>
+              <strong>{bank.fullName}</strong>
+            </div>
           </div>
         </td>
       </tr>
 
-    );
+      );
   }
 }
 
