@@ -15,9 +15,6 @@ import testStyles from '../css/components/test';
 import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
 import { bankIsEnabledInSettings } from './helpers/settingsHelpers'
 
-const cx = classNames.bind(styles);
-const testCx = classNames.bind(testStyles);
-
 // const cookies = new Cookies();
 /*
  * Note: This is kept as a container-level component,
@@ -203,9 +200,11 @@ class HomeComponent extends Component {
     }
 
     return (
-      <div>
+      <div className={[styles.homeWrapper].join(' ')}>
         <br/>
-        {"BETA - have a feature in mind for this website? talk to me, let me buy you a drink :) "}
+        <div>
+          {"BETA - have a feature in mind for this website? talk to me, let me buy you a drink :) "}
+        </div>
         <Button bsStyle="primary"
                 onClick={this.setBankCards}
                 disabled={false}
@@ -226,7 +225,8 @@ class HomeComponent extends Component {
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank} />
       </div>
-      );
+
+    );
   }
 }
 

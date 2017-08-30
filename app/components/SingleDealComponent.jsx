@@ -88,7 +88,9 @@ class SingleDealComponent extends Component {
           <div className={[styles.restaurantWrapper].join(' ')}>
             {typeof restaurant.logoUrl === null ? <div>
                                                     no-image
-                                                  </div> : <img src={restaurant.logoUrl} alt={restaurant.name} className={[styles.restaurantLogo].join(' ')} />}
+                                                  </div> : <img src={restaurant.logoUrl}
+                                                                alt={restaurant.name}
+                                                                className={[styles.restaurantLogo].join(' ')} />}
           </div>
         </td>
         <td className={[styles.tdCenterCol].join(' ')}>
@@ -98,7 +100,7 @@ class SingleDealComponent extends Component {
           <div className={styles.textCardDeal}>
             {arrCardDealsDivs}
           </div>
-          <div>
+          <div className={styles.textStandardDeal}>
             {deal.generalDeal}
           </div>
           <br/>
@@ -110,7 +112,9 @@ class SingleDealComponent extends Component {
           <div className={[styles.bankLogoWrapper].join(' ')}>
             {typeof bank.logoUrl === "undefined" ? <div>
                                                      no-image
-                                                   </div> : <img src={bank.logoUrl} alt={bank.name} className={[styles.bankLogo].join(' ')} />}
+                                                   </div> : <img src={bank.logoUrl}
+                                                                 alt={bank.name}
+                                                                 className={[styles.bankLogo].join(' ')} />}
             <div className={styles.textBankName}>
               <strong>{bank.fullName}</strong>
             </div>
@@ -118,7 +122,7 @@ class SingleDealComponent extends Component {
         </td>
       </tr>
 
-      );
+    );
   }
 }
 

@@ -13,6 +13,7 @@
 body {
   margin: 0;
   font-family: var(--fontMontserrat);
+   background-image: url("../assets/kitchen-bg.jpg");
 }
 
 .app {

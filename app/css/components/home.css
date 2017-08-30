@@ -3,19 +3,26 @@
 
 .dealsTable{
   /*padding: 0;*/
+  display: table;
+  margin: 0 auto;
 }
 
 .restaurantLogo{
   /*width: 100%;*/
-  max-width: 16vw;
+  width: 20vw;
+  max-width: 86px;
    border-radius: 5px;
+   padding: 2vw 0;
 }
 .bankLogo{
   /*width: 100%;*/
-  max-width: 11vw;
+  
+  width: 11vw;
+  max-width: 53px;
   display: block;
     margin: auto;
    border-radius: 5px;
+   padding: 1vw 0;
 }
 
 .tdLogo{
@@ -38,23 +45,34 @@
 }
 
 .textRestaurantName{
-  font-size: 3.8vw;
+  /*font-size: 3.8vw;*/
+  font-size: 13px;
   color: #333333;
 
 }
 
 .textBankName{
-  font-size: 3.3vw;
+	font-size: 10px;
+  /*font-size: 3.3vw;*/
   color: #8E969D;
 
 }
 
 .textCardDeal{
-  font-size: 3.5vw;
+  /*font-size: 3.5vw;*/
+  font-size: 12px;
   color: #8E969D;
 }
+
+.textStandardDeal{
+  /*font-size: 3.5vw;*/
+  font-size: 12px;
+  color: #8E969D;
+}
+
 .textCities{
-  font-size: 3.2vw;
+  /*font-size: 3.2vw;*/
+  font-size: 12px;
   color: #8E969D;
 }
 .restaurantWrapper{
@@ -68,12 +86,28 @@
 }
 
 .tdCenterCol{
-  padding-bottom: 5px;
-  padding-left: 5px;
+  padding: 1vw 2vw;
 }
 
 .trSingleDealRow{
-  border-bottom: 2px solid #EDEDED;
+  border-bottom: 2px solid #5B3717;
   padding-top: 200px;
+  padding-bottom: 11px;
 }
 
+.homeWrapper{
+	/*width: 100%;*/
+	max-width: 980px;
+	display: table;
+  margin: 0 auto;
+  background-color: white;
+  border: 1vw solid #5B3717;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.wellWrapper{
+	max-width: 550px;
+	display: table;
+  margin: 0 auto;
+}

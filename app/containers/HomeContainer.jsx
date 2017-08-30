@@ -29,7 +29,6 @@ class HomeContainer extends Component {
     return (
       // <div className={cx('vote')}>
       <div>
-        HomeContainer
         <HomeComponent banks={this.props.banks}
                        cities={this.props.cities}
                        deals={this.props.deals}

@@ -34,7 +34,7 @@ const buildPage = ({componentHTML, initialState, headAssets}) => {
 };
 
 export default (store, props, req) => {
-  console.log("req", req);
+  // console.log("req", req);
   const initialState = store.getState();
   const componentHTML = createApp(store, props, req);
   const headAssets = Helmet.renderStatic();
