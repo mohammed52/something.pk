@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 import SingleRestaurantRowComponent from './SingleRestaurantRowComponent'
 
 import testStyles from '../css/components/test';
+import styles from '../css/components/restaurants';
 // import bsStyles from 'bootstrap/dist/css/bootstrap.css';
 // const bx = classNames.bind(bsStyles);
 
@@ -155,8 +156,8 @@ class RestaurantComponent extends Component {
 
     return (
       <div>
-        <form className="testbg-1">
-          <h3>Add New Restaurant</h3>
+        <form>
+          <h3><strong>Add New Restaurant</strong></h3>
           <div className="well">
             <table className="table">
               <tbody>
@@ -175,9 +176,7 @@ class RestaurantComponent extends Component {
                     <br/>
                   </td>
                   <td>
-                    <Dropzone multiple={false}
-                              accept="image/jpg,image/png,image/jpeg"
-                              onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -190,8 +189,7 @@ class RestaurantComponent extends Component {
                          <p>
                            {this.state.uploadedRestaurantLogo.name}
                          </p>
-                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl}
-                              alt="uploaded image" />
+                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl} alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -208,7 +206,7 @@ class RestaurantComponent extends Component {
           </div>
         </form>
         <div>
-          <h4>All Existing Restaurants</h4>
+          <h4><strong>All Existing Restaurants</strong></h4>
           <div className='well'>
             <table className='table'>
               <tbody>
@@ -232,7 +230,7 @@ class RestaurantComponent extends Component {
           </div>
         </div>
       </div>
-    );
+      );
   }
 }
 

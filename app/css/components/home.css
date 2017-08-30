@@ -90,7 +90,7 @@
 }
 
 .trSingleDealRow{
-  border-bottom: 2px solid #5B3717;
+  border-bottom: 1px solid #783600;
   padding-top: 200px;
   padding-bottom: 11px;
 }
@@ -101,7 +101,7 @@
 	display: table;
   margin: 0 auto;
   background-color: white;
-  border: 1vw solid #5B3717;
+  border: 1vw solid #783600;
   border-radius: 20px;
   padding: 10px;
 }

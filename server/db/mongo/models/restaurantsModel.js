@@ -7,7 +7,10 @@ import mongoose from 'mongoose';
 
 const RestaurantsSchema = new mongoose.Schema({
   id: String,
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   date: {
     type: Date,
     default: Date.now

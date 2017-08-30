@@ -6,8 +6,14 @@ import mongoose from 'mongoose';
 
 const BankSchema = new mongoose.Schema({
   id: String,
-  fullName: String,
-  shortName: String,
+  fullName: {
+    type: String,
+    unique: true
+  },
+  shortName: {
+    type: String,
+    unique: true
+  },
   date: {
     type: Date,
     default: Date.now

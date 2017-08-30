@@ -6,9 +6,6 @@ import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
 import { getDeals } from '../actions/dealsActions';
 import HomeComponent from '../components/HomeComponent'
-import styles from '../css/components/vote';
-
-const cx = classNames.bind(styles);
 
 class HomeContainer extends Component {
 
@@ -34,7 +31,7 @@ class HomeContainer extends Component {
                        deals={this.props.deals}
                        restaurants={this.props.restaurants} />
       </div>
-    );
+      );
   }
 }
 
