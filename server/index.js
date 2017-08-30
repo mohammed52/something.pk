@@ -8,7 +8,8 @@ import initRoutes from './init/routes';
 import renderMiddleware from './render/middleware';
 
 const app = express();
-
+require('dotenv').config()
+// console.log("process.env", process.env);
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose

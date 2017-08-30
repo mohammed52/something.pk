@@ -23,6 +23,7 @@ export default function render(req, res) {
     }
   }, history);
   const routes = createRoutes(store);
+  // console.log("process.env", process.env);
 
   /*
    * From the react-router docs:

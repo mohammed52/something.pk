@@ -174,10 +174,10 @@ class HomeComponent extends Component {
 
 
   render() {
+    console.log("process.env.valueOf(CLOUDINARY_UPLOAD_PRESET)", process.env.valueOf("CLOUDINARY_UPLOAD_PRESET"));
+
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []
-
-
 
     if (deals !== null && restaurants !== null && banks !== null && cities !== null && this.state.banksCardsSettings !== null && banks.length !== 0) {
       for (var i = 0; i < deals.length; i++) {
