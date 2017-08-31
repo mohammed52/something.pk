@@ -12,8 +12,6 @@ function destroy(id) {
 }
 
 function createBankRequest(data) {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("createBankRequest");
   return {
     type: types.CREATE_BANK_REQUEST,
     id: data.id,
@@ -70,10 +68,8 @@ function destroyCardFromBankFailure(data) {
 // to have side effects, including executing asynchronous API calls.
 export function createBank(bank) {
   const MAPLOG = true;
-  if (MAPLOG) console.log("bank", bank);
 
   return (dispatch, getState) => {
-    if (MAPLOG) console.log("action createBank");
     // If the text box is empty
 
     if (bank.fullName.trim().length <= 0) return;
@@ -88,7 +84,6 @@ export function createBank(bank) {
       logoUrl: bank.logoUrl,
       cards: bank.cards
     };
-    if (MAPLOG) console.log("data", data);
 
 
     // Redux thunk's middleware receives the store methods `dispatch`
@@ -162,17 +157,9 @@ export function addCardToBank(bank, cardName) {
 }
 
 export function deleteCardFromBank(bank, cardName) {
-  console.log("deleteCardFromBank");
-
   const cardsArray = bank.cards
-  console.log("cardsArray", cardsArray);
-  console.log("cardName", cardName);
   const index = cardsArray.indexOf(cardName)
-  console.log("index", index);
-
   cardsArray.splice(index, 1)
-  console.log("cardsArray", cardsArray);
   bank.cards = cardsArray
-  console.log("bank", bank);
   return updateCardForBankService(bank, cardsArray)
 }

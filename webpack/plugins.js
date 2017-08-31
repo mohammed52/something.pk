@@ -11,7 +11,9 @@ module.exports = ({production = false, browser = false} = {}) => {
     warnings: false
   };
   const compileTimeConstantForMinification = {
-    __PRODUCTION__: JSON.stringify(production)
+    __PRODUCTION__: JSON.stringify(production),
+    CLOUDINARY_UPLOAD_PRESET: JSON.stringify(process.env.CLOUDINARY_UPLOAD_PRESET),
+    CLOUDINARY_UPLOAD_URL: JSON.stringify(process.env.CLOUDINARY_UPLOAD_URL),
   };
 
   if (!production && !browser) {

@@ -34,8 +34,6 @@ export default (store) => {
   };
 
   const testFn = () => {
-    const MAPLOG = true;
-    if (MAPLOG) console.log("testfn");
     getCities()
 
   };

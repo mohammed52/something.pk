@@ -28,12 +28,6 @@ var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
-// const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET
-// const CLOUDINARY_UPLOAD_URL = process.env.CLOUDINARY_UPLOAD_URL
-
-const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
-
 class AddBankComponent extends Component {
   constructor(props) {
     super(props);
@@ -141,9 +135,9 @@ class AddBankComponent extends Component {
 
     const allBanks = this.props.banks.slice();
 
-// allBanks.sort((a, b) => {
-//   return a.fullName > b.fullName
-// })
+    // allBanks.sort((a, b) => {
+    //   return a.fullName > b.fullName
+    // })
 
 
     let trArrBanks = []

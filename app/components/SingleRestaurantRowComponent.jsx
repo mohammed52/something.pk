@@ -33,8 +33,8 @@ var Input = ReactBootstrap.Input
 
 var bootbox = require('bootbox');
 
-const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
+// const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
+// const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
 class SingleRestaurantRowComponent extends Component {
 

@@ -29,12 +29,6 @@ var Table = ReactBootstrap.Table
 var FieldGroup = ReactBootstrap.FieldGroup
 var Input = ReactBootstrap.Input
 
-// const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET
-// const CLOUDINARY_UPLOAD_URL = process.env.CLOUDINARY_UPLOAD_URL
-
-const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
-
 class RestaurantComponent extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +48,7 @@ class RestaurantComponent extends Component {
 
 
   onImageDrop(files) {
+
     this.setState({
       uploadedRestaurantLogo: files[0]
     });
@@ -62,8 +57,6 @@ class RestaurantComponent extends Component {
   }
 
   handleImageUpload(file) {
-
-    console.log(process.env)
 
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
@@ -124,7 +117,6 @@ class RestaurantComponent extends Component {
 
 
   render() {
-
     const {children} = this.props;
 
     const allRestaurants = this.props.restaurants;
@@ -176,7 +168,9 @@ class RestaurantComponent extends Component {
                     <br/>
                   </td>
                   <td>
-                    <Dropzone multiple={false} accept="image/jpg,image/png,image/jpeg" onDrop={this.onImageDrop.bind(this)}>
+                    <Dropzone multiple={false}
+                              accept="image/jpg,image/png,image/jpeg"
+                              onDrop={this.onImageDrop.bind(this)}>
                       <p>
                         Drop an image or click to select a file to upload.
                       </p>
@@ -189,7 +183,8 @@ class RestaurantComponent extends Component {
                          <p>
                            {this.state.uploadedRestaurantLogo.name}
                          </p>
-                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl} alt="uploaded image" />
+                         <img src={this.state.uploadedRestaurantLogoCloudinaryUrl}
+                              alt="uploaded image" />
                        </div>}
                     </div>
                   </td>
@@ -230,7 +225,7 @@ class RestaurantComponent extends Component {
           </div>
         </div>
       </div>
-      );
+    );
   }
 }
 

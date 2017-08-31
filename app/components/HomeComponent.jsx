@@ -35,8 +35,8 @@ var Input = ReactBootstrap.Input
 // const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET
 // const CLOUDINARY_UPLOAD_URL = process.env.CLOUDINARY_UPLOAD_URL
 
-const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
+// const CLOUDINARY_UPLOAD_PRESET = 'somethingpk_default_preset';
+// const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dk4gji43k/image/upload';
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -174,7 +174,6 @@ class HomeComponent extends Component {
 
 
   render() {
-    console.log("process.env.valueOf(CLOUDINARY_UPLOAD_PRESET)", process.env.valueOf("CLOUDINARY_UPLOAD_PRESET"));
 
     const {deals, restaurants, banks, cities} = this.props
     const arrDealsDivs = []

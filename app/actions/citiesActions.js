@@ -18,8 +18,6 @@ function saveCities(data) {
 }
 
 function createCityRequest(data) {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("createCityRequest");
   return {
     type: types.CREATE_CITY_REQUEST,
     id: data.id,
@@ -47,11 +45,8 @@ function createCityFailure(data) {
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
 export function createCity(city) {
-  const MAPLOG = true;
-  if (MAPLOG) console.log("city", city);
 
   return (dispatch, getState) => {
-    if (MAPLOG) console.log("action createCity");
     // If the text box is empty
 
     if (city.name.trim().length <= 0) return;
@@ -64,7 +59,6 @@ export function createCity(city) {
       name: city.name,
       shortCode: city.shortCode
     };
-    if (MAPLOG) console.log("data", data);
 
 
     // Redux thunk's middleware receives the store methods `dispatch`
@@ -93,7 +87,6 @@ export function createCity(city) {
 }
 
 export function destroyCity(id) {
-  console.log("destroyCity");
   return (dispatch) => {
     return citiesService().deleteCity({
       id
@@ -107,7 +100,6 @@ export function destroyCity(id) {
 }
 
 export function getCities() {
-  console.log("getCities");
   return (dispatch) => {
 
     return citiesService().getCities()
