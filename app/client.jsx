@@ -49,7 +49,10 @@ function onUpdate() {
     .then((data) => {
       switch (this.state.location.pathname) {
         case ( "/"): {
-
+          return store.dispatch({
+            type: types.REQUEST_SUCCESS_BANKS,
+            data
+          });
         }
         case ( '/dashboard'): {
           return

@@ -11,6 +11,13 @@ function destroy(id) {
   };
 }
 
+function saveBanks(data) {
+  return {
+    type: types.REQUEST_SUCCESS_BANKS,
+    data
+  };
+}
+
 function createBankRequest(data) {
   return {
     type: types.CREATE_BANK_REQUEST,
@@ -162,4 +169,22 @@ export function deleteCardFromBank(bank, cardName) {
   cardsArray.splice(index, 1)
   bank.cards = cardsArray
   return updateCardForBankService(bank, cardsArray)
+}
+
+export function getBanks() {
+  return (dispatch) => {
+
+    return banksService().getBanks()
+      .then(res => {
+        return dispatch(saveBanks(res.data))
+      })
+      // Returning [] as a placeholder now so it does not error out when this service
+      // fails. We should be handling this in our DISPATCH_REQUEST_FAILURE
+      .catch(() => {
+        dispatch(createBankFailure({
+          error: 'Oops! Something went wrong and we couldn\'t get the banks'
+        }))
+      }
+    );
+  }
 }

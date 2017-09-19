@@ -24,6 +24,7 @@ const buildPage = ({componentHTML, initialState, headAssets}) => {
     ${headAssets.link.toString()}
     ${staticAssets.createStylesheets()}
     ${staticAssets.createTrackingScript()}
+    <meta name="google-site-verification" content="HAQV4TwoYNiQUj8zqtLPsqr2-gr94UoBX2IvClzD5_g" />
   </head>
   <body>
     <div id="app">${componentHTML}</div>
