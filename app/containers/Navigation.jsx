@@ -22,7 +22,7 @@ class Navigation extends Component {
         <Link to="/"
               className={cx('item', 'logo')}
               activeClassName={cx('active')}>
-          Ninja Ocean
+          Front Page
         </Link>
         {user.authenticated ? (
          <Link onClick={logOut}

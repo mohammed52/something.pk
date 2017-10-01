@@ -22,6 +22,21 @@ class SettingsModal extends Component {
   constructor(props) {
     super(props)
     this.btnSave = this.btnSave.bind(this)
+    this.onChangeCitiesCheckBoxGroup = this.onChangeCitiesCheckBoxGroup.bind(this)
+    
+    const cities = this.props.cities
+    var citiesSettings = []
+    
+    for (var i = 0; i < cities.length; i++) {
+      citiesSettings.push(
+        true
+        ) 
+    }
+
+    this.state = {
+        citiesSettings,
+      };
+
 
   }
 
@@ -29,6 +44,20 @@ class SettingsModal extends Component {
     console.log("btnSave");
     const saveSettings = this.props.saveSettings
     saveSettings()
+
+  }
+
+  onChangeCitiesCheckBoxGroup(refName, event) {
+    console.log("onChangeCitiesCheckBoxGroup");
+
+    // const index = Number(refName.charAt(0))
+    // var tmpCardsSettings = this.state.cardsSettings
+
+    // tmpCardsSettings[index].enabled = !this.state.cardsSettings[index].enabled
+
+    // const updateSettingsForBank = this.props.updateSettingsForBank
+
+    // updateSettingsForBank(tmpCardsSettings, this.props.bank.id)
 
   }
 
@@ -67,7 +96,26 @@ class SettingsModal extends Component {
                                       updateSettingsForBank={updateSettingsForBank} />
           </Panel>
         )
+
+
       }
+    }
+    const cities = this.props.cities
+    var citiesArr = []
+
+    for (var k = 0; k < cities.length; k++) {
+      citiesArr.push(
+        <div key={"arrCitiesCheckBox"+k}>
+          <Checkbox onChange={this.onChangeCitiesCheckBoxGroup.bind(this, k + 'arrCitiesCheckBox')}
+                    checked={this.state.citiesSettings[k]}
+                    // checked={true}
+                    >
+          {cities[k].name}
+          </Checkbox>
+          <br/>
+        </div>
+      )
+
     }
 
     return (
@@ -79,8 +127,9 @@ class SettingsModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <strong>Select Cities:</strong>
+          {citiesArr}
           <FormGroup controlId="formControlsTextarea">
-            accordion panels
             <Accordion>
               {arrPanels}
             </Accordion>

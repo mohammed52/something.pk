@@ -222,7 +222,8 @@ class HomeComponent extends Component {
                        saveSettings={this.saveSettings}
                        banks={this.props.banks}
                        banksCardsSettings={this.state.banksCardsSettings}
-                       updateSettingsForBank={this.updateSettingsForBank} />
+                       updateSettingsForBank={this.updateSettingsForBank}
+                       cities={this.props.cities} />
       </div>
 
     );
