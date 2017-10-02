@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import PropTypes from 'prop-types';
 import BankSettingsPanelContent from './BankSettingsPanelContent'
 
 var ReactBootstrap = require('react-bootstrap');
@@ -28,9 +29,17 @@ class SettingsModal extends Component {
     var citiesSettings = []
     
     for (var i = 0; i < cities.length; i++) {
+      if (i===1) {
+
       citiesSettings.push(
         true
+        )
+      } else {
+      citiesSettings.push(
+        false
         ) 
+
+      }
     }
 
     this.state = {
@@ -50,25 +59,29 @@ class SettingsModal extends Component {
   onChangeCitiesCheckBoxGroup(refName, event) {
     console.log("onChangeCitiesCheckBoxGroup");
 
-    // const index = Number(refName.charAt(0))
-    // var tmpCardsSettings = this.state.cardsSettings
+    const index = Number(refName.charAt(0))
+    var tmpCitiesSettings = this.state.citiesSettings
 
-    // tmpCardsSettings[index].enabled = !this.state.cardsSettings[index].enabled
+    tmpCitiesSettings[index] = !this.state.citiesSettings[index]
 
-    // const updateSettingsForBank = this.props.updateSettingsForBank
-
-    // updateSettingsForBank(tmpCardsSettings, this.props.bank.id)
+    this.setState({
+      citiesSettings: tmpCitiesSettings
+    })
 
   }
 
   render() {
 
     const banksCardsSettings = this.props.banksCardsSettings
+    const updateSettingsForCities = this.props.updateSettingsForCities
 
     var arrPanels = [];
     const banks = this.props.banks
     const updateSettingsForBank = this.props.updateSettingsForBank
-    if (updateSettingsForBank !== null && banks !== null && banksCardsSettings !== null) {
+    if (updateSettingsForBank !== null && 
+      banks !== null && 
+      banksCardsSettings !== null &&
+      updateSettingsForCities !=null) {
 
       for (var i = 0; i < banks.length; i++) {
         var tmpBankCardSettings = null
@@ -103,16 +116,17 @@ class SettingsModal extends Component {
     const cities = this.props.cities
     var citiesArr = []
 
+    const citiesSettings = this.state.citiesSettings
+
     for (var k = 0; k < cities.length; k++) {
       citiesArr.push(
         <div key={"arrCitiesCheckBox"+k}>
           <Checkbox onChange={this.onChangeCitiesCheckBoxGroup.bind(this, k + 'arrCitiesCheckBox')}
-                    checked={this.state.citiesSettings[k]}
+                    checked={citiesSettings[k]}
                     // checked={true}
                     >
           {cities[k].name}
           </Checkbox>
-          <br/>
         </div>
       )
 
@@ -148,6 +162,17 @@ class SettingsModal extends Component {
     );
   }
 }
+
+SettingsModal.propTypes = {
+  onHide: PropTypes.func.isRequired,
+  show: PropTypes.func.isRequired,
+  saveSettings: PropTypes.func.isRequired,
+  banks: PropTypes.array.isRequired,
+  banksCardsSettings: PropTypes.array.isRequired,
+  updateSettingsForBank: PropTypes.func.isRequired,
+  updateSettingsForCities: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
+};
 
 
 export default SettingsModal

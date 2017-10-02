@@ -15,7 +15,6 @@ import testStyles from '../css/components/test';
 import { getRestaurant, getCities, getCardDeals, getBank } from './helpers/dealsDisplayHelpers'
 import { bankIsEnabledInSettings } from './helpers/settingsHelpers'
 
-// const cookies = new Cookies();
 /*
  * Note: This is kept as a container-level component,
  *  i.e. We should keep this as the container that does the data-fetching
@@ -45,18 +44,22 @@ class HomeComponent extends Component {
     this.saveSettings = this.saveSettings.bind(this)
     this.closeSettingsModal = this.closeSettingsModal.bind(this)
     this.updateSettingsForBank = this.updateSettingsForBank.bind(this)
+    this.updateSettingsForCities = this.updateSettingsForCities.bind(this)
     const banks = this.props.banks
     const {cookies} = this.props
 
 
 
     var tmpBankCardSettings = null
+    var tmpCitiesSettings = null
     //check if not on server
     if (typeof (Storage) !== "undefined") {
       //use the local storage
       tmpBankCardSettings = JSON.parse(localStorage.getItem("banksCardsSettings"));
-      console.log("tmpBankCardSettings", tmpBankCardSettings);
+      tmpCitiesSettings = JSON.parse(localStorage.getItem("citiesSettings"));
     }
+
+
     // var tmpBankCardSettings = null
 
     if (tmpBankCardSettings == null) {
@@ -98,9 +101,29 @@ class HomeComponent extends Component {
       }
     }
 
+    if (tmpCitiesSettings == null) {
+      const cities = this.props.cities
+      for (var k = 0; k < cities.length; k++) {
+        var tmpCitySetting
+        if (cities[k].name === 'Karachi') {
+          tmpCitySetting = {
+            name: cities[k].name,
+            enabled: true
+          }
+        } else {
+          tmpCitySetting = {
+            name: cities[k].name,
+            enabled: false
+          }
+        }
+      // tmpCitiesSettings.push(tmpCitySetting)
+      }
+    }
+
     this.state = {
       banksCardsSettings: tmpBankCardSettings,
       showSettingsModal: false,
+      citiesSettings: tmpCitiesSettings
     };
   }
 
@@ -120,14 +143,6 @@ class HomeComponent extends Component {
 
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 365);
-    // console.log("this.state.banksCardsSettings", this.state.banksCardsSettings);
-    // console.log("JSON.stringify(settingsCookie)", JSON.stringify(settingsCookie));
-    // cookies.set('settings', JSON.stringify(settingsCookie))
-    // cookies.set('NAME2', 'Muhammad Abbas2');
-    // cookies.set('test_object', {
-    //   name: "Mohammed"
-    // });
-
     localStorage.setItem('banksCardsSettings', JSON.stringify(settingsCookie));
 
 
@@ -160,6 +175,10 @@ class HomeComponent extends Component {
     this.setState({
       banksCardsSettings
     })
+  }
+
+  updateSettingsForCities(newCitiesSettings) {
+    console.log("updateSettingsForCities");
   }
 
   componentDidMount() {
@@ -223,10 +242,11 @@ class HomeComponent extends Component {
                        banks={this.props.banks}
                        banksCardsSettings={this.state.banksCardsSettings}
                        updateSettingsForBank={this.updateSettingsForBank}
+                       updateSettingsForCities={this.updateSettingsForCities}
                        cities={this.props.cities} />
       </div>
 
-    );
+      );
   }
 }
 
