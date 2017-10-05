@@ -46,7 +46,8 @@ class HomeComponent extends Component {
     this.updateSettingsForBank = this.updateSettingsForBank.bind(this)
     this.updateSettingsForCities = this.updateSettingsForCities.bind(this)
     const banks = this.props.banks
-    const {cookies} = this.props
+    const cities = this.props.cities
+    // const {cookies} = this.props
 
 
 
@@ -102,9 +103,14 @@ class HomeComponent extends Component {
     }
 
     if (tmpCitiesSettings == null) {
-      const cities = this.props.cities
+
+      tmpCitiesSettings = []
+
+
       for (var k = 0; k < cities.length; k++) {
+
         var tmpCitySetting
+
         if (cities[k].name === 'Karachi') {
           tmpCitySetting = {
             name: cities[k].name,
@@ -116,7 +122,7 @@ class HomeComponent extends Component {
             enabled: false
           }
         }
-      // tmpCitiesSettings.push(tmpCitySetting)
+        tmpCitiesSettings.push(tmpCitySetting)
       }
     }
 
@@ -246,7 +252,7 @@ class HomeComponent extends Component {
                        cities={this.props.cities} />
       </div>
 
-      );
+    );
   }
 }
 
