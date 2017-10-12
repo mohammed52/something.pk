@@ -4,8 +4,8 @@ export const isProduction = ENV === 'production';
 export const isDebug = ENV === 'development';
 export const isClient = typeof window !== 'undefined';
 
-// export const apiEndpoint = isDebug ? 'http://localhost:5000' : 'https://thawing-lake-20958.herokuapp.com';
-export const apiEndpoint = isDebug ? 'http://localhost:5000' : 'http://localhost:5000';
+export const apiEndpoint = isDebug ? 'http://localhost:5000' : 'https://somethingpk.herokuapp.com';
+// export const apiEndpoint = isDebug ? 'http://localhost:5000' : 'http://localhost:5000';
 // Replace with 'UA-########-#' or similar to enable tracking
 export const trackingID = null;
 
