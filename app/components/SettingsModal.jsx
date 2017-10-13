@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
 import BankSettingsPanelContent from './BankSettingsPanelContent'
+import { cityIsEnabled } from './helpers/settingsHelpers'
 
 var ReactBootstrap = require('react-bootstrap');
 // var Accordion = ReactBootstrap.Accordion;
@@ -119,10 +120,11 @@ class SettingsModal extends Component {
     const citiesSettings = this.state.citiesSettings
 
     for (var k = 0; k < cities.length; k++) {
+      var cityIsSelected = cityIsEnabled(cities[k].name, this.state.citiesSettings)
       citiesArr.push(
         <div key={"arrCitiesCheckBox"+k}>
           <Checkbox onChange={this.onChangeCitiesCheckBoxGroup.bind(this, k + 'arrCitiesCheckBox')}
-                    checked={citiesSettings[k]}
+                    checked={cityIsSelected}
                     // checked={true}
                     >
           {cities[k].name}

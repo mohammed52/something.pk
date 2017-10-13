@@ -25,3 +25,7 @@ export function cardEnabledInSettings(cardNameToTest, bank, settings) {
 
   return false
 }
+
+export function cityIsEnabled(cityName, citiesSettings) {
+  return true
+}
