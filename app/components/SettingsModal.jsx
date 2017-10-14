@@ -167,7 +167,7 @@ class SettingsModal extends Component {
 
 SettingsModal.propTypes = {
   onHide: PropTypes.func.isRequired,
-  show: PropTypes.func.isRequired,
+  show: PropTypes.bool.isRequired,
   saveSettings: PropTypes.func.isRequired,
   banks: PropTypes.array.isRequired,
   banksCardsSettings: PropTypes.array.isRequired,

@@ -33,7 +33,7 @@ class HomeContainer extends Component {
                        deals={this.props.deals}
                        restaurants={this.props.restaurants} />
       </div>
-    );
+      );
   }
 }
 

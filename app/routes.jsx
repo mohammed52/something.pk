@@ -42,7 +42,8 @@ export default (store) => {
     <Route path="/"
            component={App}>
       <IndexRoute component={HomePage}
-                  fetchData={fetchBanksData} />
+                  fetchData={fetchBanksData} 
+                  />
       <Route path="login"
              component={LoginOrRegisterPage}
              onEnter={redirectAuth} />
@@ -55,7 +56,8 @@ export default (store) => {
                fetchData={fetchBanksData} />
         <Route path="cards"
                component={CardsPage}
-               fetchData={fetchBanksData} />
+               // fetchData={fetchBanksData} 
+               />
         <Route path="cities"
                component={CitiesPage}
                fetchData={fetchCitiesData} />
@@ -65,7 +67,8 @@ export default (store) => {
         <Route path="deals"
                component={DealsPage}
                onEnter={testFn}
-               fetchData={fetchBanksData} />
+               // fetchData={fetchBanksData} 
+               />
       </Route>
     </Route>
   );

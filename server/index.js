@@ -12,7 +12,6 @@ import renderMiddleware from './render/middleware';
 require('dotenv').config()
 
 const app = express();
-console.log("process.env", process.env);
 /*
  * Database-specific setup
  * - connect to MongoDB using mongoose
@@ -45,6 +44,7 @@ if (isDebug) {
 /*
  * Bootstrap application settings
  */
+// lets see if map1 works
 initExpress(app);
 
 /*
