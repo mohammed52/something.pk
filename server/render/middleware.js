@@ -67,50 +67,52 @@ export default function render(req, res) {
           switch (props.location.pathname) {
             case ( "/"): {
               //
+              break
             }
             case ( '/dashboard'): {
-              //
+              break
+            //
             }
             case ( '/banks'): {
               store.dispatch({
                 type: types.REQUEST_SUCCESS_BANKS,
                 data
               });
+              break
             }
             case ( '/cards'): {
               store.dispatch({
                 type: types.REQUEST_SUCCESS_BANKS,
                 data
               });
+              break
             }
             case ( '/cities'): {
               store.dispatch({
                 type: types.REQUEST_SUCCESS_CITIES,
                 data
               });
+              break
             }
             case ( '/restaurants'): {
               store.dispatch({
                 type: types.REQUEST_SUCCESS_RESTAURANTS,
                 data
               });
+              break
             }
             case ( '/deals'): {
               store.dispatch({
                 type: types.REQUEST_SUCCESS_BANKS,
                 data
               });
+              break
             }
             default: {
-              //
+              break
             }
           }
 
-          // store.dispatch({
-          //   type: types.REQUEST_SUCCESS_TOPIC,
-          //   data
-          // });
-          // console.log("req2", req);
           const html = pageRenderer(store, props, req);
           res.status(200).send(html);
         })

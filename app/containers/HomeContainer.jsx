@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { getCities } from '../actions/citiesActions';
 import { getRestaurants } from '../actions/restaurantsActions';
 import { getDeals } from '../actions/dealsActions';
-// import { getBanks } from '../actions/banksActions';
+import { getBanks } from '../actions/banksActions';
 import HomeComponent from '../components/HomeComponent'
 
 class HomeContainer extends Component {
@@ -15,10 +15,11 @@ class HomeContainer extends Component {
     const getCities = this.props.getCities
     const getRestaurants = this.props.getRestaurants
     const getDeals = this.props.getDeals
+    const getBanks = this.props.getBanks
     getCities()
     getRestaurants()
     getDeals()
-  // getBanks()
+    getBanks()
   }
 
   render() {
@@ -33,7 +34,7 @@ class HomeContainer extends Component {
                        deals={this.props.deals}
                        restaurants={this.props.restaurants} />
       </div>
-      );
+    );
   }
 }
 
@@ -64,5 +65,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   getRestaurants,
   getCities,
-  getDeals
+  getDeals,
+  getBanks
 })(HomeContainer);
